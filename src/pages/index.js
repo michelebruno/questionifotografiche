@@ -13,7 +13,7 @@ const IndexPage = () => {
               lettera
               titolo
               descrizione
-          }
+          }  
       }
   }`)
   return (
