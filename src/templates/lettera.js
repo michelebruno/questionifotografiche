@@ -1,13 +1,21 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Image from "gatsby-image"
+import Layout from "../components/layout"
+import SEO from "../components/seo"
+import Markdown from 'react-markdown'
 
-export default function LetteraTemplate({ data: { images } }) {
-  return <div>
+export default function LetteraTemplate({ data: { images } , pageContext : {titolo, descrizione}}) {
+  return <Layout>
+    <SEO title={titolo} description={descrizione} />
+
+
+    <Markdown>{descrizione}</Markdown>
     {images.edges.map(function({ node }) {
       return <Image key={node.id} fluid={node.childImageSharp.fluid} />
     })}
-  </div>
+
+  </Layout>
 }
 
 export const data = graphql`query Query($img: [String]) {
