@@ -3,6 +3,7 @@ require("dotenv").config({
 })
 
 module.exports = {
+  pathPrefix: "immaginicomealfabeto",
   siteMetadata: {
     title: `Immagini come lettere di un alfabeto`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
@@ -32,20 +33,20 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-source-google-sheets',
+      resolve: "gatsby-source-google-sheets",
       options: {
-        spreadsheetId: '1YlDbYmphksOZSR-mL8KZRuVsoYP0uNaKgIZFa57n26U',
-        worksheetTitle: 'Immagini',
-        credentials: require('./credentials.json')
-      }
+        spreadsheetId: "1YlDbYmphksOZSR-mL8KZRuVsoYP0uNaKgIZFa57n26U",
+        worksheetTitle: "Immagini",
+        credentials: require("./credentials.json"),
+      },
     },
     {
-      resolve: 'gatsby-source-google-sheets',
+      resolve: "gatsby-source-google-sheets",
       options: {
-        spreadsheetId: '1YlDbYmphksOZSR-mL8KZRuVsoYP0uNaKgIZFa57n26U',
-        worksheetTitle: 'Lettere',
-        credentials: require('./credentials.json')
-      }
+        spreadsheetId: "1YlDbYmphksOZSR-mL8KZRuVsoYP0uNaKgIZFa57n26U",
+        worksheetTitle: "Lettere",
+        credentials: require("./credentials.json"),
+      },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline

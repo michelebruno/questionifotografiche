@@ -42,11 +42,15 @@ const Layout = ({ children }) => {
           © {new Date().getFullYear()}, Built with
           {` `}
           <a href="https://www.gatsbyjs.com">Gatsby</a>
-
-
-          <div>
-            <button onClick={() => {fetch('/__refresh', { method: 'POST'})}}>Refresh</button>
-          </div>
+          {process.env.ENABLE_GATSBY_REFRESH_ENDPOINT && (
+            <button
+              onClick={() => {
+                fetch("/__refresh", { method: "POST" })
+              }}
+            >
+              Refresh
+            </button>
+          )}
         </footer>
       </div>
     </>
