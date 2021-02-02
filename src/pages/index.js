@@ -1,8 +1,8 @@
-import React from "react"
-import { graphql, Link, useStaticQuery } from "gatsby"
+import React from 'react';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from '../components/layout';
+import SEO from '../components/seo';
 
 const IndexPage = () => {
   const { lettere } = useStaticQuery(graphql`
@@ -16,7 +16,7 @@ const IndexPage = () => {
         }
       }
     }
-  `)
+  `);
 
   return (
     <Layout>
@@ -24,15 +24,16 @@ const IndexPage = () => {
       <h1>Hi people</h1>
       <p>Welcome to your new Gatsby site.</p>
       <p>Now go build something great.</p>
-      {lettere.nodes.map(({ lettera, id, titolo }) => {
-        return (
-          <h3 key={id}>
-            <Link to={lettera.toString()}> {titolo}</Link>
-          </h3>
-        )
-      })}
+      {lettere.nodes.map(({ lettera, id, titolo }) => (
+        <h3 key={id}>
+          <Link to={lettera.toString()}>
+            {' '}
+            {titolo}
+          </Link>
+        </h3>
+      ))}
     </Layout>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;

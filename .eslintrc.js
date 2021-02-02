@@ -3,10 +3,10 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: "airbnb",
+  extends: 'airbnb',
   globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly",
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
     __PATH_PREFIX__: true,
   },
   parserOptions: {
@@ -14,10 +14,10 @@ module.exports = {
       jsx: true,
     },
     ecmaVersion: 12,
-    sourceType: "module",
+    sourceType: 'module',
   },
-  plugins: ["react"],
+  plugins: ['react'],
   rules: {
-    "react/jsx-filename-extension": "off",
+    'react/jsx-filename-extension': 'off',
   },
 };

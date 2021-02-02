@@ -1,9 +1,9 @@
-import React from "react";
-import { graphql } from "gatsby";
-import Image from "gatsby-image";
-import Markdown from "react-markdown";
-import Layout from "../components/layout";
-import SEO from "../components/seo";
+import React from 'react';
+import { graphql } from 'gatsby';
+import Image from 'gatsby-image';
+import Markdown from 'react-markdown';
+import Layout from '../components/layout';
+import SEO from '../components/seo';
 
 export default function LetteraTemplate({
   data: { images },
