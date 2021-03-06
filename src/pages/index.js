@@ -26,10 +26,7 @@ const IndexPage = () => {
       <p>Now go build something great.</p>
       {lettere.nodes.map(({ lettera, id, titolo }) => (
         <h3 key={id}>
-          <Link to={lettera.toString()}>
-            {' '}
-            {titolo}
-          </Link>
+          <Link to={lettera.toString()}>{titolo}</Link>
         </h3>
       ))}
     </Layout>

@@ -12,9 +12,7 @@ exports.createPages = async function createPages({
   graphql,
   actions: { createPage },
 }) {
-  const {
-    data: { lettere, immagini },
-  } = await graphql(`
+  const q = await graphql(`
     {
       lettere: allGoogleSheetLettereRow {
         nodes {
@@ -28,11 +26,14 @@ exports.createPages = async function createPages({
           lettera
           filename
           descrizione
-          nome
         }
       }
     }
   `);
+
+  const {
+    data: { lettere, immagini },
+  } = q;
 
   lettere.nodes.forEach(({ lettera, titolo, descrizione }) => {
     const imgFilenames = immagini.nodes

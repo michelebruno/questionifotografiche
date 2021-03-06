@@ -21,6 +21,13 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'fotografie',
+        path: `${__dirname}/src/fotografie`,
+      },
+    },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
@@ -38,7 +45,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-google-sheets',
       options: {
-        spreadsheetId: '1YlDbYmphksOZSR-mL8KZRuVsoYP0uNaKgIZFa57n26U',
+        spreadsheetId: '1GbYyZeiaubx4C_Vfsm5xYIJ9QM0tP0OIBi6S7dY7ZpE',
         worksheetTitle: 'Immagini',
         credentials: googleCredentials,
       },
@@ -46,7 +53,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-google-sheets',
       options: {
-        spreadsheetId: '1YlDbYmphksOZSR-mL8KZRuVsoYP0uNaKgIZFa57n26U',
+        spreadsheetId: '1GbYyZeiaubx4C_Vfsm5xYIJ9QM0tP0OIBi6S7dY7ZpE',
         worksheetTitle: 'Lettere',
         credentials: googleCredentials,
       },
