@@ -7,7 +7,7 @@ import Header from './header';
 import '../scss/style.scss';
 import { Helmet } from 'react-helmet';
 
-const Layout = ({ children }) => {
+function Layout({ children }) {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -50,7 +50,7 @@ const Layout = ({ children }) => {
       </div>
     </>
   );
-};
+}
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,

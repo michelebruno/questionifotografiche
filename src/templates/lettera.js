@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { graphql } from 'gatsby';
 import Image from 'gatsby-image';
@@ -7,34 +8,32 @@ import SEO from '../components/seo';
 
 export default function LetteraTemplate({
   data: { images },
-  pageContext: { descrizione },
+  pageContext,
 }) {
+  const immagini = { ...pageContext.immagini };
+  const { descrizione } = pageContext;
   return (
     <Layout>
       <SEO description={descrizione} />
 
       <Markdown>{descrizione}</Markdown>
-      {images.edges.map(({ node }) => (
+      {images.nodes.map((node) => (
         <Image key={node.id} fluid={node.childImageSharp.fluid} />
       ))}
     </Layout>
   );
 }
 
-export const data = graphql`
-  query Query($img: [String]) {
-    images: allFile(filter: { relativePath: { in: $img } }) {
-      edges {
-        node {
-          id
-          childImageSharp {
-            fluid(maxWidth: 700) {
-              # Choose either the fragment including a small base64ed image, a traced placeholder SVG, or one without.
-              ...GatsbyImageSharpFluid
-            }
-          }
+export const query = graphql`
+query Immagini($filenames: [String]) {
+  images: allFile(filter: {sourceInstanceName: {eq: "fotografie"}, relativePath: {in: $filenames}}) {
+    nodes { 
+      id
+      childImageSharp {
+        fluid(maxWidth: 1600) {
+          ...GatsbyImageSharpFluid
         }
       }
     }
-  }
-`;
+  } 
+}`;

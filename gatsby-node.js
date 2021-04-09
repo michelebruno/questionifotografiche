@@ -5,6 +5,7 @@
  */
 
 const path = require('path');
+const _ = require('lodash');
 
 const template = path.resolve('./src/templates', 'lettera.js');
 
@@ -43,8 +44,9 @@ exports.createPages = async function createPages({
         nodes {
           id
           descrizione
-          titolo
           autore
+          scaricato
+          lettera
         }
       }
     }
@@ -53,14 +55,15 @@ exports.createPages = async function createPages({
   if (q.errors) {
     return console.log(q.errors);
   }
+
   const {
     data: { lettere, immagini },
   } = q;
 
   lettere.nodes.forEach(({ lettera, titolo, descrizione }) => {
-    const imgFilenames = immagini.nodes.filter(
-      (img) => img.lettera === lettera,
-    ).map((img) => img.filename);
+    const imgs = immagini.nodes.filter(
+      (img) => img.lettera === lettera && img.scaricato,
+    );
 
     createPage({
       path: lettera.toString(),
@@ -69,7 +72,13 @@ exports.createPages = async function createPages({
         lettera,
         titolo,
         descrizione,
-        img: imgFilenames,
+        immagini: imgs,
+        filenames: imgs.map(
+          ({ lettera, autore }) => `${lettera.toLocaleString('en-US',
+            { minimumIntegerDigits: 2, useGrouping: false })} ${_.startCase(
+            _.toLower(autore),
+          )}.jpg`,
+        ),
       },
     });
   });
