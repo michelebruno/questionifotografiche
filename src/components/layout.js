@@ -4,7 +4,8 @@ import { useStaticQuery, graphql } from 'gatsby';
 
 import Header from './header';
 
-import './layout.css';
+import '../scss/style.scss';
+import { Helmet } from 'react-helmet';
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -19,14 +20,11 @@ const Layout = ({ children }) => {
 
   return (
     <>
+      <Helmet>
+        <link rel="stylesheet" href="https://use.typekit.net/qsp3uel.css" />
+      </Helmet>
       <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
-      <div
-        style={{
-          margin: '0 auto',
-          maxWidth: 960,
-          padding: '0 1.0875rem 1.45rem',
-        }}
-      >
+      <div>
         <main>{children}</main>
         <footer
           style={{
