@@ -61,12 +61,17 @@ exports.createPages = async function createPages({
   } = q;
 
   lettere.nodes.forEach(({ lettera, titolo, descrizione }) => {
+    /**
+     * Return if no title is set.
+     */
+    if (!titolo) return;
+
     const imgs = immagini.nodes.filter(
       (img) => img.lettera === lettera && img.scaricato,
     );
 
     createPage({
-      path: lettera.toString(),
+      path: _.kebabCase(titolo),
       component: template,
       context: {
         lettera,

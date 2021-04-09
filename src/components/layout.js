@@ -30,7 +30,7 @@ function Layout({ children }) {
       </Helmet>
       <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
       <div>
-        <main>{children}</main>
+        <main className="container-fluid">{children}</main>
         <footer
           style={{
             marginTop: '2rem',

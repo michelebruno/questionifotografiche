@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
-
+import _ from 'lodash';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
@@ -23,7 +23,7 @@ const IndexPage = () => {
       <SEO title="Home" />
       {lettere.nodes.map(({ lettera, id, titolo }) => (
         <h3 key={id}>
-          <Link to={lettera.toString()}>{titolo}</Link>
+          <Link to={_.kebabCase(titolo)}>{titolo}</Link>
         </h3>
       ))}
     </Layout>
