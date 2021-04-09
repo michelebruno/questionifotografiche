@@ -21,9 +21,6 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEO title="Home" />
-      <h1>Hi people</h1>
-      <p>Welcome to your new Gatsby site.</p>
-      <p>Now go build something great.</p>
       {lettere.nodes.map(({ lettera, id, titolo }) => (
         <h3 key={id}>
           <Link to={lettera.toString()}>{titolo}</Link>

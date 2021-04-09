@@ -7,11 +7,11 @@ import SEO from '../components/seo';
 
 export default function LetteraTemplate({
   data: { images },
-  pageContext: { titolo, descrizione },
+  pageContext: { descrizione },
 }) {
   return (
     <Layout>
-      <SEO title={titolo} description={descrizione} />
+      <SEO description={descrizione} />
 
       <Markdown>{descrizione}</Markdown>
       {images.edges.map(({ node }) => (

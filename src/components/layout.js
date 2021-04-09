@@ -21,6 +21,11 @@ const Layout = ({ children }) => {
   return (
     <>
       <Helmet>
+        <link
+          href="//db.onlinewebfonts.com/c/f98aea1dfb3d1fc460660c5e4e4b9612?family=Saol+Display+Semibold+Italic"
+          rel="stylesheet"
+          type="text/css"
+        />
         <link rel="stylesheet" href="https://use.typekit.net/qsp3uel.css" />
       </Helmet>
       <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
