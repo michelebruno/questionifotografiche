@@ -5,4 +5,18 @@ $font-family-sans-serif: neue-haas-grotesk-display, -apple-system, BlinkMacSyste
 
 $headings-font-family: Saol Display Semibold Italic, serif;
 
-@import "~bootstrap";
+$grid-gutter-width: 50px;
+
+$link-color: #212529;
+
+$link-hover-decoration: line-through;
+
+@import "bootstrap";
+
+
+@include media-breakpoint-up('md') {
+  #authors-list {
+    column-count: 3;
+    column-gap: $grid-gutter-width;
+  }
+}

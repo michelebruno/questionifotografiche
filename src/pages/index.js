@@ -4,30 +4,15 @@ import _ from 'lodash';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
-const IndexPage = () => {
-  const { lettere } = useStaticQuery(graphql`
-    query {
-      lettere: allGoogleSheetLettereRow(sort: { fields: lettera, order: ASC }) {
-        nodes {
-          id
-          lettera
-          titolo
-          descrizione
-        }
-      }
-    }
-  `);
-
-  return (
-    <Layout>
-      <SEO title="Home" />
-      {lettere.nodes.map(({ lettera, id, titolo }) => (
-        <h3 key={id}>
-          <Link to={_.kebabCase(titolo)}>{titolo}</Link>
-        </h3>
-      ))}
-    </Layout>
-  );
-};
+const IndexPage = () => (
+  <Layout>
+    <SEO title="Home" />
+    <section className="row vh-100">
+      <div className="col-12 text-center">
+        <span className="h1" style={{ fontSize: '40rem' }}>26</span>
+      </div>
+    </section>
+  </Layout>
+);
 
 export default IndexPage;

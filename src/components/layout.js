@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
+import { Helmet } from 'react-helmet';
 
 import Header from './header';
 
 import '../scss/style.scss';
-import { Helmet } from 'react-helmet';
 
-function Layout({ children }) {
+function Layout({ children, containerClass }) {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -30,7 +30,7 @@ function Layout({ children }) {
       </Helmet>
       <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
       <div>
-        <main className="container-fluid">{children}</main>
+        <main className={containerClass || 'container-fluid'}>{children}</main>
         <footer
           style={{
             marginTop: '2rem',

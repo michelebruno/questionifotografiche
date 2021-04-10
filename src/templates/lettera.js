@@ -10,14 +10,16 @@ import SEO from '../components/seo';
 function Fotografia({ children, description }) {
   return (
     <div className="row vh-100 align-items-center">
-      <div className="col-4">
-        {description !== 'NO DIDASCALIA' && (
-        <Markdown>
+      <div className="col-12 col-md-4">
+
+        {description
+        !== 'NO DIDASCALIA' && (
+        <Markdown className="px-3">
           {description}
         </Markdown>
         )}
       </div>
-      <div className="col-12 col-lg-8 h-100 ">
+      <div className="col-12 col-md-8 h-100 ">
         {children}
       </div>
     </div>
