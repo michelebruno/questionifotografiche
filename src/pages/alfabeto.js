@@ -8,9 +8,9 @@ function Alfabeto({ data: { lettere } }) {
   return (
     <Layout containerClass="container">
       <SEO title="Home" />
-      {lettere.nodes.map(({ lettera, id, titolo }) => (
+      {lettere.nodes.map(({ id, titolo }) => (
         <h3 key={id}>
-          <Link to={_.kebabCase(titolo)}>{titolo}</Link>
+          <Link to={`/${_.kebabCase(titolo)}`}>{titolo}</Link>
         </h3>
       ))}
     </Layout>
@@ -24,7 +24,6 @@ export const query = graphql`
       lettere: allGoogleSheetLettereRow(sort: { fields: lettera, order: ASC }) {
         nodes {
           id
-          lettera
           titolo
           descrizione
         }
