@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { graphql } from 'gatsby';
 import Image from 'gatsby-image';
 import Markdown from 'react-markdown';
@@ -9,24 +9,26 @@ import SEO from '../components/seo';
 
 function Fotografia({ children, description }) {
   return (
-    <div className="row vh-100 align-items-center">
+    <div
+      className="row align-items-center fotografia-container  w-100 bg-white"
+    >
       <div className="col-12 col-md-4">
 
         {description
         !== 'NO DIDASCALIA' && (
-        <Markdown className="px-3">
-          {description}
-        </Markdown>
+          <Markdown className="px-3">
+            {description}
+          </Markdown>
         )}
       </div>
-      <div className="col-12 col-md-8 h-100 ">
+      <div className="col-12 col-md-8 ">
         {children}
       </div>
     </div>
   );
 }
 
-export default function LetteraTemplate({
+export default function Lettera({
   data: { images: { nodes: images } },
   pageContext,
 }) {
@@ -48,25 +50,24 @@ export default function LetteraTemplate({
 
   return (
     <Layout>
-      <SEO description={descrizione} />
+      <SEO description={descrizione} title="Lettera" />
 
-      <Markdown>{descrizione}</Markdown>
-      <section className=" ">
-        <div className="row vh-100 ">
+      <section>
+        <div className="row" style={{ minHeight: '75vh' }}>
           <div
-            className="col-9 vh-100"
+            id="scroller"
+            className="col-12 col-lg-9 position-relative "
             style={{ overflowY: 'scroll', scrollbarWidth: 'none' }}
           >
-
             {immagini.map((immagine) => (
-              <Fotografia description={immagine.descrizione}>
-                <Image
-                  style={{ height: '100%', width: '100%' }}
-                  imgStyle={{ objectFit: 'contain' }}
-                  key={immagine.id}
-                  fluid={immagine.childImageSharp.fluid}
+              <Fotografia key={immagine.id} description={immagine.descrizione}>
+                <img
+                  src={immagine.childImageSharp.fluid.src}
+                  sizes={immagine.childImageSharp.fluid.sizes}
+                  srcSet={immagine.childImageSharp.fluid.srcSet}
+                  className="img-fluid"
                 />
-              </Fotografia>
+              </Fotografia> && console.log(immagine.childImageSharp.fluid)
             ))}
           </div>
           <div className="col-12 col-lg-3 align-self-center text-center">

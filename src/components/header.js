@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const Header = ({ siteTitle }) => (
-  <header className="container-fluid">
+  <header className="container-fluid position-sticky sticky-top">
     <nav className="navbar navbar-expand-md px-0">
       <div className="container-fluid px-0">
         <div className="collapse navbar-collapse justify-content-between">

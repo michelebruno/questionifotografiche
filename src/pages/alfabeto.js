@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, Link, useStaticQuery } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import _ from 'lodash';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
