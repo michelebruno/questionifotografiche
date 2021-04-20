@@ -21,12 +21,9 @@ function Layout({ children, containerClass }) {
   return (
     <>
       <Helmet>
-        <link
-          href="//db.onlinewebfonts.com/c/f98aea1dfb3d1fc460660c5e4e4b9612?family=Saol+Display+Semibold+Italic"
-          rel="stylesheet"
-          type="text/css"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link rel="stylesheet" href="https://use.typekit.net/qsp3uel.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet" />
       </Helmet>
       <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
       <div>
@@ -55,5 +52,4 @@ function Layout({ children, containerClass }) {
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
-
 export default Layout;
