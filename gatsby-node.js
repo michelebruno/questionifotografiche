@@ -67,9 +67,16 @@ exports.createPages = async function createPages({
     if (!titolo) return;
 
     const imgs = immagini.nodes.filter(
-      (img) => img.lettera === lettera && img.scaricato,
+      (img) => img.lettera === lettera,
+    );
+    const filenames = imgs.map(
+      ({ lettera, autore }) => `${lettera.toLocaleString('en-US',
+        { minimumIntegerDigits: 2, useGrouping: false })} ${_.startCase(
+        _.toLower(autore),
+      )}.jpg`,
     );
 
+    console.log(`Found in source ${filenames.length} for letter ${lettera}`);
     createPage({
       path: _.kebabCase(titolo),
       component: template,
@@ -78,12 +85,7 @@ exports.createPages = async function createPages({
         titolo,
         descrizione,
         immagini: imgs,
-        filenames: imgs.map(
-          ({ lettera, autore }) => `${lettera.toLocaleString('en-US',
-            { minimumIntegerDigits: 2, useGrouping: false })} ${_.startCase(
-            _.toLower(autore),
-          )}.jpg`,
-        ),
+        filenames,
       },
     });
   });
