@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 import { graphql } from 'gatsby';
-import Image from 'gatsby-image';
-import Markdown from 'react-markdown';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import _ from 'lodash';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
@@ -16,9 +15,7 @@ function Fotografia({ children, description }) {
 
         {description
         !== 'NO DIDASCALIA' && (
-          <Markdown className="px-3">
-            {description}
-          </Markdown>
+          description
         )}
       </div>
       <div className="col-12 col-md-8 text-center ">
@@ -76,13 +73,7 @@ export default function Lettera({
           >
             {immagini.map((immagine) => (
               <Fotografia key={immagine.id} description={immagine.descrizione}>
-                <img
-                  src={immagine.childImageSharp.fluid.src}
-                  sizes={immagine.childImageSharp.fluid.sizes}
-                  srcSet={immagine.childImageSharp.fluid.srcSet}
-                  className="img-fluid"
-                  style={{ height: '75vh' }}
-                />
+                <GatsbyImage alt="image" image={getImage(immagine)} />
               </Fotografia>
             ))}
           </div>
@@ -100,16 +91,13 @@ export default function Lettera({
   );
 }
 
-export const query = graphql`
-query Immagini($filenames: [String]) {
+export const query = graphql`query Immagini($filenames: [String]) {
   images: allFile(filter: {sourceInstanceName: {eq: "fotografie"}, relativePath: {in: $filenames}}) {
     nodes { 
       id
       relativePath
       childImageSharp {
-        fluid(maxWidth: 2400) {
-          ...GatsbyImageSharpFluid
-        }
+        gatsbyImageData(width: 1200)
       }
     }
   } 

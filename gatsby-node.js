@@ -90,3 +90,22 @@ exports.createPages = async function createPages({
     });
   });
 };
+
+/**
+ * To fix react-markdown issue: process is undefined.
+ * @param stage
+ * @param rules
+ * @param loaders
+ * @param plugins
+ * @param actions
+ */
+exports.onCreateWebpackConfig = ({
+  actions,
+}) => {
+  actions.setWebpackConfig({
+    node: {
+      global: true,
+    },
+
+  });
+};
