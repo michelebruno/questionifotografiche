@@ -48,7 +48,7 @@ export default function Lettera({
   });
 
   if (filenames.length > images.length) {
-    console.warn(
+    console.log(
       `${filenames.length - images.length} missing in letter ${lettera}:`,
       pageContext.filenames.filter(
         (i) => images.findIndex(
@@ -57,7 +57,7 @@ export default function Lettera({
       ),
     );
   } else if (filenames.length !== 26) {
-    console.warn('Images number is not 26.', `Found: ${filenames.length}`);
+    console.log('Images number is not 26.', `Found: ${filenames.length}`);
   }
 
   return (
