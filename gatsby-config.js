@@ -44,18 +44,10 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-source-google-sheets',
+      resolve: 'gatsby-source-google-spreadsheet',
       options: {
         spreadsheetId: '1GbYyZeiaubx4C_Vfsm5xYIJ9QM0tP0OIBi6S7dY7ZpE',
-        worksheetTitle: 'Immagini',
-        credentials: googleCredentials,
-      },
-    },
-    {
-      resolve: 'gatsby-source-google-sheets',
-      options: {
-        spreadsheetId: '1GbYyZeiaubx4C_Vfsm5xYIJ9QM0tP0OIBi6S7dY7ZpE',
-        worksheetTitle: 'Lettere',
+        spreadsheetName: 'Sheets',
         credentials: googleCredentials,
       },
     },

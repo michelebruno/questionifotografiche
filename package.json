@@ -15,7 +15,7 @@
     "gatsby-plugin-sass": "^3.2.0",
     "gatsby-plugin-sharp": "^2.8.0",
     "gatsby-source-filesystem": "^2.5.0",
-    "gatsby-source-google-sheets": "^1.1.1",
+    "gatsby-source-google-spreadsheet": "^2.0.0",
     "gatsby-transformer-sharp": "^2.6.0",
     "gsap": "^3.6.1",
     "lodash": "^4.17.21",
