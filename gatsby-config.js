@@ -48,7 +48,7 @@ module.exports = {
       resolve: 'gatsby-source-google-spreadsheet',
       options: {
         spreadsheetId: '1GbYyZeiaubx4C_Vfsm5xYIJ9QM0tP0OIBi6S7dY7ZpE',
-        spreadsheetName: 'Sheets',
+        typePrefix: 'Sheets',
         credentials: googleCredentials,
       },
     },

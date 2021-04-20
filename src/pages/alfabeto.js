@@ -21,7 +21,7 @@ export default Alfabeto;
 
 export const query = graphql`
     query {
-      lettere: allGoogleSpreadsheetSheetsLettere(sort: { fields: lettera, order: ASC }) {
+      lettere: allSheetsLettere(sort: { fields: lettera, order: ASC }) {
         nodes {
           id
           titolo

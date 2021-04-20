@@ -33,14 +33,14 @@ exports.createPages = async function createPages({
 }) {
   const q = await graphql(`
    {
-      lettere: allGoogleSpreadsheetSheetsLettere {
+      lettere: allSheetsLettere {
         nodes {
           descrizione
           lettera
           titolo
         }
       }
-      immagini: allGoogleSpreadsheetSheetsImmagini {
+      immagini: allSheetsImmagini {
         nodes {
           id
           descrizione

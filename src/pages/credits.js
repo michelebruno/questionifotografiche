@@ -87,7 +87,7 @@ function Credits({ data: { immagini: { group } }, location }) {
 }
 
 export const query = graphql`{
-  immagini: allGoogleSpreadsheetSheetsImmagini {
+  immagini: allSheetsImmagini {
     group(field: autore) {
       fieldValue
     }
