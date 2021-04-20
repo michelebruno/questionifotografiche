@@ -50,11 +50,9 @@ export default function Lettera({
     if (immagine) immagini.push(immagine);
   });
 
-  console.log('Filenames expected: ', filenames);
   if (filenames.length > images.length) {
     console.warn(
-      `${filenames.length - images.length} missing in letter ${lettera}`,
-      'Missing: ',
+      `${filenames.length - images.length} missing in letter ${lettera}:`,
       pageContext.filenames.filter(
         (i) => images.findIndex(
           ({ relativePath }) => i === relativePath,
