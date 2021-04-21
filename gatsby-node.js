@@ -66,6 +66,9 @@ exports.createPages = async function createPages({
      */
     if (!titolo) return;
 
+    if (process?.env?.NODE_ENV !== 'development' && lettera > 6) {
+      return;
+    }
     const imgs = immagini.nodes.filter(
       (img) => img.lettera === lettera,
     );
@@ -76,7 +79,7 @@ exports.createPages = async function createPages({
       )}.jpg`,
     );
 
-    console.log(`Found in source ${filenames.length} for letter ${lettera}`);
+    filenames.length !== 26 && console.log(`Found in source ${filenames.length} for letter ${lettera}`);
     createPage({
       path: _.kebabCase(titolo),
       component: template,

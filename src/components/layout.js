@@ -7,7 +7,7 @@ import Header from './header';
 
 import '../scss/style.scss';
 
-function Layout({ children, containerClass }) {
+function Layout({ children, stickyFooter, containerClass }) {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -31,6 +31,7 @@ function Layout({ children, containerClass }) {
         <footer
           style={{
             marginTop: '2rem',
+            ...(stickyFooter ? { position: 'sticky', bottom: 0 } : {}),
           }}
         >
           {process.env.ENABLE_GATSBY_REFRESH_ENDPOINT && (
