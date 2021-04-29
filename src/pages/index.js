@@ -1,4 +1,5 @@
 import React from 'react';
+import Marquee from 'react-fast-marquee';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
@@ -10,6 +11,16 @@ const IndexPage = () => (
         <span className="h1" style={{ fontSize: '40rem' }}>26</span>
       </div>
     </section>
+    <div className="row no-gutters border-top border-bottom">
+      <div className="col-12">
+        <div>
+          <marquee>
+            <h3 className="d-inline-block">come le lettere dell'alfabeto / </h3>
+          </marquee>
+        </div>
+      </div>
+
+    </div>
     <section className="row">
       <div className="col-12 col-md-9 pb-5 my-5">
         <p className="display-4">

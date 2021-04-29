@@ -7,7 +7,7 @@ import Header from './header';
 
 import '../scss/style.scss';
 
-function Layout({ children, stickyFooter, containerClass }) {
+function Layout({ children, hideFooter, containerClass }) {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -28,23 +28,24 @@ function Layout({ children, stickyFooter, containerClass }) {
       <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
       <div>
         <main className={containerClass || 'container-fluid'}>{children}</main>
+        {!hideFooter && (
         <footer
           style={{
             marginTop: '2rem',
-            ...(stickyFooter ? { position: 'sticky', bottom: 0 } : {}),
           }}
         >
           {process.env.ENABLE_GATSBY_REFRESH_ENDPOINT && (
-            <button
-              type="button"
-              onClick={() => {
-                fetch('/__refresh', { method: 'POST' });
-              }}
-            >
-              Refresh
-            </button>
+          <button
+            type="button"
+            onClick={() => {
+              fetch('/__refresh', { method: 'POST' });
+            }}
+          >
+            Refresh
+          </button>
           )}
         </footer>
+        )}
       </div>
     </>
   );

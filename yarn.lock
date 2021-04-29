@@ -11121,6 +11121,11 @@ react-fast-compare@^3.1.1:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
   integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
 
+react-fast-marquee@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-fast-marquee/-/react-fast-marquee-1.1.2.tgz#5b29c3c8d4761d2e70c74b52ad01e46c705fc21a"
+  integrity sha512-j8pLxwPWrmqpBOUdcflPtV6C4osqftpPSx/NWA77TDxCeb0+M+NcKx6AebVOlcqr1HNnHg3SQS72urtu1AWssw==
+
 react-helmet@^6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/react-helmet/-/react-helmet-6.1.0.tgz#a750d5165cb13cf213e44747502652e794468726"

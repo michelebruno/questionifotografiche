@@ -20,3 +20,20 @@ $link-hover-decoration: line-through;
     column-gap: $grid-gutter-width;
   }
 }
+
+#info-container {
+
+  position: fixed;
+  top: 100vh;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 11000;
+  transition: top 1s;
+  background: $body-bg;
+
+  overflow-y: scroll;
+  &.active {
+    top: 0;
+  }
+}

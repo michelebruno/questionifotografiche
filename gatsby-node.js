@@ -66,9 +66,9 @@ exports.createPages = async function createPages({
      */
     if (!titolo) return;
 
-    if (process?.env?.NODE_ENV !== 'development' && lettera > 6) {
+    if (process?.env?.NODE_ENV !== 'development' && lettera > process.env.LETTERS_COUNT) {
       return;
-    }
+    } console.log('Lettera ', lettera, ' è minore di ', process.env.LETTERS_COUNT);
     const imgs = immagini.nodes.filter(
       (img) => img.lettera === lettera,
     );
@@ -80,6 +80,7 @@ exports.createPages = async function createPages({
     );
 
     filenames.length !== 26 && console.log(`Found in source ${filenames.length} for letter ${lettera}`);
+
     createPage({
       path: _.kebabCase(titolo),
       component: template,

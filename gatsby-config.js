@@ -1,5 +1,7 @@
-require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`,
+const dotenv = require('dotenv');
+
+dotenv.config({
+  path: `.env${process.env.NODE_ENV ? `.${process.env.NODE_ENV}` : ''}`,
 });
 
 const googleCredentials = require('./credentials.json');
