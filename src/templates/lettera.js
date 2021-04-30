@@ -7,16 +7,13 @@ import SwiperCore, {
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { getImage } from 'gatsby-plugin-image';
 import _ from 'lodash';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
 import 'swiper/swiper.min.css';
-// import 'swiper/components/mousewheel';
+import 'swiper/components/pagination/pagination.min.css';
 
-gsap.registerPlugin(ScrollTrigger);
-SwiperCore.use([Mousewheel]);
+SwiperCore.use([Mousewheel, Pagination]);
 
 export default function Lettera({
   data: { images: { nodes: images } },
@@ -67,15 +64,16 @@ export default function Lettera({
             id="scroller"
             ref={scrollerRef}
             style={{
-              overflowY: 'scroll',
+              // overflowY: 'scroll',
+              // scrollbarWidth: 'none',
               height: '75vh',
-              scrollbarWidth: 'none',
             }}
           >
             <Swiper
               ref={triggerRef}
-                // direction="vertical"
+              direction="vertical"
               mousewheel
+              className="h-100"
             >
               {immagini.map((immagine, i) => {
                 const img = immagine.childImageSharp.gatsbyImageData.images;
@@ -85,7 +83,7 @@ export default function Lettera({
                   <SwiperSlide
                     key={immagine.id}
                   >
-                    <div className="row align-items-center" style={{ hight: '75vh' }}>
+                    <div className="row align-items-center h-100">
                       <div className="col-12 col-lg-4">
                         {description
                         !== 'NO DIDASCALIA' && (
@@ -100,7 +98,7 @@ export default function Lettera({
                           height={immagine.childImageSharp.gatsbyImageData.height}
                           width={immagine.childImageSharp.gatsbyImageData.width}
                           alt=""
-                          className="w-100 h-100"
+                          className="h-100 w-100"
                           style={{
                             // backgroundColor: immagine.childImageSharp.gatsbyImageData.backgroundColor,
                             objectFit: 'contain',
@@ -168,6 +166,7 @@ export const query = graphql`query Immagini($filenames: [String]) {
         childImageSharp {
         gatsbyImageData(
           width: 1200 
+          quality: 100
         )
       }
     }
