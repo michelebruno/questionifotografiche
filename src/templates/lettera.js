@@ -71,10 +71,15 @@ export default function Lettera({
         end: `+=${100 * immagini.length}%`,
         scrub: true,
         pin: true,
+        snap: {
+          snapTo: 1 / photographRefs.current.length,
+          duration: 0.2,
+          inertia: true,
+          ease: 'ease.out',
+        },
+        onSnapComplete: console.log,
       },
     });
-
-    return anim.kill;
   }, [scrollerRef, triggerRef, photographRefs]);
   if (filenames.length > images.length) {
     console.log(
@@ -100,14 +105,14 @@ export default function Lettera({
             style={{
               height: '75vh',
               overflowY: 'scroll',
-              scrollbarWidth: 'none',
+              direction: 'rtl',
             }}
           >
             <div style={{ height: `${images.length * 100}%` }}>
               <div
                 id="container"
                 className="container-fluid position-absolute w-100 h-100 "
-                style={{ top: 0, left: 0 }}
+                style={{ top: 0, left: 0, direction: 'ltr' }}
                 ref={triggerRef}
               >
                 {immagini.map((immagine, i) => {
@@ -147,10 +152,6 @@ export default function Lettera({
           className="col-12 col-lg-3 align-self-center text-center"
         >
           <h1>{titolo}</h1>
-          <h3>
-            {lettera}
-            /26
-          </h3>
         </div>
 
       </div>
