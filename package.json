@@ -26,7 +26,8 @@
     "react-fast-marquee": "^1.1.2",
     "react-helmet": "^6.1.0",
     "react-markdown": "^6.0.0",
-    "sass": "^1.32.11"
+    "sass": "^1.32.11",
+    "swiper": "^6.5.9"
   },
   "devDependencies": {
     "eslint": "^7.24.0",

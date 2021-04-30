@@ -1,6 +1,10 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useRef } from 'react';
 import { graphql } from 'gatsby';
+import SwiperCore, {
+  Mousewheel, Pagination, Scrollbar, A11y,
+} from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { getImage } from 'gatsby-plugin-image';
 import _ from 'lodash';
 import gsap from 'gsap';
@@ -8,27 +12,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
-gsap.registerPlugin(ScrollTrigger);
+import 'swiper/swiper.min.css';
+// import 'swiper/components/mousewheel';
 
-const Fotografia = React.forwardRef(
-  ({ children, description, zIndex }, ref) => (
-    <div
-      ref={ref}
-      className="row  align-items-center fotografia position-absolute bg-white w-100 overflow-hidden"
-      style={{ height: '75vh', zIndex }}
-    >
-      <div className="d-none d-md-block  col-md-4 ">
-        {description
-        !== 'NO DIDASCALIA' && (
-          description
-        )}
-      </div>
-      <div className="col-12 col-md-8 d-block" style={{ height: '50vh' }}>
-        {children}
-      </div>
-    </div>
-  ),
-);
+gsap.registerPlugin(ScrollTrigger);
+SwiperCore.use([Mousewheel]);
 
 export default function Lettera({
   data: { images: { nodes: images } },
@@ -58,29 +46,6 @@ export default function Lettera({
     if (immagine) immagini.push(immagine);
   });
 
-  React.useLayoutEffect(() => {
-    const anim = gsap.to(gsap.utils.toArray(photographRefs.current), {
-      yPercent: -100,
-      opacity: 0,
-      ease: 'none',
-      stagger: 1.5,
-      scrollTrigger: {
-        trigger: triggerRef.current,
-        scroller: scrollerRef.current,
-        start: 'top top',
-        end: `+=${100 * immagini.length}%`,
-        scrub: true,
-        pin: true,
-        snap: {
-          snapTo: 1 / photographRefs.current.length,
-          duration: 0.2,
-          inertia: true,
-          ease: 'ease.out',
-        },
-        onSnapComplete: console.log,
-      },
-    });
-  }, [scrollerRef, triggerRef, photographRefs]);
   if (filenames.length > images.length) {
     console.log(
       `${filenames.length - images.length} missing in letter ${lettera}:`,
@@ -99,52 +64,54 @@ export default function Lettera({
       <div className="row no-gutters">
         <div className="col-12 col-lg-9">
           <section
-            className="position-relative"
             id="scroller"
             ref={scrollerRef}
             style={{
-              height: '75vh',
               overflowY: 'scroll',
-              direction: 'rtl',
+              height: '75vh',
+              scrollbarWidth: 'none',
             }}
           >
-            <div style={{ height: `${images.length * 100}%` }}>
-              <div
-                id="container"
-                className="container-fluid position-absolute w-100 h-100 "
-                style={{ top: 0, left: 0, direction: 'ltr' }}
-                ref={triggerRef}
-              >
-                {immagini.map((immagine, i) => {
-                  const img = immagine.childImageSharp.gatsbyImageData.images;
-                  const { sources } = img;
-                  return (
-                    <Fotografia
-                      key={immagine.id}
-                      ref={(el) => (i < immagini.length - 1)
-                        && photographRefs.current.push(el)}
-                      description={immagine.descrizione}
-                      zIndex={images.length - i}
-                    >
-                      <img
-                        src={img.fallback.src}
-                        srcSet={img.fallback.srcSet}
-                        sizes={img.fallback.sizes}
-                        height={immagine.childImageSharp.gatsbyImageData.height}
-                        width={immagine.childImageSharp.gatsbyImageData.width}
-                        alt=""
-                        className="w-100 h-100"
-                        style={{
-                          // backgroundColor: immagine.childImageSharp.gatsbyImageData.backgroundColor,
-                          objectFit: 'contain',
-                        }}
-                      />
-
-                    </Fotografia>
-                  );
-                })}
-              </div>
-            </div>
+            <Swiper
+              ref={triggerRef}
+                // direction="vertical"
+              mousewheel
+            >
+              {immagini.map((immagine, i) => {
+                const img = immagine.childImageSharp.gatsbyImageData.images;
+                const description = immagine.descrizione;
+                const { sources } = img;
+                return (
+                  <SwiperSlide
+                    key={immagine.id}
+                  >
+                    <div className="row align-items-center" style={{ hight: '75vh' }}>
+                      <div className="col-12 col-lg-4">
+                        {description
+                        !== 'NO DIDASCALIA' && (
+                          description
+                        )}
+                      </div>
+                      <div className="col-12 col-lg-8 h-100">
+                        <img
+                          src={img.fallback.src}
+                          srcSet={img.fallback.srcSet}
+                          sizes={img.fallback.sizes}
+                          height={immagine.childImageSharp.gatsbyImageData.height}
+                          width={immagine.childImageSharp.gatsbyImageData.width}
+                          alt=""
+                          className="w-100 h-100"
+                          style={{
+                            // backgroundColor: immagine.childImageSharp.gatsbyImageData.backgroundColor,
+                            objectFit: 'contain',
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
           </section>
         </div>
         <div
