@@ -24,7 +24,7 @@ export default function Lettera({
   const photographRefs = useRef([]);
 
   const [displayInfo, setDisplayInfo] = useState(false);
-
+  const [controlledSwiper, setControlledSwiper] = useState(null);
   const {
     descrizione, titolo, lettera, filenames,
   } = pageContext;
@@ -74,6 +74,7 @@ export default function Lettera({
               direction="vertical"
               mousewheel
               className="h-100"
+              pagination
             >
               {immagini.map((immagine, i) => {
                 const img = immagine.childImageSharp.gatsbyImageData.images;

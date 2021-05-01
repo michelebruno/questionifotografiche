@@ -1,5 +1,5 @@
 import React from 'react';
-import Marquee from 'react-fast-marquee';
+import { Link } from 'gatsby';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
@@ -23,7 +23,7 @@ const IndexPage = () => (
     </div>
     <section className="row">
       <div className="col-12 col-md-9 pb-5 my-5">
-        <p className="display-4">
+        <p className="display-3">
           Questo progetto nasce
           dall’idea di condividere con allievi di diverse estrazioni e
           provenienze, oltre che con alcuni colleghi, amici e maestri nel campo
@@ -35,7 +35,7 @@ const IndexPage = () => (
         </p>
       </div>
       <div className="col-12 col-md-4 offset-md-8">
-        <p className="py-5">
+        <p className="py-5 ">
           Il percorso vuole creare un’occasione per riscoprire, come De Maistre
           nel suo “Voyage autour de ma chambre”, i piccoli infiniti che si
           nascondono, ma si possono rivelare e rendere oggetto di narrazione
@@ -48,7 +48,10 @@ const IndexPage = () => (
     </section>
     <section className="row">
       <div className="col-12 text-center py-5">
-        <h3>Scopri le foto</h3>
+        <Link to="/alfabeto">
+          <h3>Scopri le foto</h3>
+
+        </Link>
       </div>
     </section>
   </Layout>
