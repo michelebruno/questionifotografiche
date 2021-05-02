@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useRef, useMemo } from "react"
+import React, { useState, useRef, useMemo } from 'react';
 import { graphql } from 'gatsby';
 import SwiperCore, {
-  Mousewheel, Pagination, Scrollbar, A11y,
+  Mousewheel, Navigation, Pagination, Scrollbar,
 } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { getImage } from 'gatsby-plugin-image';
@@ -10,10 +10,7 @@ import _ from 'lodash';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
-import 'swiper/swiper.min.css';
-import 'swiper/components/pagination/pagination.min.css';
-
-SwiperCore.use([Mousewheel, Pagination]);
+SwiperCore.use([Mousewheel, Pagination, Scrollbar, Navigation]);
 
 export default function Lettera({
   data: { images: { nodes: images } },
@@ -64,8 +61,6 @@ export default function Lettera({
             id="scroller"
             ref={scrollerRef}
             style={{
-              // overflowY: 'scroll',
-              // scrollbarWidth: 'none',
               height: '75vh',
             }}
           >
@@ -74,7 +69,7 @@ export default function Lettera({
               direction="vertical"
               mousewheel
               className="h-100"
-              pagination
+              pagination={{ clickable: true, type: 'progressbar' }}
             >
               {immagini.map((immagine, i) => {
                 const img = immagine.childImageSharp.gatsbyImageData.images;
@@ -123,9 +118,12 @@ export default function Lettera({
       </div>
 
       <div className="row">
-        <div className="col text-center">
+        <div
+          className="col text-center position-absolute py-5"
+          style={{ bottom: 0 }}
+        >
           <button
-            className="btn btn-test"
+            className="btn btn-text btn-lg text-uppercase"
             onClick={() => setDisplayInfo(!displayInfo)}
           >
             Info
@@ -147,7 +145,7 @@ export default function Lettera({
         <div className="row ">
           <div className="col-12 text-center py-5">
             <button
-              className="btn btn-text"
+              className="btn btn-text btn-lg"
               onClick={() => setDisplayInfo(false)}
             >
               CLOSE

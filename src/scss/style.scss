@@ -10,9 +10,16 @@ $grid-gutter-width: 50px;
 $link-color: #212529;
 
 $link-hover-decoration: line-through;
-
 @import "bootstrap";
 
+@import "~swiper/swiper";
+@import "~swiper/components/scrollbar/scrollbar";
+@import "~swiper/components/pagination/pagination";
+@import "~swiper/components/navigation/navigation";
+
+:root {
+  --swiper-theme-color: #{theme-color("dark")};
+}
 
 @include media-breakpoint-up('md') {
   #authors-list {
