@@ -12,7 +12,7 @@ function Alfabeto({ data: { lettere } }) {
       {lettere.nodes.map(({ id, titolo }, index) => (
         (process.env.NODE_ENV === 'development'
           || index < process.env.LETTERS_COUNT) && (
-          <h3 key={id}>
+          <h3 key={id} className="display-4 py-2">
             <Link to={`/${_.kebabCase(titolo)}`}>{titolo}</Link>
           </h3>
         )

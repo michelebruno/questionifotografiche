@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useMemo } from "react"
 import { graphql } from 'gatsby';
 import SwiperCore, {
   Mousewheel, Pagination, Scrollbar, A11y,
@@ -30,7 +30,7 @@ export default function Lettera({
   } = pageContext;
 
   const immagini = [];
-  images.forEach((image) => {
+  useMemo(() => _.shuffle(images), []).forEach((image) => {
     const immagine = pageContext.immagini.find(
       ({ lettera, autore }) => image.relativePath
         === `${lettera.toLocaleString('en-US',
