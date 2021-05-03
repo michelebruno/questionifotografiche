@@ -7,16 +7,18 @@ import SEO from '../components/seo';
 function Alfabeto({ data: { lettere } }) {
   console.log(process.env.LETTERS_COUNT);
   return (
-    <Layout containerFluid={false}>
+    <Layout>
       <SEO title="Home" />
-      {lettere.nodes.map(({ id, titolo }, index) => (
-        (process.env.NODE_ENV === 'development'
-          || index < process.env.LETTERS_COUNT) && (
-          <h3 key={id} className="display-4 py-2">
-            <Link to={`/${_.kebabCase(titolo)}`}>{titolo}</Link>
-          </h3>
-        )
-      ))}
+      <section className="container">
+        {lettere.nodes.map(({ id, titolo }, index) => (
+          (process.env.NODE_ENV === 'development'
+            || index < process.env.LETTERS_COUNT) && (
+            <h3 key={id} className="display-4 py-2">
+              <Link to={`/${_.kebabCase(titolo)}`}>{titolo}</Link>
+            </h3>
+          )
+        ))}
+      </section>
     </Layout>
   );
 }

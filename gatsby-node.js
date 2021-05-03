@@ -7,7 +7,7 @@
 const path = require('path');
 const _ = require('lodash');
 
-const template = path.resolve('./src/templates', 'lettera.js');
+const template = path.resolve('./src/components', 'lettera.js');
 
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;

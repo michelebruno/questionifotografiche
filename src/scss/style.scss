@@ -81,3 +81,12 @@ $link-hover-decoration: line-through;
     transform: translate3d(var(--move-final), 0, 0);
   }
 }
+.swiper-container-vertical > .swiper-pagination-bullets {
+  right: unset;
+  left: 0px;
+}
+.swiper-pagination-bullet {
+ height: calc((75vh - (var(--slides) * 6px) )/ var(--slides));
+  border-radius: 0;
+  width: 3px;
+}

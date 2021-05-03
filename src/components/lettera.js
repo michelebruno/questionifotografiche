@@ -7,8 +7,8 @@ import SwiperCore, {
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { getImage } from 'gatsby-plugin-image';
 import _ from 'lodash';
-import Layout from '../components/layout';
-import SEO from '../components/seo';
+import Layout from './layout';
+import SEO from './seo';
 
 SwiperCore.use([Mousewheel, Pagination, Scrollbar, Navigation]);
 
@@ -53,7 +53,7 @@ export default function Lettera({
     console.log('Images number is not 26.', `Found: ${filenames.length}`);
   }
   return (
-    <Layout hideFooter>
+    <Layout hideFooter containerFluid>
       <SEO description={descrizione} title="Lettera" />
       <div className="row no-gutters">
         <div className="col-12 col-lg-9">
@@ -62,6 +62,7 @@ export default function Lettera({
             ref={scrollerRef}
             style={{
               height: '75vh',
+              '--slides': immagini.length,
             }}
           >
             <Swiper
@@ -69,7 +70,7 @@ export default function Lettera({
               direction="vertical"
               mousewheel
               className="h-100"
-              pagination={{ clickable: true, type: 'progressbar' }}
+              pagination={{ clickable: true }}
             >
               {immagini.map((immagine, i) => {
                 const img = immagine.childImageSharp.gatsbyImageData.images;
@@ -77,6 +78,7 @@ export default function Lettera({
                 const { sources } = img;
                 return (
                   <SwiperSlide
+                    className="container-fluid"
                     key={immagine.id}
                   >
                     <div className="row align-items-center h-100">
