@@ -7,7 +7,7 @@ import SEO from '../components/seo';
 function Alfabeto({ data: { lettere } }) {
   console.log(process.env.LETTERS_COUNT);
   return (
-    <Layout containerClass="container">
+    <Layout containerFluid={false}>
       <SEO title="Home" />
       {lettere.nodes.map(({ id, titolo }, index) => (
         (process.env.NODE_ENV === 'development'

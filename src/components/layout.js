@@ -7,7 +7,7 @@ import Header from './header';
 
 import '../scss/style.scss';
 
-function Layout({ children, hideFooter, containerClass }) {
+function Layout({ children, hideFooter, containerFluid }) {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -30,7 +30,7 @@ function Layout({ children, hideFooter, containerClass }) {
       </Helmet>
       <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
       <div>
-        <main className={containerClass || 'container-fluid'}>{children}</main>
+        <main className={containerFluid ? 'container-fluid' : 'container'}>{children}</main>
         {!hideFooter && (
           <footer
             style={{
@@ -80,5 +80,6 @@ function Layout({ children, hideFooter, containerClass }) {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  containerFluid: true,
 };
 export default Layout;

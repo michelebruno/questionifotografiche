@@ -2,7 +2,6 @@ $font-family-sans-serif: neue-haas-grotesk-display, -apple-system, BlinkMacSyste
 "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
 "Segoe UI Symbol", "Noto Color Emoji" !default;
 
-
 $headings-font-family: Playfair Display, handwritten, italic, serif;
 
 $grid-gutter-width: 50px;
@@ -10,6 +9,7 @@ $grid-gutter-width: 50px;
 $link-color: #212529;
 
 $link-hover-decoration: line-through;
+
 @import "bootstrap";
 
 @import "~swiper/swiper";
