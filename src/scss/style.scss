@@ -9,6 +9,12 @@ $grid-gutter-width: 50px;
 $link-color: #212529;
 
 $link-hover-decoration: line-through;
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1340px
+);
 
 @import "bootstrap";
 

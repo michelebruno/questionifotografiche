@@ -1,10 +1,15 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import gsap from 'gsap';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import _ from 'lodash';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
-const IndexPage = () => {
+const IndexPage = ({ data }) => {
+  const images = data.images.nodes.filter((img) => img.childImageSharp.gatsbyImageData.height == (2 / 3));
+  const [image, setImage] = React.useState(() => _.sample(images));
+
   const separe = React.useRef();
   const qf = React.useRef();
 
@@ -14,26 +19,28 @@ const IndexPage = () => {
       delay: 0.5,
       duration: 1,
     });
-    // gsap.from(qf.current, {
-    //   scale: 0,
-    //   top: '100%',
-    //   delay: 0.5,
-    //   duration: 1,
-    // });
+    gsap.from(qf.current, {
+      opacity: 0,
+      delay: 0.5,
+      duration: 0.1,
+    });
+
+    const interval = setInterval(() => setImage(_.sample(images)), 2000);
+
+    return () => clearInterval(interval);
   }, []);
   return (
-    <Layout containerFluid>
+    <Layout>
       <SEO title="Home" />
       <section className="container-fluid">
-
-        <div className="row min-vh-100">
+        <div className="row">
           <div className="col-12 text-center overflow-hidden">
-            <h1 className="position-relative overflow-hidden">
+            <h1 className="position-relative overflow-hidden  min-vh-100">
               <span
                 className="  overflow-hidden"
                 style={{
-                  fontSize: '90vh',
-                  lineHeight: 0.9,
+                  fontSize: '40vw',
+                  lineHeight: 1,
                   wordBreak: 'keep-all',
                 }}
               >
@@ -45,23 +52,25 @@ const IndexPage = () => {
                 ref={qf}
                 className="position-absolute w-50 "
                 style={{
-                  top: '40%',
+                  top: '12vw',
                   left: '25%',
                   fontSize: '8vw',
                   zIndex: -1,
                 }}
               >
-                questioni
-                <br />
-                fotografiche
+                <div className="w-100 text-left" style={{ fontFamily: 'var(--font-family-sans-serif)' }}>
+                  questioni
+                </div>
+                <div className="text-right">
+                  fotografiche
+
+                </div>
               </span>
             </h1>
           </div>
         </div>
-      </section>
-      <section className="container-fluid">
-
-        <div className="row no-gutters border-dark border-top border-bottom">
+        {' '}
+        <div className="row border-dark border-top border-bottom">
           <div className="col-12">
             <div className="d-block">
               <div className="marquee">
@@ -83,10 +92,10 @@ const IndexPage = () => {
           </div>
 
         </div>
+
       </section>
       <section className="container-fluid">
-
-        <div className="row">
+        <div className="row justify-content-between">
           <div className="col-12 col-md-9 pb-5 my-5">
             <p className="display-2">
               Questo progetto nasce
@@ -100,7 +109,10 @@ const IndexPage = () => {
               in questi ultimi anni.
             </p>
           </div>
-          <div className="col-12 col-md-4 offset-md-8">
+          <div className="col-12 col-md-6">
+            <GatsbyImage image={getImage(image)} />
+          </div>
+          <div className="col-12 col-md-4 ">
             <p className="py-5 ">
               Il percorso vuole creare un’occasione per riscoprire, come De
               Maistre
@@ -128,3 +140,24 @@ const IndexPage = () => {
 };
 
 export default IndexPage;
+
+export const query = graphql`{
+  images: allFile(
+    filter: {sourceInstanceName: {eq: "fotografie"}}
+    sort: {fields: id}
+    limit:40
+  ) {
+    nodes {
+      publicURL
+      relativePath
+      childImageSharp {
+        gatsbyImageData( 
+          layout: FULL_WIDTH
+          quality: 90
+        )
+      }
+      sourceInstanceName
+      size
+    }
+  }
+}`;
