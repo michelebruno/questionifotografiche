@@ -103,6 +103,7 @@ export default function Lettera({
                           <div className="col-auto">{immagine.autore}</div>
                           <div className="col-auto">
                             {i + 1}
+                            {' '}
                             /
                             {' '}
                             {immagini.length}

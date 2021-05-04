@@ -92,9 +92,10 @@ $container-max-widths: (
   left: 0px;
 }
 .swiper-pagination-bullet {
- height: calc((75vh - (var(--slides) * 6px) )/ var(--slides));
-  border-radius: 0;
-  width: 3px;
+ // height: calc((75vh - (var(--slides) * 12px) )/ var(--slides));
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
 }
 
 

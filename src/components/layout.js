@@ -47,9 +47,12 @@ function Layout({
         {!hideFooter && (
           <>
             <div className="container-fluid">
-              <div
-                className="col-12 border border-dark border-left-0 border-right-0 py-2 my-3"
-              />
+              <div className="row">
+                <div
+                  className="col-12 border border-dark border-left-0 border-right-0 py-2 my-3"
+                />
+
+              </div>
             </div>
             <footer
               style={{
