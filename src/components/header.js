@@ -3,8 +3,8 @@ import React from 'react';
 
 const Header = ({ siteTitle }) => (
   <header className="container-fluid position-sticky sticky-top">
-    <nav className="navbar navbar-expand-md px-0">
-      <div className="container-fluid px-0">
+    <nav className="navbar navbar-expand px-0">
+      <div className="container-fluid px-0 text-uppercase">
         <div className="collapse navbar-collapse justify-content-between">
           <div className="navbar-nav px-0">
             <span className="nav-item">

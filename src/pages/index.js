@@ -96,7 +96,7 @@ const IndexPage = ({ data }) => {
       </section>
       <section className="container-fluid">
         <div className="row justify-content-between">
-          <div className="col-12 col-md-9 pb-5 my-5">
+          <div className="col-12 col-md-9 py-5 my-5">
             <p className="display-2">
               Questo progetto nasce
               dall’idea di condividere con allievi di diverse estrazioni e
@@ -127,7 +127,7 @@ const IndexPage = ({ data }) => {
             </p>
           </div>
         </div>
-        <div className="row align-items-center" style={{ minHeight: '50vh' }}>
+        <div className="row align-items-center" style={{ minHeight: '90vh' }}>
           <div className="col-12 text-center py-5">
             <h3 className="display-2">
               <Link to="/alfabeto">Scopri le foto</Link>

@@ -5,7 +5,7 @@ import SwiperCore, {
   Mousewheel, Navigation, Pagination, Scrollbar,
 } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { getImage } from 'gatsby-plugin-image';
+import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import _ from 'lodash';
 import Layout from './layout';
 import SEO from './seo';
@@ -37,6 +37,7 @@ export default function Lettera({
     );
 
     immagine.childImageSharp = image.childImageSharp;
+
     if (immagine) immagini.push(immagine);
   });
 
@@ -76,32 +77,40 @@ export default function Lettera({
                 const img = immagine.childImageSharp.gatsbyImageData.images;
                 const description = immagine.descrizione;
                 const { sources } = img;
+                const [cursorPosition, setCursorPosition] = useState({
+                  x: 0, y: 0,
+                });
+
                 return (
                   <SwiperSlide
                     className="container-fluid"
                     key={immagine.id}
                   >
-                    <div className="row align-items-center h-100">
-                      <div className="col-12 col-lg-4">
+                    <div className="row align-content-start align-items-lg-center h-100 bg-white flex-row-reverse">
+
+                      <div
+                        className="col-12 col-lg-8 author-cursor-container photograph-image-container"
+                      >
+                        <GatsbyImage
+                          alt={descrizione}
+                          image={getImage(immagine)}
+                          className="h-100 w-100"
+                          objectFit="contain"
+                          loading="eager"
+                        />
+                      </div>
+                      <div className="col-12 col-lg-4 py-3">
+                        <div className="row justify-content-between h6">
+                          <div className="col-auto">{immagine.autore}</div>
+                          <div className="col-auto">
+                            {i + 1}
+                            /26
+                          </div>
+                        </div>
                         {description
-                        !== 'NO DIDASCALIA' && (
+                      !== 'NO DIDASCALIA' && (
                           description
                         )}
-                      </div>
-                      <div className="col-12 col-lg-8 h-100">
-                        <img
-                          src={img.fallback.src}
-                          srcSet={img.fallback.srcSet}
-                          sizes={img.fallback.sizes}
-                          height={immagine.childImageSharp.gatsbyImageData.height}
-                          width={immagine.childImageSharp.gatsbyImageData.width}
-                          alt=""
-                          className="h-100 w-100"
-                          style={{
-                            // backgroundColor: immagine.childImageSharp.gatsbyImageData.backgroundColor,
-                            objectFit: 'contain',
-                          }}
-                        />
                       </div>
                     </div>
                   </SwiperSlide>
@@ -121,7 +130,7 @@ export default function Lettera({
 
       <div className="row">
         <div
-          className="col text-center position-absolute py-5"
+          className="col text-center position-absolute py-3 py-lg-5"
           style={{ bottom: 0 }}
         >
           <button
@@ -168,6 +177,7 @@ export const query = graphql`query Immagini($filenames: [String]) {
         gatsbyImageData(
           width: 1200 
           quality: 100
+          placeholder: BLURRED
         )
       }
     }

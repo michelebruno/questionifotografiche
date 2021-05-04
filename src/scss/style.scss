@@ -96,3 +96,24 @@ $container-max-widths: (
   border-radius: 0;
   width: 3px;
 }
+
+
+.author-cursor {
+  position: fixed;
+  display: none;
+  z-index: 9999999;
+
+}
+
+.author-cursor-container:hover > .author-cursor {
+  display: block;
+}
+
+.photograph-image-container {
+  max-height: 50%;
+  height: inherit;
+
+  @include media-breakpoint-up("lg") {
+    max-height: 100%;
+  }
+}
