@@ -67,6 +67,10 @@ export default function Lettera({
             }}
           >
             <Swiper
+              lazy={{
+                loadPrevNext: true,
+                loadPrevNextAmount: 2,
+              }}
               ref={triggerRef}
               direction="vertical"
               mousewheel
@@ -76,10 +80,6 @@ export default function Lettera({
               {immagini.map((immagine, i) => {
                 const img = immagine.childImageSharp.gatsbyImageData.images;
                 const description = immagine.descrizione;
-                const { sources } = img;
-                const [cursorPosition, setCursorPosition] = useState({
-                  x: 0, y: 0,
-                });
 
                 return (
                   <SwiperSlide
@@ -96,7 +96,6 @@ export default function Lettera({
                           image={getImage(immagine)}
                           className="h-100 w-100"
                           objectFit="contain"
-                          loading="eager"
                         />
                       </div>
                       <div className="col-12 col-lg-4 py-3">
@@ -104,7 +103,9 @@ export default function Lettera({
                           <div className="col-auto">{immagine.autore}</div>
                           <div className="col-auto">
                             {i + 1}
-                            /26
+                            /
+                            {' '}
+                            {immagini.length}
                           </div>
                         </div>
                         {description

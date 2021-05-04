@@ -145,7 +145,7 @@ export const query = graphql`{
   images: allFile(
     filter: {sourceInstanceName: {eq: "fotografie"}}
     sort: {fields: id}
-    limit:40
+    limit: 20
   ) {
     nodes {
       publicURL
