@@ -1,14 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { graphql, Link } from 'gatsby';
 
 import _ from 'lodash';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
-function Credits({ data: { immagini: { group } }, location }) {
-  const [autori, setAutori] = useState(group.map(
-    ({ fieldValue }) => _.startCase(_.lowerCase(fieldValue)),
-  ));
+function Credits({ data: { autori: { nodes: authors } }, location }) {
+  const [random, setRandom] = useState(false);
+  const [autori, setAutori] = useState(() => authors.map(
+    ({ autore, ...rest }) => ({
+      ...rest, autore: _.startCase(_.lowerCase(autore)),
+    }),
+  )
+    .filter(
+      (item, index, self) => self.findIndex((i) => i.autore === item.autore)
+        === index,
+    ));
+
+  function handleShuffle() {
+    setAutori((list) => _.shuffle(list));
+
+    return true;
+  }
+
+  function handleAlphabetical() {
+    setAutori((list) => _.sortBy(list, [(i) => i.autore]));
+  }
+
+  useEffect(() => {
+    if (random) {
+      handleShuffle();
+    } else {
+      handleAlphabetical();
+    }
+  }, [random]);
 
   return (
     <Layout>
@@ -93,13 +118,19 @@ function Credits({ data: { immagini: { group } }, location }) {
 
               <table className="table">
                 <th>
-                  <td>Casuale</td>
+                  <td>
+                    <button className="btn btn-text" onClick={() => setRandom(false)}>A-Z</button>
+                    <button className="btn btn-text" onClick={() => setRandom((r) => (r ? handleShuffle() : true))}>Casuale</button>
+                  </td>
                 </th>
-                {autori.map((autore) => (
-                  <tr key={autore}>
-                    <td>{autore}</td>
-                  </tr>
-                ))}
+                <tbody>
+                  {autori.map(({ autore, facolta }) => (
+                    <tr key={autore}>
+                      <td>{autore}</td>
+                      <td>{facolta}</td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
 
             </div>
@@ -112,9 +143,10 @@ function Credits({ data: { immagini: { group } }, location }) {
 }
 
 export const query = graphql`{
-  immagini: allSheetsImmagini {
-    group(field: autore) {
-      fieldValue
+  autori: allSheetsImmagini {
+    nodes {
+      facolta
+      autore
     }
   }
 }
