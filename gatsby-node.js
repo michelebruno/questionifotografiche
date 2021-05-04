@@ -9,24 +9,6 @@ const _ = require('lodash');
 
 const template = path.resolve('./src/components', 'lettera.js');
 
-exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions;
-  const typeDefs = `
-    type Fotografia implements Node {
-      lettera: Int!
-      autore: String!
-      scaricato: String!
-      descrizione: String! 
-    } 
-  `;
-  createTypes(typeDefs);
-  createTypes(`
-  type Lettera implements Node {
-    lettera: Int!
-    descrizione: String!
-  }
-  `);
-};
 exports.createPages = async function createPages({
   graphql,
   actions: { createPage },
@@ -44,8 +26,7 @@ exports.createPages = async function createPages({
         nodes {
           id
           descrizione
-          autore
-          scaricato
+          autore 
           lettera
         }
       }
