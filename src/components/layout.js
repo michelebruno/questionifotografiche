@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 
 import Header from './header';
 
-import '../scss/style.scss';
-
 function Layout({
   children, hideFooter, ...props
 }) {
+  const [rendered, setRendered] = useState();
+
+  useEffect(() => setRendered(true), []);
+
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -31,14 +33,9 @@ function Layout({
     <>
       <Helmet>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link rel="stylesheet" href="https://use.typekit.net/qsp3uel.css" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&display=swap"
-          rel="stylesheet"
-        />
       </Helmet>
       <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
-      <div>
+      <div className={rendered ? 'rendered' : undefined}>
         <main
           className={classList.length && classList.join(' ')}
         >

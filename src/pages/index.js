@@ -1,31 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql, Link } from 'gatsby';
-import gsap from 'gsap';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import _ from 'lodash';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
 const IndexPage = ({ data }) => {
-  const images = data.images.nodes.filter((img) => img.childImageSharp.gatsbyImageData.height == (2 / 3));
+  const images = data.images.nodes.filter((img) => img.childImageSharp.gatsbyImageData.height === (2 / 3));
   const [image, setImage] = React.useState(() => _.sample(images));
 
-  const separe = React.useRef();
   const qf = React.useRef();
 
   React.useEffect(() => {
-    gsap.to(separe.current, {
-      width: '50vw',
-      delay: 0.5,
-      duration: 1,
-    });
-    gsap.from(qf.current, {
-      opacity: 0,
-      delay: 0.5,
-      duration: 0.1,
-    });
-
-    const interval = setInterval(() => setImage(_.sample(images)), 2000);
+    const interval = setInterval(() => setImage(_.sample(images)), 5000);
 
     return () => clearInterval(interval);
   }, []);
@@ -34,29 +21,25 @@ const IndexPage = ({ data }) => {
       <SEO title="Home" />
       <section className="container-fluid">
         <div className="row">
-          <div className="col-12 text-center overflow-hidden">
+          <div className="col-12 px-0 text-center overflow-hidden">
             <h1 className="position-relative overflow-hidden  min-vh-100">
-              <span
-                className="  overflow-hidden"
+              <div
+                className="overflow-hidden text-center d-flex mx-auto justify-content-center"
                 style={{
                   fontSize: '40vw',
                   lineHeight: 1,
-                  wordBreak: 'keep-all',
                 }}
               >
-                <span className="bg-white">2</span>
-                <span className="d-inline-block" ref={separe} />
-                <span className="bg-white">6</span>
-              </span>
+                <span style={{ whiteSpace: 'nowrap' }}>
+                  <span className="bg-white">2</span>
+                  <span id="hero-spacer" className="d-inline-block" />
+                  <span className="bg-white">6</span>
+                </span>
+              </div>
               <span
                 ref={qf}
+                id="hero-qf"
                 className="position-absolute w-50 "
-                style={{
-                  top: '12vw',
-                  left: '25%',
-                  fontSize: '8vw',
-                  zIndex: -1,
-                }}
               >
                 <div className="w-100 text-left" style={{ fontFamily: 'var(--font-family-sans-serif)' }}>
                   questioni
@@ -74,7 +57,7 @@ const IndexPage = ({ data }) => {
           <div className="col-12">
             <div className="d-block">
               <div className="marquee">
-                <div className="marquee__inner" aria-hidden="true">
+                <div className="marquee__inner h4 py-0" aria-hidden="true">
                   <span>come le lettere dell'alfabeto / </span>
                   <span>come le lettere dell'alfabeto / </span>
                   <span>come le lettere dell'alfabeto / </span>
@@ -97,7 +80,7 @@ const IndexPage = ({ data }) => {
       <section className="container-fluid">
         <div className="row justify-content-between">
           <div className="col-12 col-md-9 py-5 my-5">
-            <p className="display-2">
+            <p className="display-3 my-5 py-5">
               Questo progetto nasce
               dall’idea di condividere con allievi di diverse estrazioni e
               provenienze, oltre che con alcuni colleghi, amici e maestri nel
