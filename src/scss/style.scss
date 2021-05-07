@@ -6,6 +6,8 @@ $headings-font-family: Playfair Display, handwritten, italic, serif;
 
 $grid-gutter-width: 50px;
 
+$font-weight-base: 400;
+
 $link-color: #212529;
 
 $link-hover-decoration: line-through;
@@ -42,10 +44,12 @@ h6, .h6 {
   --swiper-theme-color: #{theme-color("dark")};
 }
 
-@include media-breakpoint-up('md') {
-  #authors-list {
-    column-count: 3;
-    column-gap: $grid-gutter-width;
+#site-nav {
+  .nav-link {
+    padding-right:  #{$spacer *1.5} !important;
+    padding-left:  #{$spacer * 1.5} !important;
+
+    font-weight: 500;
   }
 }
 
@@ -127,3 +131,10 @@ h6, .h6 {
     max-height: 100%;
   }
 }
+
+.lettera-link {
+  @include media-breakpoint-down("md") {
+    border-top: $black solid 2px;
+  }
+}
+

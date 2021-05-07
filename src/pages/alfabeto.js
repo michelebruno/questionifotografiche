@@ -9,14 +9,19 @@ function Alfabeto({ data: { lettere } }) {
   return (
     <Layout>
       <SEO title="Home" />
-      <section className="container">
-        {lettere.nodes.map(({ id, titolo }, index) => (
-          (index < process.env.LETTERS_COUNT) && (
-            <h3 key={id} className="display-4 py-2">
-              <Link to={`/${_.kebabCase(titolo)}`}>{titolo}</Link>
-            </h3>
-          )
-        ))}
+      <section className="container-fluid container-lg">
+        <div className="row ">
+
+          {lettere.nodes.map(({ id, titolo }, index) => (
+            (index < process.env.LETTERS_COUNT) && (
+            <div key={id} className="col-12 border-dark lettera-link">
+              <h3 className="display-4 py-2 ">
+                <Link to={`/${_.kebabCase(titolo)}`}>{titolo}</Link>
+              </h3>
+            </div>
+            )
+          ))}
+        </div>
       </section>
     </Layout>
   );
