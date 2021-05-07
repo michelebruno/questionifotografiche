@@ -75,7 +75,7 @@ export default function Lettera({
               // direction="vertical"
               mousewheel
               className="h-100"
-              pagination={{ clickable: true }}
+              pagination={{ clickable: true, style: { minWidth: '100vw' } }}
             >
               {immagini.map((immagine, i) => {
                 const img = immagine.childImageSharp.gatsbyImageData.images;

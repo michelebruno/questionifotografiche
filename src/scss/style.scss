@@ -113,21 +113,15 @@ h6, .h6 {
   height: 5px;
 }
 
+.swiper-container-horizontal > .swiper-pagination-bullets {
+  min-width:calc(100vw - 50px);
 
-.author-cursor {
-  position: fixed;
-  display: none;
-  z-index: 9999999;
-
-}
-
-.author-cursor-container:hover > .author-cursor {
-  display: block;
 }
 
 .photograph-image-container {
-  max-height: 50%;
+  max-height: 70%;
   height: inherit;
+  //border-bottom: $black solid 2px;
 
   @include media-breakpoint-up("lg") {
     max-height: 100%;
