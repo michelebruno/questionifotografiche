@@ -72,7 +72,7 @@ export default function Lettera({
                 loadPrevNextAmount: 2,
               }}
               ref={triggerRef}
-              direction="vertical"
+              // direction="vertical"
               mousewheel
               className="h-100"
               pagination={{ clickable: true }}
@@ -86,7 +86,7 @@ export default function Lettera({
                     className="container-fluid"
                     key={immagine.id}
                   >
-                    <div className="row align-content-start align-items-lg-center h-100 bg-white flex-row-reverse">
+                    <div className="row align-content-start align-items-lg-center h-100 bg-white flex-row-reverse pb-5">
 
                       <div
                         className="col-12 col-lg-8 author-cursor-container photograph-image-container"
@@ -99,7 +99,7 @@ export default function Lettera({
                         />
                       </div>
                       <div className="col-12 col-lg-4 py-3">
-                        <div className="row justify-content-between h6">
+                        <div className="row justify-content-between h6 heading-style-regular">
                           <div className="col-auto">{immagine.autore}</div>
                           <div className="col-auto">
                             {i + 1}

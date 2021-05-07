@@ -33,7 +33,7 @@ function Layout({
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link rel="stylesheet" href="https://use.typekit.net/qsp3uel.css" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&display=swap"
           rel="stylesheet"
         />
       </Helmet>

@@ -63,7 +63,7 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
             className="col"
           >
             <div>
-              <h2>Visual Identity</h2>
+              <h2 className="heading-style-regular h6">Visual Identity</h2>
               <ul className="list-unstyled">
                 <li>Carlotta Bacchini</li>
                 <li>Francesco Battistoni</li>
@@ -79,7 +79,7 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
           </div>
 
           <div className="col">
-            <h2>Gestione contenuti e social</h2>
+            <h2 className="heading-style-regular h6">Gestione contenuti e social</h2>
             <p>
               <ul className="list-unstyled">
                 <li>Linda Sguario</li>
@@ -88,7 +88,7 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
             </p>
           </div>
           <div className="col">
-            <h2>Docenti</h2>
+            <h2 className="heading-style-regular h6">Docenti</h2>
             <p>
               Piero Francesco Pozzi
               <br />
@@ -96,11 +96,11 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
             </p>
           </div>
           <div className="col">
-            <h3>Coding</h3>
+            <h3 className="heading-style-regular h6">Coding</h3>
             <p>Michele Bruno</p>
           </div>
           <div className="col">
-            <h2>Testi e traduzioni</h2>
+            <h2 className="heading-style-regular h6">Testi e traduzioni</h2>
             <p>
               <ul className="list-unstyled">
                 <li>Linda Sguario</li>
@@ -110,30 +110,33 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
           </div>
         </div>
       </div>
-      <div className="container-fluid">
+      <div className="container py-3">
         <div className="row">
           <div className="col">
-            <div>
-              <h2>Fotografie di</h2>
+            <h2 className="heading-style-regular">Fotografie di</h2>
 
-              <table className="table">
+            <table className="table">
+              <thead>
                 <th>
-                  <td>
-                    <button className="btn btn-text" onClick={() => setRandom(false)}>A-Z</button>
-                    <button className="btn btn-text" onClick={() => setRandom((r) => (r ? handleShuffle() : true))}>Casuale</button>
-                  </td>
+                  <button className="btn btn-text pl-0" onClick={() => setRandom(false)}>A-Z</button>
+                  <button className="btn btn-text" onClick={() => setRandom((r) => (r ? handleShuffle() : true))}>Casuale</button>
                 </th>
-                <tbody>
-                  {autori.map(({ autore, facolta }) => (
-                    <tr key={autore}>
-                      <td>{autore}</td>
-                      <td>{facolta}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                <th>
+                  <button className="btn btn-text pl-0">
+                    Facoltà
+                  </button>
+                </th>
+              </thead>
+              <tbody>
+                {autori.map(({ autore, facolta }) => (
+                  <tr key={autore}>
+                    <td>{autore}</td>
+                    <td>{facolta}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
 
-            </div>
           </div>
         </div>
       </div>

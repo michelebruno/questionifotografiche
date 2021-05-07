@@ -23,6 +23,21 @@ $container-max-widths: (
 @import "~swiper/components/pagination/pagination";
 @import "~swiper/components/navigation/navigation";
 
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  &:not(.heading-style-regular) {
+    font-style: italic;
+  }
+}
+
+.heading-style-regular {
+  text-transform: uppercase;
+}
 :root {
   --swiper-theme-color: #{theme-color("dark")};
 }
