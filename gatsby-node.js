@@ -49,7 +49,8 @@ exports.createPages = async function createPages({
 
     if (process?.env?.NODE_ENV !== 'development' && lettera > process.env.LETTERS_COUNT) {
       return;
-    } console.log('Lettera ', lettera, ' è minore di ', process.env.LETTERS_COUNT);
+    }
+
     const imgs = immagini.nodes.filter(
       (img) => img.lettera === lettera,
     );

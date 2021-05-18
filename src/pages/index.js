@@ -22,15 +22,15 @@ const IndexPage = ({ data }) => {
       <section className="container-fluid">
         <div className="row">
           <div className="col-12 px-0 text-center overflow-hidden">
-            <h1 className="position-relative overflow-hidden  min-vh-100">
+            <h1 className="position-relative  min-vh-100">
               <div
-                className="overflow-hidden text-center d-flex mx-auto justify-content-center"
+                className=" text-center d-flex mx-auto justify-content-center"
                 style={{
                   fontSize: '40vw',
                   lineHeight: 1,
                 }}
               >
-                <span style={{ whiteSpace: 'nowrap' }}>
+                <span style={{ whiteSpace: 'nowrap', fontWeight: 600 }}>
                   <span className="bg-white">2</span>
                   <span id="hero-spacer" className="d-inline-block" />
                   <span className="bg-white">6</span>
@@ -39,14 +39,13 @@ const IndexPage = ({ data }) => {
               <span
                 ref={qf}
                 id="hero-qf"
-                className="position-absolute w-50 "
+                className="position-absolute"
               >
-                <div className="w-100 text-left" style={{ fontFamily: 'var(--font-family-sans-serif)' }}>
+                <div className="w-100 text-left" style={{ fontFamily: 'var(--font-family-sans-serif)', fontStyle: 'initial' }}>
                   questioni
                 </div>
                 <div className="text-right">
                   fotografiche
-
                 </div>
               </span>
             </h1>
@@ -57,7 +56,7 @@ const IndexPage = ({ data }) => {
           <div className="col-12">
             <div className="d-block">
               <div className="marquee">
-                <div className="marquee__inner h4 py-0" aria-hidden="true">
+                <div className="marquee__inner h4 py-0 mb-0" aria-hidden="true">
                   <span>come le lettere dell'alfabeto / </span>
                   <span>come le lettere dell'alfabeto / </span>
                   <span>come le lettere dell'alfabeto / </span>

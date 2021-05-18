@@ -5,7 +5,6 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 
 function Alfabeto({ data: { lettere } }) {
-  console.log(process.env.LETTERS_COUNT);
   return (
     <Layout>
       <SEO title="Home" />

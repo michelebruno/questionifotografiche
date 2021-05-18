@@ -41,7 +41,7 @@ export default function Lettera({
     if (immagine) immagini.push(immagine);
   });
 
-  if (filenames.length > images.length) {
+  if (filenames.length > immagini.length) {
     console.log(
       `${filenames.length - images.length} missing in letter ${lettera}:`,
       pageContext.filenames.filter(

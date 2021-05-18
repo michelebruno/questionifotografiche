@@ -6,13 +6,18 @@ $font-family-sans-serif: neue-haas-grotesk-display, -apple-system, BlinkMacSyste
 "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
 "Segoe UI Symbol", "Noto Color Emoji" !default;
 
-$headings-font-family: Playfair Display, handwritten, italic, serif;
+$headings-font-family: utopia-std, kepler-std, Playfair Display, handwritten, italic, serif;
+
+$headings-font-weight: 400;
 
 $grid-gutter-width: 50px;
 
 $font-weight-base: 400;
 
-$link-color: #212529;
+$black:    #111 !default;
+
+$body-color: $black;
+$link-color: $body-color;
 
 $link-hover-decoration: line-through;
 $container-max-widths: (
@@ -21,6 +26,8 @@ $container-max-widths: (
         lg: 960px,
         xl: 1340px
 );
+
+
 
 @import "bootstrap";
 
