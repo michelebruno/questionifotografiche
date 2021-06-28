@@ -4,12 +4,14 @@ dotenv.config({
   path: `.env${process.env.NODE_ENV ? `.${process.env.NODE_ENV}` : ''}`,
 });
 
+const siteUrl = 'https://michelebruno.github.io/immaginicomealfabeto';
 const googleCredentials = require('./credentials.json');
 
 module.exports = {
   pathPrefix: 'immaginicomealfabeto',
   siteMetadata: {
     title: 'Immagini come lettere di un alfabeto',
+    siteUrl,
     description:
       'Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.',
     author: 'Michele Bruno',
@@ -52,6 +54,31 @@ module.exports = {
         spreadsheetId: '1GbYyZeiaubx4C_Vfsm5xYIJ9QM0tP0OIBi6S7dY7ZpE',
         typePrefix: 'Sheets',
         credentials: googleCredentials,
+      },
+    },
+
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/locales`,
+        name: 'locale',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-react-i18next',
+      options: {
+        localeJsonSourceName: 'locale', // name given to `gatsby-source-filesystem` plugin.
+        languages: ['en', 'it'],
+        defaultLanguage: 'it',
+        // you can pass any i18next options
+        // pass following options to allow message content as a key
+        siteUrl,
+        i18nextOptions: {
+          interpolation: {
+            escapeValue: false, // not needed for react as it escapes by default
+          },
+          saveMissing: true,
+        },
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
