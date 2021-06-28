@@ -13,13 +13,13 @@ function Layout({
   useEffect(() => setRendered(true), []);
 
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
+      query SiteTitleQuery {
+          site {
+              siteMetadata {
+                  title
+              }
+          }
       }
-    }
   `);
 
   const classList = [];
@@ -58,18 +58,28 @@ function Layout({
               className="container"
             >
               <div className="row row-cols-4">
-                <div>Politecnico di milano</div>
+                <div>Politecnico di Milano</div>
                 <div>
+                  <h6 className="heading-style-regular">C 2021</h6>
                   <p>
                     Corso di Laurea Magistrale
+                    <br />
                     Design della Comunicazione
                     <br />
                     Cultura dell’Immagine Digitale
 
                   </p>
                 </div>
-                <div>Links</div>
                 <div>
+                  <h6 className="heading-style-regular">Links</h6>
+                  <ul className="list-unstyled">
+                    <li><a href="instagram.com">@questionifotografiche</a></li>
+                    <li><a href="instagram.com">@DDC</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h6 className="heading-style-regular">Copyright</h6>
+
                   <p>
                     Immagini soggette alle tutele di legge in materia di
                     protezione del diritto d’autore e di diritti connessi al suo

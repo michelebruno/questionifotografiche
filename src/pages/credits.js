@@ -40,7 +40,7 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
       <SEO title="Credits" />
       <div className="container">
 
-        <div className="row">
+        <div className="row gy-3">
           {' '}
           <div className="col-12"><h1>Credits</h1></div>
         </div>
@@ -65,14 +65,14 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
             <div>
               <h2 className="heading-style-regular h6">Visual Identity</h2>
               <ul className="list-unstyled">
-                <li>Carlotta Bacchini</li>
-                <li>Francesco Battistoni</li>
                 <li>Alice Bocchio</li>
+                <li>Carlotta Bacchini</li>
                 <li>Federica Inzani</li>
-                <li>Virginia Leccisotti</li>
                 <li>Federico Meani</li>
+                <li>Francesco Battistoni</li>
                 <li>Mattia Mertens</li>
                 <li>Sara Zanardi</li>
+                <li>Virginia Leccisotti</li>
               </ul>
 
             </div>
@@ -82,8 +82,8 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
             <h2 className="heading-style-regular h6">Gestione contenuti e social</h2>
             <p>
               <ul className="list-unstyled">
-                <li>Linda Sguario</li>
                 <li>Guido Dallago</li>
+                <li>Linda Sguario</li>
               </ul>
             </p>
           </div>
