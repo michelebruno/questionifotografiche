@@ -76,6 +76,7 @@ export default function Lettera({
               ref={triggerRef}
               // direction="vertical"
               mousewheel
+              lazy={{ loadPrevNext: true }}
               className="h-100"
               pagination={{ dynamicBullets: true }}
             >

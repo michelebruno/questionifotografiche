@@ -2,20 +2,17 @@ import React, { useState } from 'react';
 import { graphql, Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import _ from 'lodash';
+import { SwiperSlide, Swiper } from 'swiper/react';
+import SwiperCore, { EffectFade } from 'swiper';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
+SwiperCore.use([EffectFade]);
 const IndexPage = ({ data }) => {
   const images = data.images.nodes.filter((img) => img.childImageSharp.gatsbyImageData.height === (2 / 3));
-  const [image, setImage] = React.useState(() => _.sample(images));
 
   const qf = React.useRef();
 
-  React.useEffect(() => {
-    const interval = setInterval(() => setImage(_.sample(images)), 5000);
-
-    return () => clearInterval(interval);
-  }, []);
   return (
     <Layout>
       <SEO title="Home" />
@@ -41,33 +38,22 @@ const IndexPage = ({ data }) => {
                 id="hero-qf"
                 className="position-absolute"
               >
-                <div className="w-100 text-left" style={{ fontFamily: 'var(--font-family-sans-serif)', fontStyle: 'initial' }}>
+                <div className="w-100 text-start" style={{ fontFamily: 'var(--font-family-sans-serif)', fontStyle: 'initial' }}>
                   questioni
                 </div>
-                <div className="text-right">
+                <div className="text-end">
                   fotografiche
                 </div>
               </span>
             </h1>
           </div>
         </div>
-        {' '}
         <div className="row border-dark border-top border-bottom">
           <div className="col-12">
             <div className="d-block">
               <div className="marquee">
-                <div className="marquee__inner h4 py-0 mb-0" aria-hidden="true">
-                  <span>come le lettere dell'alfabeto / </span>
-                  <span>come le lettere dell'alfabeto / </span>
-                  <span>come le lettere dell'alfabeto / </span>
-                  <span>come le lettere dell'alfabeto / </span>
-                  <span>come le lettere dell'alfabeto / </span>
-                  <span>come le lettere dell'alfabeto / </span>
-                  <span>come le lettere dell'alfabeto / </span>
-                  <span>come le lettere dell'alfabeto / </span>
-                  <span>come le lettere dell'alfabeto / </span>
-                  <span>come le lettere dell'alfabeto / </span>
-                  <span>come le lettere dell'alfabeto / </span>
+                <div className="marquee__inner h5 py-0 mb-0" aria-hidden="true">
+                  {_.times(10, () => <span className="my-1">come le lettere dell'alfabeto / </span>) }
                 </div>
               </div>
             </div>
@@ -92,7 +78,13 @@ const IndexPage = ({ data }) => {
             </p>
           </div>
           <div className="col-12 col-md-6">
-            <GatsbyImage image={getImage(image)} />
+            <Swiper effect="fade">
+              {images.map((img) => (
+                <SwiperSlide>
+                  <GatsbyImage image={getImage(img)} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
           <div className="col-12 col-md-4 ">
             <p className="py-5 ">

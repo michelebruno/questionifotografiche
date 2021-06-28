@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import Header from './header';
 
 function Layout({
@@ -12,11 +13,20 @@ function Layout({
 
   useEffect(() => setRendered(true), []);
 
-  const data = useStaticQuery(graphql`
+  const { polidesign, ...data } = useStaticQuery(graphql`
       query SiteTitleQuery {
           site {
               siteMetadata {
                   title
+              }
+          }
+          polidesign: file(relativePath: {eq: "polimi-logodesign.png"}) {
+              childImageSharp {
+                  gatsbyImageData(
+                      layout: CONSTRAINED
+                      width: 500
+                      quality: 80
+                  )
               }
           }
       }
@@ -58,7 +68,12 @@ function Layout({
               className="container"
             >
               <div className="row row-cols-4">
-                <div>Politecnico di Milano</div>
+                <div>
+                  <GatsbyImage
+                    alt="Logo del Politecnico di Milano - Scuola del Design"
+                    image={getImage(polidesign)}
+                  />
+                </div>
                 <div>
                   <h6 className="heading-style-regular">© 2021</h6>
                   <p>
