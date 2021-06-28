@@ -75,7 +75,7 @@ export default function Lettera({
               // direction="vertical"
               mousewheel
               className="h-100"
-              pagination={{ clickable: true, style: { minWidth: '100vw' } }}
+              pagination={{ clickable: true, style: { minWidth: '100vw' }, dynamicBullets: true }}
             >
               {immagini.map((immagine, i) => {
                 const img = immagine.childImageSharp.gatsbyImageData.images;
@@ -86,7 +86,9 @@ export default function Lettera({
                     className="container-fluid"
                     key={immagine.id}
                   >
-                    <div className="row align-content-start align-items-lg-center h-100 bg-white flex-row-reverse pb-5">
+                    <div
+                      className="row align-content-start align-items-lg-center h-100 bg-white flex-row-reverse pb-5"
+                    >
 
                       <div
                         className="col-12 col-lg-8 author-cursor-container photograph-image-container"
@@ -99,7 +101,9 @@ export default function Lettera({
                         />
                       </div>
                       <div className="col-12 col-lg-4 py-3">
-                        <div className="row justify-content-between h6 heading-style-regular">
+                        <div
+                          className="row justify-content-between h6 heading-style-regular"
+                        >
                           <div className="col-auto">{immagine.autore}</div>
                           <div className="col-auto">
                             {i + 1}
@@ -110,7 +114,7 @@ export default function Lettera({
                           </div>
                         </div>
                         {description
-                      !== 'NO DIDASCALIA' && (
+                        !== 'NO DIDASCALIA' && (
                           description
                         )}
                       </div>
@@ -145,7 +149,7 @@ export default function Lettera({
       </div>
       <section
         id="info-container"
-        className={`container-fluid ${displayInfo ? 'active' : ''}`}
+        className={`container-fluid ${displayInfo ? 'active' : ''}  d-flex flex-column justify-content-between`}
         style={{ overflowY: 'scroll' }}
       >
         <div className="row">
@@ -171,17 +175,18 @@ export default function Lettera({
 }
 
 export const query = graphql`query Immagini($filenames: [String]) {
-  images: allFile(filter: {sourceInstanceName: {eq: "fotografie"}, relativePath: {in: $filenames}}) {
-      nodes {
-        id
-        relativePath
-        childImageSharp {
-        gatsbyImageData(
-          width: 1200 
-          quality: 100
-          placeholder: BLURRED
-        )
-      }
+    images: allFile(filter: {sourceInstanceName: {eq: "fotografie"}, relativePath: {in: $filenames}}) {
+        nodes {
+            id
+            relativePath
+            childImageSharp {
+                gatsbyImageData(
+                    width: 1200
+                    quality: 100
+                    layout: CONSTRAINED
+                    placeholder: BLURRED
+                )
+            }
+        }
     }
-  } 
 }`;
