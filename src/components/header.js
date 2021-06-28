@@ -8,18 +8,18 @@ const Header = ({ siteTitle }) => (
         <div className="collapse navbar-collapse justify-content-between">
           <div className="navbar-nav px-0">
             <span className="nav-item">
-              <Link className="nav-link" to="/">Home</Link>
+              <Link activeClassName="text-decoration-line-through" className="nav-link" to="/">Home</Link>
             </span>
             <span className="nav-item">
-              <Link className="nav-link" to="/alfabeto">26 foto</Link>
+              <Link activeClassName="text-decoration-line-through" className="nav-link" to="/alfabeto">26 foto</Link>
             </span>
           </div>
           <div className="navbar-nav px-0">
             <span className="nav-item">
-              <Link className="nav-link" to="/credits">Credits</Link>
+              <Link activeClassName="text-decoration-line-through" className="nav-link" to="/credits">Credits</Link>
             </span>
             <span className="nav-item">
-              <Link className="nav-link" to="/">EN/IT</Link>
+              <Link activeClassName="text-decoration-line-through" className="nav-link" to="/">EN/IT</Link>
             </span>
           </div>
         </div>

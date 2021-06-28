@@ -8,7 +8,7 @@ function Alfabeto({ data: { lettere } }) {
   return (
     <Layout>
       <SEO title="Home" />
-      <section className="container-fluid container-lg">
+      <section className="container-fluid container-lg py-3 py-lg-5">
         <div className="row ">
 
           {lettere.nodes.map(({ id, titolo }, index) => (

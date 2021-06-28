@@ -14,19 +14,19 @@ $grid-gutter-width: 50px;
 
 $font-weight-base: 400;
 
-$black:    #111 !default;
+$black: #111 !default;
 
 $body-color: $black;
 $link-color: $body-color;
-
+$link-decoration: none;
 $link-hover-decoration: line-through;
+
 $container-max-widths: (
         sm: 540px,
         md: 720px,
         lg: 960px,
         xl: 1340px
 );
-
 
 
 @import "bootstrap";
@@ -174,4 +174,34 @@ h6, .h6 {
   .rendered & {
     opacity: 1;
   }
+}
+
+#tabella-autori {
+
+  tbody {
+    display: block;
+    height: 50vh;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+  }
+
+  thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed; /* even columns width , fix width of table too*/
+  }
+
+  thead {
+    font-family: $headings-font-family;
+    font-width: 400;
+    box-shadow: 0 8px 8px -8px rgba($black, .1);
+  }
+
 }

@@ -38,13 +38,12 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
   return (
     <Layout>
       <SEO title="Credits" />
-      <div className="container">
+      <div className="container py-3 py-lg-5">
 
         <div className="row gy-3">
-          {' '}
-          <div className="col-12"><h1>Credits</h1></div>
+          <div className="col-12 "><h1>Credits</h1></div>
         </div>
-        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3  gy-3 gy-lg-5 py-lg-5">
           <div
             className="col"
           >
@@ -110,12 +109,12 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
           </div>
         </div>
       </div>
-      <div className="container py-3">
+      <div className="container py-3 py-lg-5">
         <div className="row">
           <div className="col">
-            <h2 className="heading-style-regular">Fotografie di</h2>
+            <h2 className="">Fotografie di</h2>
 
-            <table className="table">
+            <table className="table" id="tabella-autori">
               <thead>
                 <th>
                   <button className="btn btn-text pl-0" onClick={() => setRandom(false)}>A-Z</button>

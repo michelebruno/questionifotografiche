@@ -60,7 +60,7 @@ function Layout({
               <div className="row row-cols-4">
                 <div>Politecnico di Milano</div>
                 <div>
-                  <h6 className="heading-style-regular">C 2021</h6>
+                  <h6 className="heading-style-regular">© 2021</h6>
                   <p>
                     Corso di Laurea Magistrale
                     <br />
