@@ -67,9 +67,10 @@ function Layout({
               }}
               className="container"
             >
-              <div className="row row-cols-4">
+              <div className="row row-cols-1 row-cols-md-2 gy-3 row-cols-xl-4">
                 <div>
                   <GatsbyImage
+                    className="w-75"
                     alt="Logo del Politecnico di Milano - Scuola del Design"
                     image={getImage(polidesign)}
                   />
