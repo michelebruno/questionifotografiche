@@ -81,8 +81,14 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
             <h2 className="heading-style-regular h6">Gestione contenuti e social</h2>
             <p>
               <ul className="list-unstyled">
+                <li>Carolina Inés Andrade</li>
+                <li>Chiara Davoli</li>
+                <li>Chiara Picozzi</li>
+                <li>Eleonora Stucchi</li>
+                <li>Giulia Lucia Curati</li>
                 <li>Guido Dallago</li>
                 <li>Linda Sguario</li>
+                <li>Silvia Carpanoni</li>
               </ul>
             </p>
           </div>
