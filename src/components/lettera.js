@@ -2,6 +2,7 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { graphql } from 'gatsby';
 import SwiperCore, {
+  Keyboard,
   Mousewheel, Navigation, Pagination, Scrollbar,
 } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,7 +11,7 @@ import _ from 'lodash';
 import Layout from './layout';
 import SEO from './seo';
 
-SwiperCore.use([Mousewheel, Pagination, Scrollbar, Navigation]);
+SwiperCore.use([Mousewheel, Keyboard, Pagination, Scrollbar, Navigation]);
 
 export default function Lettera({
   data: { images: { nodes: images } },
@@ -71,11 +72,12 @@ export default function Lettera({
                 loadPrevNext: true,
                 loadPrevNextAmount: 2,
               }}
+              keyboard
               ref={triggerRef}
               // direction="vertical"
               mousewheel
               className="h-100"
-              pagination={{ clickable: true, style: { minWidth: '100vw' }, dynamicBullets: true }}
+              pagination={{ dynamicBullets: true }}
             >
               {immagini.map((immagine, i) => {
                 const img = immagine.childImageSharp.gatsbyImageData.images;
