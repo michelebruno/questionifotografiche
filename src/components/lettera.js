@@ -19,10 +19,8 @@ export default function Lettera({
 }) {
   const triggerRef = useRef();
   const scrollerRef = useRef();
-  const photographRefs = useRef([]);
 
   const [displayInfo, setDisplayInfo] = useState(false);
-  const [controlledSwiper, setControlledSwiper] = useState(null);
   const {
     descrizione, titolo, lettera, filenames,
   } = pageContext;
@@ -30,8 +28,8 @@ export default function Lettera({
   const immagini = [];
   useMemo(() => _.shuffle(images), []).forEach((image) => {
     const immagine = pageContext.immagini.find(
-      ({ lettera, autore }) => image.relativePath
-        === `${lettera.toLocaleString('en-US',
+      ({ letter, autore }) => image.relativePath
+        === `${letter.toLocaleString('en-US',
           { minimumIntegerDigits: 2, useGrouping: false })} ${_.startCase(
           _.toLower(autore),
         )}.jpg`,
@@ -70,18 +68,16 @@ export default function Lettera({
             <Swiper
               lazy={{
                 loadPrevNext: true,
-                loadPrevNextAmount: 2,
+                loadPrevNextAmount: 1,
               }}
               keyboard
               ref={triggerRef}
               // direction="vertical"
               mousewheel
-              lazy={{ loadPrevNext: true }}
               className="h-100"
               pagination={{ dynamicBullets: true }}
             >
               {immagini.map((immagine, i) => {
-                const img = immagine.childImageSharp.gatsbyImageData.images;
                 const description = immagine.descrizione;
 
                 return (
@@ -180,8 +176,8 @@ export const query = graphql`query Immagini($filenames: [String]) {
             relativePath
             childImageSharp {
                 gatsbyImageData(
-                    width: 1200
-                    quality: 100
+                    width: 1000
+                    quality: 90
                     layout: CONSTRAINED
                     placeholder: BLURRED
                 )
