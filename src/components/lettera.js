@@ -28,8 +28,8 @@ export default function Lettera({
   const immagini = [];
   useMemo(() => _.shuffle(images), []).forEach((image) => {
     const immagine = pageContext.immagini.find(
-      ({ letter, autore }) => image.relativePath
-        === `${letter?.toLocaleString('en-US',
+      ({ lettera: letter, autore }) => image.relativePath
+        === `${lettera?.toLocaleString('en-US',
           { minimumIntegerDigits: 2, useGrouping: false })} ${_.startCase(
           _.toLower(autore),
         )}.jpg`,
