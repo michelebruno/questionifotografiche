@@ -5,7 +5,7 @@
       <paths name="ftp.provabru.altervista.org">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$/public" web="/immaginicomealfabeto" />
+            <mapping deploy="/immaginicomealfabeto" local="$PROJECT_DIR$/public" web="/immaginicomealfabeto" />
           </mappings>
         </serverdata>
       </paths>

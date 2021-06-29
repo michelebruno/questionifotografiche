@@ -1,10 +1,10 @@
-import { Link, useI18next } from 'gatsby-plugin-react-i18next';
+import { Link, useI18next, useTranslation } from 'gatsby-plugin-react-i18next';
 import React from 'react';
 import * as PropTypes from 'prop-types';
 
 function Header(props) {
   const { languages, originalPath, language } = useI18next();
-
+  const { t } = useTranslation();
   const { siteTitle } = props;
   return (
     <header className="container-fluid position-sticky sticky-top bg-white">
@@ -27,7 +27,7 @@ function Header(props) {
                   className="nav-link"
                   to="/alfabeto"
                 >
-                  26 foto
+                  {t('26 foto')}
                 </Link>
               </span>
             </div>
