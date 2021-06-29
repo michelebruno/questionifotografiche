@@ -47,7 +47,7 @@ exports.createPages = async function createPages({
      */
     if (!titolo) return;
 
-    if (process?.env?.NODE_ENV !== 'development' && lettera > process.env.LETTERS_COUNT) {
+    if (process.env.LETTERS_COUNT && lettera > process.env.LETTERS_COUNT) {
       return;
     }
 

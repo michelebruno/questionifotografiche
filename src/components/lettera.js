@@ -29,13 +29,14 @@ export default function Lettera({
   useMemo(() => _.shuffle(images), []).forEach((image) => {
     const immagine = pageContext.immagini.find(
       ({ letter, autore }) => image.relativePath
-        === `${letter.toLocaleString('en-US',
+        === `${letter?.toLocaleString('en-US',
           { minimumIntegerDigits: 2, useGrouping: false })} ${_.startCase(
           _.toLower(autore),
         )}.jpg`,
     );
+    if (!immagine) return;
 
-    immagine.childImageSharp = image.childImageSharp;
+    immagine.childImageSharp = image?.childImageSharp;
 
     if (immagine) immagini.push(immagine);
   });
