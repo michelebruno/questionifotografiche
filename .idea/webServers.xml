@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="77700d3e-5849-484c-9c74-90bddc45468b" name="ftp.provabru.altervista.org" url="http://ftp.provabru.altervista.org">
+        <fileTransfer rootFolder="/immaginicomealfabeto" host="ftp.provabru.altervista.org" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

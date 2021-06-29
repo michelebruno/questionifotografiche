@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="ftp.provabru.altervista.org" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="ftp.provabru.altervista.org">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$/public" web="/immaginicomealfabeto" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
