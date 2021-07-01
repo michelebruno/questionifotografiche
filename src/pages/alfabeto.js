@@ -30,7 +30,7 @@ export default Alfabeto;
 
 export const query = graphql`
     query {
-      lettere: allSheetsLettere(sort: { fields: lettera, order: ASC }) {
+      lettere: allLettereCsv(sort: { fields: lettera, order: ASC }) {
         nodes {
           id
           titolo

@@ -5,11 +5,19 @@ import _ from 'lodash';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
+function startCase(string) {
+  const sentence = string.toLowerCase().split(' ');
+  for (let i = 0; i < sentence.length; i++) {
+    sentence[i] = sentence[i][0].toUpperCase() + sentence[i].slice(1);
+  }
+
+  return sentence.join(' ');
+}
 function Credits({ data: { autori: { nodes: authors } }, location }) {
   const [random, setRandom] = useState(false);
   const [autori, setAutori] = useState(() => authors.map(
     ({ autore, ...rest }) => ({
-      ...rest, autore: _.startCase(_.lowerCase(autore)),
+      ...rest, autore: startCase(_.toLower(autore)),
     }),
   )
     .filter(
@@ -151,7 +159,7 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
 }
 
 export const query = graphql`{
-  autori: allSheetsImmagini {
+  autori: allImmaginiCsv {
     nodes {
       facolta
       autore
