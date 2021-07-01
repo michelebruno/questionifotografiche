@@ -3,12 +3,12 @@ import { graphql, Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import _ from 'lodash';
 import { SwiperSlide, Swiper } from 'swiper/react';
-import SwiperCore, { EffectFade } from 'swiper';
+import SwiperCore, { Autoplay, EffectFade } from 'swiper';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import * as classes from './index.module.scss';
 
-SwiperCore.use([EffectFade]);
+SwiperCore.use([EffectFade, Autoplay]);
 const IndexPage = ({ data }) => {
   const images = data.images.nodes.filter((img) => img.childImageSharp.gatsbyImageData.height === (2 / 3));
 
@@ -22,7 +22,7 @@ const IndexPage = ({ data }) => {
           <div className="col-12 px-0 text-center overflow-hidden">
             <h1 className={classes.hero}>
               <div
-                className="text-center d-flex mx-auto justify-content-center"
+                className="text-center d-flex m-auto justify-content-center"
                 style={{
                   fontSize: '40vw',
                   lineHeight: 1,
@@ -50,20 +50,19 @@ const IndexPage = ({ data }) => {
             </h1>
           </div>
         </div>
-        <div className="row border-dark border-top border-bottom">
-          <div className="col-12">
-            <div className="d-block">
-              <div className="marquee">
-                <div className="marquee__inner h5 py-0 mb-0" aria-hidden="true">
-                  {_.times(10, () => <span className="my-1">come le lettere dell'alfabeto / </span>) }
-                </div>
+      </section>
+      <div className="row border-dark border-top border-bottom gx-0">
+        <div className="col-12">
+          <div className="d-block">
+            <div className="marquee">
+              <div className="marquee__inner h5 py-0 mb-0" aria-hidden="true">
+                {_.times(10, () => <span className="my-1">come le lettere dell'alfabeto / </span>) }
               </div>
             </div>
           </div>
-
         </div>
+      </div>
 
-      </section>
       <section className="container-fluid">
         <div className="row justify-content-between">
           <div className="col-12 col-md-9 py-5 my-5">
@@ -80,7 +79,13 @@ const IndexPage = ({ data }) => {
             </p>
           </div>
           <div className="col-12 col-md-6">
-            <Swiper effect="fade">
+            <Swiper
+              effect="fade"
+              autoplay={{
+                // delay: 2500,
+                disableOnInteraction: false,
+              }}
+            >
               {images.map((img) => (
                 <SwiperSlide effect="fade" autoPlay>
                   <GatsbyImage image={getImage(img)} />
@@ -88,8 +93,8 @@ const IndexPage = ({ data }) => {
               ))}
             </Swiper>
           </div>
-          <div className="col-12 col-md-4 ">
-            <p className="py-5 ">
+          <div className="col-12 col-md-4 align-self-center">
+            <p className="py-5 mb-0">
               Il percorso vuole creare un’occasione per riscoprire, come De
               Maistre
               nel suo “Voyage autour de ma chambre”, i piccoli infiniti che si
@@ -121,7 +126,7 @@ export const query = graphql`{
   images: allFile(
     filter: {sourceInstanceName: {eq: "fotografie"}}
     sort: {fields: id}
-    limit: 20
+    limit: 40
   ) {
     nodes {
       publicURL

@@ -1,9 +1,11 @@
 @use '../scss/variables' as *;
-
+@use 'sass:math';
 
 .hero {
   position: relative;
   min-height: 50vh;
+  display: flex;
+  justify-content: center;
 
   & > div {
     height: 100%;
@@ -11,6 +13,6 @@
   }
 
   @include media-breakpoint-up(md) {
-    min-height: 100vh;
+    min-height: calc(100vh - 3vw * 1.2 - #{map-get($spacers, 2)} - 63px);
   }
 }

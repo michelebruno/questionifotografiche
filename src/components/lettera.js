@@ -58,7 +58,7 @@ export default function Lettera({
   return (
     <Layout hideFooter containerFluid>
       <SEO description={descrizione} title="Lettera" />
-      <div className="row no-gutters">
+      <div className="row">
         <div className="col-12 col-lg-9">
           <section
             id="scroller"
@@ -102,7 +102,7 @@ export default function Lettera({
                           className={classes.immagine}
                         />
                       </div>
-                      <div className="col-12 col-lg-4 py-3 position-relative">
+                      <div className="col-12 col-lg-4 py-3 position-relative ps-lg-0">
                         <div
                           className="row  gx-1 justify-content-between h6 heading-style-regular"
                         >

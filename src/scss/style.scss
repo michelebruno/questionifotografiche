@@ -139,7 +139,8 @@ h6, .h6 {
 }
 
 #hero-qf {
-  top: 12vw;
+  top: 50%;
+  transform: translateY(-50%);
   left: 25%;
   width: 50vw;
   font-size: 8vw;
