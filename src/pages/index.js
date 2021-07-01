@@ -6,6 +6,7 @@ import { SwiperSlide, Swiper } from 'swiper/react';
 import SwiperCore, { EffectFade } from 'swiper';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+import * as classes from './index.module.scss';
 
 SwiperCore.use([EffectFade]);
 const IndexPage = ({ data }) => {
@@ -19,12 +20,13 @@ const IndexPage = ({ data }) => {
       <section className="container-fluid">
         <div className="row">
           <div className="col-12 px-0 text-center overflow-hidden">
-            <h1 className="position-relative  min-vh-100">
+            <h1 className={classes.hero}>
               <div
-                className=" text-center d-flex mx-auto justify-content-center"
+                className="text-center d-flex mx-auto justify-content-center"
                 style={{
                   fontSize: '40vw',
                   lineHeight: 1,
+                  letterSpacing: '11px',
                 }}
               >
                 <span style={{ whiteSpace: 'nowrap', fontWeight: 600 }}>
@@ -80,7 +82,7 @@ const IndexPage = ({ data }) => {
           <div className="col-12 col-md-6">
             <Swiper effect="fade">
               {images.map((img) => (
-                <SwiperSlide>
+                <SwiperSlide effect="fade" autoPlay>
                   <GatsbyImage image={getImage(img)} />
                 </SwiperSlide>
               ))}

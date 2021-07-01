@@ -1,0 +1,16 @@
+@use '../scss/variables' as *;
+
+
+.hero {
+  position: relative;
+  min-height: 50vh;
+
+  & > div {
+    height: 100%;
+    bottom: 0;
+  }
+
+  @include media-breakpoint-up(md) {
+    min-height: 100vh;
+  }
+}

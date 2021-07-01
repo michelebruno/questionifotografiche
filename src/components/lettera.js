@@ -11,6 +11,8 @@ import _ from 'lodash';
 import Layout from './layout';
 import SEO from './seo';
 
+import * as classes from './lettera.module.scss';
+
 SwiperCore.use([Mousewheel, Keyboard, Pagination, Scrollbar, Navigation]);
 
 export default function Lettera({
@@ -76,7 +78,7 @@ export default function Lettera({
               // direction="vertical"
               mousewheel
               className="h-100"
-              pagination={{ dynamicBullets: true }}
+              pagination
             >
               {immagini.map((immagine, i) => {
                 const description = immagine.descrizione;
@@ -100,19 +102,20 @@ export default function Lettera({
                           objectFit="contain"
                         />
                       </div>
-                      <div className="col-12 col-lg-4 py-3">
+                      <div className="col-12 col-lg-4 py-3 position-relative">
                         <div
-                          className="row justify-content-between h6 heading-style-regular"
+                          className="row  gx-1 justify-content-between h6 heading-style-regular"
                         >
                           <div className="col-auto">{immagine.autore}</div>
                           <div className="col-auto">
                             {`${i + 1} / ${immagini.length}`}
                           </div>
                         </div>
-                        {description
-                        !== 'NO DIDASCALIA' && (
-                          description
-                        )}
+                        <p className={`${classes.didascalia} text-dark-50`}>
+                          {description !== 'NO DIDASCALIA' && (
+                            description
+                          )}
+                        </p>
                       </div>
                     </div>
                   </SwiperSlide>
@@ -145,7 +148,9 @@ export default function Lettera({
       </div>
       <section
         id="info-container"
-        className={`container-fluid ${displayInfo ? 'active' : ''}  d-flex flex-column justify-content-between`}
+        className={`container-fluid ${displayInfo
+          ? 'active'
+          : ''}  d-flex flex-column justify-content-between`}
         style={{ overflowY: 'scroll' }}
       >
         <div className="row">

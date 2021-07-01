@@ -56,7 +56,7 @@ function Layout({
             <div className="container-fluid">
               <div className="row">
                 <div
-                  className="col-12 border border-dark border-left-0 border-right-0 py-2 my-3"
+                  className="col-12 border border-dark border-start-0 border-end-0 py-2 my-3"
                 />
 
               </div>

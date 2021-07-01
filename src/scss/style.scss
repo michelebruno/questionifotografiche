@@ -1,33 +1,6 @@
 @import url("https://use.typekit.net/qsp3uel.css");
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&display=swap');
 
-$font-size-base: 1.3rem;
-$font-family-sans-serif: neue-haas-grotesk-display, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-"Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-"Segoe UI Symbol", "Noto Color Emoji" !default;
-
-$headings-font-family: utopia-std, kepler-std, Playfair Display, handwritten, italic, serif;
-
-$headings-font-weight: 400;
-
-$grid-gutter-width: 50px;
-
-$font-weight-base: 400;
-
-$black: #111 !default;
-
-$body-color: $black;
-$link-color: $body-color;
-$link-decoration: none;
-$link-hover-decoration: line-through;
-
-$container-max-widths: (
-        sm: 540px,
-        md: 720px,
-        lg: 960px,
-        xl: 1340px
-);
-
 
 @import "bootstrap";
 
@@ -37,6 +10,9 @@ $container-max-widths: (
 @import "~swiper/components/pagination/pagination";
 @import "~swiper/components/navigation/navigation";
 
+.swiper-pagination-bullet {
+  background: $black;
+}
 
 h1, .h1,
 h2, .h2,
@@ -123,7 +99,7 @@ h6, .h6 {
 
 .swiper-container-vertical > .swiper-pagination-bullets {
   right: unset;
-  left: 0px;
+  left: 0;
 }
 
 .swiper-pagination-bullet {
@@ -135,7 +111,6 @@ h6, .h6 {
 
 .swiper-container-horizontal > .swiper-pagination-bullets {
   min-width: calc(100vw - 50px);
-
 }
 
 .photograph-image-container {
