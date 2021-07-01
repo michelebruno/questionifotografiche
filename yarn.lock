@@ -6692,10 +6692,10 @@ gatsby-transformer-sharp@^3.8.0:
     semver "^7.3.4"
     sharp "^0.28.0"
 
-gatsby@^3.8.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-3.8.0.tgz#b147967fa264d278804e6dae38a67e68b93bc3b8"
-  integrity sha512-6l1IOslajKT8Umz+qDIfu2Bv1ldAbLnsrMId6ExWvcoqNjOw2eSyGHkGjwnQIwl17A0UcA1wSTAw/Gsj480IxA==
+gatsby@^3.8.1:
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-3.8.1.tgz#e94f53c7bd07585ab8f6dee3fb10ad97766aff66"
+  integrity sha512-IZphTACphil3F9ODtAYASA4+l8ErIae4eSTG0a5q9YSpSsfZBBCA5YblRIv+j/7Qi1XX9fP/eNnaxbyurqsPOw==
   dependencies:
     "@babel/code-frame" "^7.14.0"
     "@babel/core" "^7.14.0"
@@ -13047,10 +13047,10 @@ svgo@^2.3.0:
     csso "^4.2.0"
     stable "^0.1.8"
 
-swiper@^6.7.1:
-  version "6.7.1"
-  resolved "https://registry.yarnpkg.com/swiper/-/swiper-6.7.1.tgz#bfea8b9262a9898740dc64390ca681b131223fb7"
-  integrity sha512-r5Xr0WdQ7CuQiomb/8A+j9QsIl2ClQk5KoJU1jWp8/OP4OS/0ZJf5tKLWlJMPRHafy1oRsmv1lSSyzJad6XoRg==
+swiper@^6.7.5:
+  version "6.7.5"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-6.7.5.tgz#8f150c7281919b7d6bea00889e9dc16448e92986"
+  integrity sha512-KaTjO93tZyMpxWHaey+T+H/JeePMZV/joZWhZaor76Xk+rPGmjOz1S8mXSyrRkaW0p0LOJYeWGB8d0gYxSSV/Q==
   dependencies:
     dom7 "^3.0.0"
     ssr-window "^3.0.0"
