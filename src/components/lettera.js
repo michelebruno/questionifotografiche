@@ -2,18 +2,18 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { graphql } from 'gatsby';
 import SwiperCore, {
-  Keyboard,
+  Keyboard, Lazy,
   Mousewheel, Navigation, Pagination, Scrollbar,
 } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { getImage, GatsbyImage } from 'gatsby-plugin-image';
+import { getSrcSet, getSrc } from 'gatsby-plugin-image';
 import _ from 'lodash';
 import Layout from './layout';
 import SEO from './seo';
 
 import * as classes from './lettera.module.scss';
 
-SwiperCore.use([Mousewheel, Keyboard, Pagination, Scrollbar, Navigation]);
+SwiperCore.use([Mousewheel, Keyboard, Pagination, Scrollbar, Navigation, Lazy]);
 
 export default function Lettera({
   data: { images: { nodes: images } },
@@ -93,13 +93,13 @@ export default function Lettera({
                     >
 
                       <div
-                        className="col-12 col-lg-8 author-cursor-container photograph-image-container"
+                        className="col-12 col-lg-8 author-cursor-container photograph-image-container d-flex pe-lg-0"
                       >
-                        <GatsbyImage
+                        <img
+                          src={getSrc(immagine)}
+                          srcSet={getSrcSet(immagine)}
                           alt={descrizione}
-                          image={getImage(immagine)}
-                          className="h-100 w-100"
-                          objectFit="contain"
+                          className={classes.immagine}
                         />
                       </div>
                       <div className="col-12 col-lg-4 py-3 position-relative">

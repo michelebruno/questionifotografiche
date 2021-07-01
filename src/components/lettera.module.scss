@@ -2,3 +2,11 @@
   //position: absolute;
   font-size: .8em;
 }
+
+.immagine {
+  object-fit: contain;
+  object-position: center center;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+}
