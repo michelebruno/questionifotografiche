@@ -175,7 +175,17 @@ export default function Lettera({
   );
 }
 
-export const query = graphql`query Immagini($filenames: [String]) {
+export const query = graphql`query Immagini($filenames: [String], $language: String!) {
+    locales: allLocale(filter: {language: {eq: $language}}) {
+        edges {
+            node {
+                data
+                ns
+                language
+            }
+        }
+    }
+
     images: allFile(filter: {sourceInstanceName: {eq: "fotografie"}, relativePath: {in: $filenames}}) {
         nodes {
             id

@@ -6,7 +6,10 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 
 function Alfabeto({ data: { lettere: letters } }) {
-  const lettere = _.sortBy(letters.nodes.map(({ lettera, ...rest }) => ({ lettera: Number(lettera), ...rest })), 'lettera');
+  const lettere = _.sortBy(letters.nodes.map(
+    ({ lettera, ...rest }) => ({ lettera: Number(lettera), ...rest }),
+  ),
+  'lettera');
 
   return (
     <Layout>
@@ -32,7 +35,17 @@ function Alfabeto({ data: { lettere: letters } }) {
 export default Alfabeto;
 
 export const query = graphql`
-    query {
+
+    query($language: String!) {
+        locales: allLocale(filter: {language: {eq: $language}}) {
+            edges {
+                node {
+                    data
+                    ns
+                    language
+                }
+            }
+        }
         lettere: allLettereCsv(sort: { fields: lettera, order: ASC }) {
             nodes {
                 id

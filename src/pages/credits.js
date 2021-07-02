@@ -183,14 +183,25 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
   );
 }
 
-export const query = graphql`{
-    autori: allImmaginiCsv {
-        nodes {
-            facolta
-            autore
+export const query = graphql`
+    query($language: String!) {
+        locales: allLocale(filter: {language: {eq: $language}}) {
+            edges {
+                node {
+                    data
+                    ns
+                    language
+                }
+            }
+        }
+
+        autori: allImmaginiCsv {
+            nodes {
+                facolta
+                autore
+            }
         }
     }
-}
 `;
 
 export default Credits;

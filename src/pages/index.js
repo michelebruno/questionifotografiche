@@ -122,24 +122,35 @@ const IndexPage = ({ data }) => {
 
 export default IndexPage;
 
-export const query = graphql`{
-    images: allFile(
-        filter: {sourceInstanceName: {eq: "fotografie"}}
-        sort: {fields: id}
-        limit: 20
-    ) {
-        nodes {
-            publicURL
-            relativePath
-            childImageSharp {
-                gatsbyImageData(
-                    layout: CONSTRAINED
-                    width: 900
-                    quality: 90
-                )
+export const query = graphql`
+    query($language: String!) {
+        locales: allLocale(filter: {language: {eq: $language}}) {
+            edges {
+                node {
+                    data
+                    ns
+                    language
+                }
             }
-            sourceInstanceName
-            size
         }
-    }
-}`;
+    
+        images: allFile(
+            filter: {sourceInstanceName: {eq: "fotografie"}}
+            sort: {fields: id}
+            limit: 20
+        ) {
+            nodes {
+                publicURL
+                relativePath
+                childImageSharp {
+                    gatsbyImageData(
+                        layout: CONSTRAINED
+                        width: 900
+                        quality: 90
+                    )
+                }
+                sourceInstanceName
+                size
+            }
+        }
+    }`;

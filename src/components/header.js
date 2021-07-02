@@ -38,7 +38,7 @@ function Header(props) {
                   className="nav-link"
                   to="/credits"
                 >
-                  Credits
+                  {t('Crediti')}
                 </Link>
               </span>
               <span className="nav-item">
