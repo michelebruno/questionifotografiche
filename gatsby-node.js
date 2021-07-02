@@ -53,7 +53,8 @@ exports.createPages = async function createPages({
      */
     if (!titolo) return;
 
-    if (process.env.LETTERS_COUNT && lettera > process.env.LETTERS_COUNT) {
+    if (process.env.LETTERS_COUNT && Number(lettera) > process.env.LETTERS_COUNT) {
+      console.log(lettera, ' will not be renderes as of process env');
       return;
     }
 
@@ -70,7 +71,7 @@ exports.createPages = async function createPages({
     filenames.length !== 26
     && console.log(`Found in source ${filenames.length} for letter ${lettera}`);
 
-    createPage({
+    const data = {
       path: _.kebabCase(titolo),
       component: template,
       context: {
@@ -82,7 +83,9 @@ exports.createPages = async function createPages({
         immagini: imgs,
         filenames,
       },
-    });
+    };
+    console.log('Creating page ', lettera);
+    createPage(data);
   });
 };
 

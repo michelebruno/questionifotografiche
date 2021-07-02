@@ -10,7 +10,9 @@ import * as classes from './index.module.scss';
 
 SwiperCore.use([EffectFade, Autoplay]);
 const IndexPage = ({ data }) => {
-  const images = data.images.nodes.filter((img) => img.childImageSharp.gatsbyImageData.height === (2 / 3));
+  const images = data.images.nodes.filter(
+    (img) => img.childImageSharp.gatsbyImageData.height === (2 / 3),
+  );
 
   const qf = React.useRef();
 
@@ -40,7 +42,13 @@ const IndexPage = ({ data }) => {
                 id="hero-qf"
                 className="position-absolute"
               >
-                <div className="w-100 text-start" style={{ fontFamily: 'var(--font-family-sans-serif)', fontStyle: 'initial' }}>
+                <div
+                  className="w-100 text-start"
+                  style={{
+                    fontFamily: 'var(--font-family-sans-serif)',
+                    fontStyle: 'initial',
+                  }}
+                >
                   questioni
                 </div>
                 <div className="text-end">
@@ -56,7 +64,7 @@ const IndexPage = ({ data }) => {
           <div className="d-block">
             <div className="marquee">
               <div className="marquee__inner h5 py-0 mb-0" aria-hidden="true">
-                {_.times(10, () => <span className="my-1">come le lettere dell'alfabeto / </span>) }
+                {_.times(10, () => <span className="my-1">come le lettere dell'alfabeto / </span>)}
               </div>
             </div>
           </div>
@@ -123,22 +131,23 @@ const IndexPage = ({ data }) => {
 export default IndexPage;
 
 export const query = graphql`{
-  images: allFile(
-    filter: {sourceInstanceName: {eq: "fotografie"}}
-    sort: {fields: id}
-    limit: 40
-  ) {
-    nodes {
-      publicURL
-      relativePath
-      childImageSharp {
-        gatsbyImageData( 
-          layout: FULL_WIDTH
-          quality: 90
-        )
-      }
-      sourceInstanceName
-      size
+    images: allFile(
+        filter: {sourceInstanceName: {eq: "fotografie"}}
+        sort: {fields: id}
+        limit: 20
+    ) {
+        nodes {
+            publicURL
+            relativePath
+            childImageSharp {
+                gatsbyImageData(
+                    layout: CONSTRAINED
+                    width: 800
+                    quality: 90
+                )
+            }
+            sourceInstanceName
+            size
+        }
     }
-  }
 }`;

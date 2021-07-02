@@ -57,7 +57,8 @@
     "extract": "yarn run babel --config-file ./babel-extract.config.js -o tmp/chunk.js src/**/*.js && node scripts/postextract.js",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "deploy": "gatsby clean && gatsby build --prefix-paths && gh-pages -d public && gatsby clean"
+    "deploy": "gatsby build && gh-pages -d public",
+    "pages": "gh-pages -d public"
   },
   "repository": {
     "type": "git",

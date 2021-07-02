@@ -8,7 +8,6 @@ const siteUrl = 'https://michelebruno.github.io/immaginicomealfabeto';
 const googleCredentials = require('./credentials.json');
 
 module.exports = {
-  pathPrefix: 'immaginicomealfabeto',
   siteMetadata: {
     title: 'Immagini come lettere di un alfabeto',
     siteUrl,
