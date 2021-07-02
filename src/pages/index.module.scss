@@ -13,6 +13,6 @@
   }
 
   @include media-breakpoint-up(md) {
-    min-height: calc(100vh - 3vw * 1.2 - #{map-get($spacers, 2)} - 63px);
+    min-height: calc(100vh - 3vw * 1.2 - #{map-get($spacers, 2)} - 64px - .5rem);
   }
 }

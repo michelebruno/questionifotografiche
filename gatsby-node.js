@@ -55,8 +55,7 @@ exports.createPages = async function createPages({
       (img) => img.lettera === lettera,
     );
     const filenames = imgs.map(
-      ({ lettera, autore }) => `${lettera.toLocaleString('en-US',
-        { minimumIntegerDigits: 2, useGrouping: false })} ${_.startCase(
+      ({ lettera: letter, autore }) => `${_.padStart(letter, 2, '0')} ${_.startCase(
         _.toLower(autore),
       )}.jpg`,
     );

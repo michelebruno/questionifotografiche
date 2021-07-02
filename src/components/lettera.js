@@ -31,8 +31,7 @@ export default function Lettera({
   useMemo(() => _.shuffle(images), []).forEach((image) => {
     const immagine = pageContext.immagini.find(
       ({ lettera: letter, autore }) => image.relativePath
-        === `${lettera?.toLocaleString('en-US',
-          { minimumIntegerDigits: 2, useGrouping: false })} ${_.startCase(
+        === `${_.padStart(letter, 2, '0')} ${_.startCase(
           _.toLower(autore),
         )}.jpg`,
     );
@@ -57,7 +56,7 @@ export default function Lettera({
   }
   return (
     <Layout hideFooter containerFluid>
-      <SEO description={descrizione} title="Lettera" />
+      <SEO description={descrizione} title={titolo} />
       <div className="row">
         <div className="col-12 col-lg-9">
           <section
