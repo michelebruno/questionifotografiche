@@ -11,10 +11,11 @@ import * as classes from './index.module.scss';
 SwiperCore.use([EffectFade, Autoplay]);
 const IndexPage = ({ data }) => {
   const images = data.images.nodes.filter(
-    (img) => img.childImageSharp.gatsbyImageData.height === (2 / 3),
+    (img) => {
+      const image = getImage(img);
+      return image.height / image.width === (2 / 3);
+    },
   );
-
-  const qf = React.useRef();
 
   return (
     <Layout>
@@ -38,7 +39,6 @@ const IndexPage = ({ data }) => {
                 </span>
               </div>
               <span
-                ref={qf}
                 id="hero-qf"
                 className="position-absolute"
               >
@@ -64,7 +64,7 @@ const IndexPage = ({ data }) => {
           <div className="d-block">
             <div className="marquee">
               <div className="marquee__inner h5 py-0 mb-0" aria-hidden="true">
-                {_.times(10, () => <span className="my-1">come le lettere dell'alfabeto / </span>)}
+                {_.times(10, () => <span className="my-1">come lettere dell'alfabeto / </span>)}
               </div>
             </div>
           </div>
@@ -75,15 +75,12 @@ const IndexPage = ({ data }) => {
         <div className="row justify-content-between">
           <div className="col-12 col-md-9 py-5 my-5">
             <p className="display-3 my-5 py-5">
-              Questo progetto nasce
-              dall’idea di condividere con allievi di diverse estrazioni e
-              provenienze, oltre che con alcuni colleghi, amici e maestri nel
-              campo
-              della fotografia,
-              della filosofia e della scrittura,
-              una proposta di percorso didattico, frutto delle
-              esperienze di insegnamento
-              in questi ultimi anni.
+              Il progetto nasce dall'idea di creare un percorso, un'occasione,
+              per riscoprire, come Xavier De Maistre nel suo "Voyage autour de
+              ma chambre", gli infiniti ricordi che si nascondono nel paesaggio
+              domestico. Paesaggio ricco di affetti e di storie, come scrive
+              Vittorio Lingiardi nel suo "Mindscapes" o come illustra Luigi
+              Ghirri nel suo “Identikit”.
             </p>
           </div>
           <div className="col-12 col-md-6">
@@ -103,16 +100,11 @@ const IndexPage = ({ data }) => {
           </div>
           <div className="col-12 col-md-4 align-self-center">
             <p className="py-5 mb-0">
-              Il percorso vuole creare un’occasione per riscoprire, come De
-              Maistre
-              nel suo “Voyage autour de ma chambre”, i piccoli infiniti che si
-              nascondono, ma si possono rivelare e rendere oggetto di narrazione
-              visiva, in una scala di paesaggio domestico.
-              Un paesaggio ricco di affetti e di storie come scrive anche
-              Vittorio
-              Lingiardi nel suo “Mindscapes” o come illustra Luigi Ghirri nel
-              suo
-              lavoro “Identikit”.
+              Reportage articolato in differenti temi e ricerche sul micro e
+              macro paesaggio, con letture etno-antropologiche condotte mediante
+              l’uso della fotografia. Spunti per un’altra dimensione e idea di
+              memoria, luogo, narrazione, paesaggio, design e architettura
+              domestica, al tempo del Corona Virus.
             </p>
           </div>
         </div>
@@ -142,7 +134,7 @@ export const query = graphql`{
             childImageSharp {
                 gatsbyImageData(
                     layout: CONSTRAINED
-                    width: 800
+                    width: 900
                     quality: 90
                 )
             }

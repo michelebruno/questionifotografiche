@@ -65,7 +65,7 @@ function Layout({
               style={{
                 marginTop: '2rem',
               }}
-              className="container"
+              className="container small"
             >
               <div className="row row-cols-1 row-cols-md-2 gy-3 row-cols-xl-4">
                 <div>
@@ -83,11 +83,10 @@ function Layout({
                     Design della Comunicazione
                     <br />
                     Cultura dell’Immagine Digitale
-
                   </p>
                 </div>
                 <div>
-                  <h6 className="heading-style-regular">Links</h6>
+                  <h6 className="heading-style-regular">Social</h6>
                   <ul className="list-unstyled">
                     <li><a href="instagram.com">@questionifotografiche</a></li>
                     <li><a href="instagram.com">@DDC</a></li>

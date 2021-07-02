@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import _ from 'lodash';
+import { useTranslation } from 'gatsby-plugin-react-i18next';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
@@ -13,17 +14,17 @@ function startCase(string) {
 
   return sentence.join(' ');
 }
+
 function Credits({ data: { autori: { nodes: authors } }, location }) {
   const [random, setRandom] = useState(false);
   const [autori, setAutori] = useState(() => authors.map(
     ({ autore, ...rest }) => ({
       ...rest, autore: startCase(_.toLower(autore)),
     }),
-  )
-    .filter(
-      (item, index, self) => self.findIndex((i) => i.autore === item.autore)
-        === index,
-    ));
+  ).filter(
+    (item, index, self) => self.findIndex((i) => i.autore === item.autore)
+      === index,
+  ));
 
   function handleShuffle() {
     setAutori((list) => _.shuffle(list));
@@ -43,15 +44,18 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
     }
   }, [random]);
 
+  const { t } = useTranslation('crediti');
   return (
     <Layout>
       <SEO title="Credits" />
       <div className="container py-3 py-lg-5">
 
         <div className="row gy-3">
-          <div className="col-12 "><h1>Credits</h1></div>
+          <div className="col-12 "><h1>{t('Crediti')}</h1></div>
         </div>
-        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3  gy-3 gy-lg-5 py-lg-5">
+        <div
+          className="row row-cols-1 row-cols-md-2 row-cols-lg-3  gy-3 gy-lg-5 py-lg-5"
+        >
           <div
             className="col"
           >
@@ -60,10 +64,14 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
               <p>
                 Politecnico di Milano
                 <br />
-                Scuola del Design
+                {t('Scuola del Design')}
               </p>
-              <p>Corso di Laurea Magistrale Design della Comunicazione </p>
-              <p>Cultura dell&apos;immagine digitale</p>
+              <p>
+                {t('Corso di Laurea Magistrale')}
+                <br />
+                {t('Design della Comunicazione')}
+              </p>
+              <p>{t('Cultura dell&apos;immagine digitale')}</p>
             </div>
           </div>
           <div
@@ -86,7 +94,9 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
           </div>
 
           <div className="col">
-            <h2 className="heading-style-regular h6">Gestione contenuti e social</h2>
+            <h2 className="heading-style-regular h6">
+              {t('Gestione contenuti e social')}
+            </h2>
             <p>
               <ul className="list-unstyled">
                 <li>Carolina Inés Andrade</li>
@@ -101,7 +111,7 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
             </p>
           </div>
           <div className="col">
-            <h2 className="heading-style-regular h6">Docenti</h2>
+            <h2 className="heading-style-regular h6">{t('Docenti')}</h2>
             <p>
               Piero Francesco Pozzi
               <br />
@@ -113,7 +123,11 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
             <p>Michele Bruno</p>
           </div>
           <div className="col">
-            <h2 className="heading-style-regular h6">Testi e traduzioni</h2>
+            <h2 className="heading-style-regular h6">
+              {t(
+                'Testi e traduzioni',
+              )}
+            </h2>
             <p>
               <ul className="list-unstyled">
                 <li>Linda Sguario</li>
@@ -126,13 +140,25 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
       <div className="container py-3 py-lg-5">
         <div className="row">
           <div className="col">
-            <h2 className="">Fotografie di</h2>
+            <h2 className="">{t('Fotografie di')}</h2>
 
             <table className="table" id="tabella-autori">
               <thead>
                 <th>
-                  <button className="btn btn-text pl-0" onClick={() => setRandom(false)}>A-Z</button>
-                  <button className="btn btn-text" onClick={() => setRandom((r) => (r ? handleShuffle() : true))}>Casuale</button>
+                  <button
+                    className="btn btn-text pl-0"
+                    onClick={() => setRandom(false)}
+                  >
+                    A-Z
+                  </button>
+                  <button
+                    className="btn btn-text"
+                    onClick={() => setRandom(
+                      (r) => (r ? handleShuffle() : true),
+                    )}
+                  >
+                    {t('Casuale')}
+                  </button>
                 </th>
                 <th>
                   <button className="btn btn-text pl-0">
@@ -149,7 +175,6 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
                 ))}
               </tbody>
             </table>
-
           </div>
         </div>
       </div>
@@ -159,12 +184,12 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
 }
 
 export const query = graphql`{
-  autori: allImmaginiCsv {
-    nodes {
-      facolta
-      autore
+    autori: allImmaginiCsv {
+        nodes {
+            facolta
+            autore
+        }
     }
-  }
 }
 `;
 
