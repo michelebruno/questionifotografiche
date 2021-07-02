@@ -5,11 +5,9 @@ import _ from 'lodash';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
-window._ = _;
 function Alfabeto({ data: { lettere: letters } }) {
   const lettere = _.sortBy(letters.nodes.map(({ lettera, ...rest }) => ({ lettera: Number(lettera), ...rest })), 'lettera');
 
-  console.log(lettere);
   return (
     <Layout>
       <SEO title="Home" />

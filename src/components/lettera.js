@@ -84,7 +84,7 @@ export default function Lettera({
 
                 return (
                   <SwiperSlide
-                    className="container-fluid"
+                    className="container-fluid "
                     key={immagine.id}
                   >
                     <div
@@ -101,7 +101,7 @@ export default function Lettera({
                           className={classes.immagine}
                         />
                       </div>
-                      <div className="col-12 col-lg-4 py-3 position-relative ps-lg-0">
+                      <div className="col-12 col-lg-4 py-3 position-relative ps-lg-0 ">
                         <div
                           className="row  gx-1 justify-content-between h6 heading-style-regular"
                         >

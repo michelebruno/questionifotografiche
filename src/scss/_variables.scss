@@ -26,10 +26,19 @@ $container-max-widths: (
         xl: 1340px
 );
 
-
 // scss-docs-start import-stack
 // Configuration
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/utilities";
+
+
+$gutters:  (
+        0: 0,
+        1: $grid-gutter-width * .25,
+        2: $grid-gutter-width * .5,
+        3: $grid-gutter-width,
+        4: $grid-gutter-width * 1.5,
+        5: $grid-gutter-width * 3,
+) !default;
