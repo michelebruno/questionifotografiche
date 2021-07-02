@@ -24,7 +24,7 @@ export default function Lettera({
 
   const [displayInfo, setDisplayInfo] = useState(false);
   const {
-    descrizione, titolo, lettera, filenames,
+    descrizione, titolo, sottotitolo, title, lettera, filenames,
   } = pageContext;
 
   const immagini = [];
@@ -128,6 +128,7 @@ export default function Lettera({
           className="col-12 col-lg-3 align-self-center text-center"
         >
           <h1>{titolo}</h1>
+          <h2 className="h4">{sottotitolo}</h2>
         </div>
 
       </div>

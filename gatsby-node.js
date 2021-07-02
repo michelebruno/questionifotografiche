@@ -17,10 +17,12 @@ exports.createPages = async function createPages({
    {
       lettere: allLettereCsv {
         nodes {
-          descrizione
-          lettera
           titolo
-        }
+          title
+          sottotitolo
+          lettera
+          descrizione
+         }
       }
       immagini: allImmaginiCsv {
         nodes {
@@ -41,7 +43,11 @@ exports.createPages = async function createPages({
     data: { lettere, immagini },
   } = q;
 
-  lettere.nodes.forEach(({ lettera, titolo, descrizione }) => {
+  lettere.nodes.forEach(({
+    lettera, titolo, descrizione,
+    title,
+    sottotitolo,
+  }) => {
     /**
      * Return if no title is set.
      */
@@ -55,12 +61,14 @@ exports.createPages = async function createPages({
       (img) => img.lettera === lettera,
     );
     const filenames = imgs.map(
-      ({ lettera: letter, autore }) => `${_.padStart(letter, 2, '0')} ${_.startCase(
+      ({ lettera: letter, autore }) => `${_.padStart(letter, 2,
+        '0')} ${_.startCase(
         _.toLower(autore),
       )}.jpg`,
     );
 
-    filenames.length !== 26 && console.log(`Found in source ${filenames.length} for letter ${lettera}`);
+    filenames.length !== 26
+    && console.log(`Found in source ${filenames.length} for letter ${lettera}`);
 
     createPage({
       path: _.kebabCase(titolo),
@@ -69,6 +77,8 @@ exports.createPages = async function createPages({
         lettera,
         titolo,
         descrizione,
+        title,
+        sottotitolo,
         immagini: imgs,
         filenames,
       },

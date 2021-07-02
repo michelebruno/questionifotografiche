@@ -17,7 +17,7 @@ function Alfabeto({ data: { lettere: letters } }) {
         <div className="row ">
 
           {lettere.map(({ id, titolo }, index) => (
-            (index < process.env.LETTERS_COUNT) && (
+            (
               <div key={id} className="col-12 border-dark lettera-link">
                 <h3 className="display-4 py-2 ">
                   <Link to={`/${_.kebabCase(titolo)}`}>{titolo}</Link>

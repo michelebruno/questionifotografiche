@@ -192,9 +192,21 @@ type File implements Node {
     ): Date!
     "Returns the first child node of type ImageSharp or null if there are no children of given type on this node"
     childImageSharp: ImageSharp
+    "Returns the first child node of type ImmaginiCsv or null if there are no children of given type on this node"
+    childImmaginiCsv: ImmaginiCsv
+    "Returns the first child node of type LettereCsv or null if there are no children of given type on this node"
+    childLettereCsv: LettereCsv
+    "Returns the first child node of type Locale or null if there are no children of given type on this node"
+    childLocale: Locale
     children: [Node!]!
     "Returns all children nodes filtered by type ImageSharp"
     childrenImageSharp: [ImageSharp]
+    "Returns all children nodes filtered by type ImmaginiCsv"
+    childrenImmaginiCsv: [ImmaginiCsv]
+    "Returns all children nodes filtered by type LettereCsv"
+    childrenLettereCsv: [LettereCsv]
+    "Returns all children nodes filtered by type Locale"
+    childrenLocale: [Locale]
     ctime(
         "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
         difference: String,
@@ -468,6 +480,45 @@ type ImageSharpResize {
     width: Int
 }
 
+type ImmaginiCsv implements Node {
+    autore: String
+    children: [Node!]!
+    descrizione: String
+    descrizione_originale: String
+    facolta: String
+    id: ID!
+    internal: Internal!
+    lettera: String
+    parent: Node
+}
+
+type ImmaginiCsvConnection {
+    distinct(field: ImmaginiCsvFieldsEnum!): [String!]!
+    edges: [ImmaginiCsvEdge!]!
+    group(field: ImmaginiCsvFieldsEnum!, limit: Int, skip: Int): [ImmaginiCsvGroupConnection!]!
+    max(field: ImmaginiCsvFieldsEnum!): Float
+    min(field: ImmaginiCsvFieldsEnum!): Float
+    nodes: [ImmaginiCsv!]!
+    pageInfo: PageInfo!
+    sum(field: ImmaginiCsvFieldsEnum!): Float
+    totalCount: Int!
+}
+
+type ImmaginiCsvEdge {
+    next: ImmaginiCsv
+    node: ImmaginiCsv!
+    previous: ImmaginiCsv
+}
+
+type ImmaginiCsvGroupConnection {
+    edges: [ImmaginiCsvEdge!]!
+    field: String!
+    fieldValue: String
+    nodes: [ImmaginiCsv!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
 type Internal {
     content: String
     contentDigest: String!
@@ -477,6 +528,84 @@ type Internal {
     mediaType: String
     owner: String!
     type: String!
+}
+
+type LettereCsv implements Node {
+    Testo: String
+    children: [Node!]!
+    descrizione: String
+    id: ID!
+    internal: Internal!
+    lettera: String
+    parent: Node
+    sottotitolo: String
+    title: String
+    titolo: String
+}
+
+type LettereCsvConnection {
+    distinct(field: LettereCsvFieldsEnum!): [String!]!
+    edges: [LettereCsvEdge!]!
+    group(field: LettereCsvFieldsEnum!, limit: Int, skip: Int): [LettereCsvGroupConnection!]!
+    max(field: LettereCsvFieldsEnum!): Float
+    min(field: LettereCsvFieldsEnum!): Float
+    nodes: [LettereCsv!]!
+    pageInfo: PageInfo!
+    sum(field: LettereCsvFieldsEnum!): Float
+    totalCount: Int!
+}
+
+type LettereCsvEdge {
+    next: LettereCsv
+    node: LettereCsv!
+    previous: LettereCsv
+}
+
+type LettereCsvGroupConnection {
+    edges: [LettereCsvEdge!]!
+    field: String!
+    fieldValue: String
+    nodes: [LettereCsv!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
+type Locale implements Node {
+    children: [Node!]!
+    data: String
+    fileAbsolutePath: String
+    id: ID!
+    internal: Internal!
+    language: String
+    ns: String
+    parent: Node
+}
+
+type LocaleConnection {
+    distinct(field: LocaleFieldsEnum!): [String!]!
+    edges: [LocaleEdge!]!
+    group(field: LocaleFieldsEnum!, limit: Int, skip: Int): [LocaleGroupConnection!]!
+    max(field: LocaleFieldsEnum!): Float
+    min(field: LocaleFieldsEnum!): Float
+    nodes: [Locale!]!
+    pageInfo: PageInfo!
+    sum(field: LocaleFieldsEnum!): Float
+    totalCount: Int!
+}
+
+type LocaleEdge {
+    next: Locale
+    node: Locale!
+    previous: Locale
+}
+
+type LocaleGroupConnection {
+    edges: [LocaleEdge!]!
+    field: String!
+    fieldValue: String
+    nodes: [Locale!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
 }
 
 type PageInfo {
@@ -493,6 +622,9 @@ type Query {
     allDirectory(filter: DirectoryFilterInput, limit: Int, skip: Int, sort: DirectorySortInput): DirectoryConnection!
     allFile(filter: FileFilterInput, limit: Int, skip: Int, sort: FileSortInput): FileConnection!
     allImageSharp(filter: ImageSharpFilterInput, limit: Int, skip: Int, sort: ImageSharpSortInput): ImageSharpConnection!
+    allImmaginiCsv(filter: ImmaginiCsvFilterInput, limit: Int, skip: Int, sort: ImmaginiCsvSortInput): ImmaginiCsvConnection!
+    allLettereCsv(filter: LettereCsvFilterInput, limit: Int, skip: Int, sort: LettereCsvSortInput): LettereCsvConnection!
+    allLocale(filter: LocaleFilterInput, limit: Int, skip: Int, sort: LocaleSortInput): LocaleConnection!
     allSheetsArcImmagini(filter: SheetsArcImmaginiFilterInput, limit: Int, skip: Int, sort: SheetsArcImmaginiSortInput): SheetsArcImmaginiConnection!
     allSheetsArchitettura(filter: SheetsArchitetturaFilterInput, limit: Int, skip: Int, sort: SheetsArchitetturaSortInput): SheetsArchitetturaConnection!
     allSheetsDesImmagini(filter: SheetsDesImmaginiFilterInput, limit: Int, skip: Int, sort: SheetsDesImmaginiSortInput): SheetsDesImmaginiConnection!
@@ -505,8 +637,11 @@ type Query {
     allSitePage(filter: SitePageFilterInput, limit: Int, skip: Int, sort: SitePageSortInput): SitePageConnection!
     allSitePlugin(filter: SitePluginFilterInput, limit: Int, skip: Int, sort: SitePluginSortInput): SitePluginConnection!
     directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
-    file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, childImageSharp: ImageSharpFilterInput, children: NodeFilterListInput, childrenImageSharp: ImageSharpFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
+    file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, childImageSharp: ImageSharpFilterInput, childImmaginiCsv: ImmaginiCsvFilterInput, childLettereCsv: LettereCsvFilterInput, childLocale: LocaleFilterInput, children: NodeFilterListInput, childrenImageSharp: ImageSharpFilterListInput, childrenImmaginiCsv: ImmaginiCsvFilterListInput, childrenLettereCsv: LettereCsvFilterListInput, childrenLocale: LocaleFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
     imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput): ImageSharp
+    immaginiCsv(autore: StringQueryOperatorInput, children: NodeFilterListInput, descrizione: StringQueryOperatorInput, descrizione_originale: StringQueryOperatorInput, facolta: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lettera: StringQueryOperatorInput, parent: NodeFilterInput): ImmaginiCsv
+    lettereCsv(Testo: StringQueryOperatorInput, children: NodeFilterListInput, descrizione: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lettera: StringQueryOperatorInput, parent: NodeFilterInput, sottotitolo: StringQueryOperatorInput, title: StringQueryOperatorInput, titolo: StringQueryOperatorInput): LettereCsv
+    locale(children: NodeFilterListInput, data: StringQueryOperatorInput, fileAbsolutePath: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, language: StringQueryOperatorInput, ns: StringQueryOperatorInput, parent: NodeFilterInput): Locale
     sheetsArcImmagini(autore: StringQueryOperatorInput, children: NodeFilterListInput, descrizioneDefinitiva: StringQueryOperatorInput, descrzione: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lettera: StringQueryOperatorInput, parent: NodeFilterInput): SheetsArcImmagini
     sheetsArchitettura(aaaNome: StringQueryOperatorInput, children: NodeFilterListInput, f1: StringQueryOperatorInput, f10: StringQueryOperatorInput, f11K: StringQueryOperatorInput, f12L: StringQueryOperatorInput, f13M: StringQueryOperatorInput, f14: StringQueryOperatorInput, f15: StringQueryOperatorInput, f16P: StringQueryOperatorInput, f17Q: StringQueryOperatorInput, f18: StringQueryOperatorInput, f19S: StringQueryOperatorInput, f2: StringQueryOperatorInput, f20T: StringQueryOperatorInput, f21: StringQueryOperatorInput, f22: StringQueryOperatorInput, f23: StringQueryOperatorInput, f24: StringQueryOperatorInput, f25: StringQueryOperatorInput, f26: StringQueryOperatorInput, f3C: StringQueryOperatorInput, f4D: StringQueryOperatorInput, f5: StringQueryOperatorInput, f6: StringQueryOperatorInput, f7G: StringQueryOperatorInput, f8H: StringQueryOperatorInput, f9: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, voto: StringQueryOperatorInput): SheetsArchitettura
     sheetsDesImmagini(autore: StringQueryOperatorInput, children: NodeFilterListInput, descrizione: StringQueryOperatorInput, descrizioniDef__min211Max940Caratteri_: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lettera: StringQueryOperatorInput, parent: NodeFilterInput): SheetsDesImmagini
@@ -515,8 +650,8 @@ type Query {
     sheetsLettere(children: NodeFilterListInput, descrizione: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lettera: IntQueryOperatorInput, parent: NodeFilterInput, titolo: StringQueryOperatorInput): SheetsLettere
     site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
     siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
-    siteFunction(absoluteCompiledFilePath: StringQueryOperatorInput, apiRoute: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, matchPath: StringQueryOperatorInput, originalFilePath: StringQueryOperatorInput, parent: NodeFilterInput, relativeCompiledFilePath: StringQueryOperatorInput): SiteFunction
-    sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, componentPath: StringQueryOperatorInput, context: SitePageContextFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, matchPath: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
+    siteFunction(absoluteCompiledFilePath: StringQueryOperatorInput, children: NodeFilterListInput, functionRoute: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, matchPath: StringQueryOperatorInput, originalAbsoluteFilePath: StringQueryOperatorInput, originalRelativeFilePath: StringQueryOperatorInput, parent: NodeFilterInput, pluginName: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput): SiteFunction
+    sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, context: SitePageContextFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, matchPath: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
     sitePlugin(browserAPIs: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, nodeAPIs: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput, parent: NodeFilterInput, pluginFilepath: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, resolve: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, version: StringQueryOperatorInput): SitePlugin
 }
 
@@ -882,13 +1017,15 @@ type SiteEdge {
 
 type SiteFunction implements Node {
     absoluteCompiledFilePath: String!
-    apiRoute: String!
     children: [Node!]!
+    functionRoute: String!
     id: ID!
     internal: Internal!
     matchPath: String
-    originalFilePath: String!
+    originalAbsoluteFilePath: String!
+    originalRelativeFilePath: String!
     parent: Node
+    pluginName: String!
     relativeCompiledFilePath: String!
 }
 
@@ -932,7 +1069,6 @@ type SitePage implements Node {
     children: [Node!]!
     component: String!
     componentChunkName: String!
-    componentPath: String
     context: SitePageContext
     id: ID!
     internal: Internal!
@@ -960,16 +1096,28 @@ type SitePageConnection {
 type SitePageContext {
     descrizione: String
     filenames: [String]
+    i18n: SitePageContextI18n
     immagini: [SitePageContextImmagini]
-    lettera: Int
+    language: String
+    lettera: String
     titolo: String
+}
+
+type SitePageContextI18n {
+    defaultLanguage: String
+    generateDefaultLanguagePage: Boolean
+    language: String
+    languages: [String]
+    originalPath: String
+    path: String
+    routed: Boolean
 }
 
 type SitePageContextImmagini {
     autore: String
     descrizione: String
     id: String
-    lettera: Int
+    lettera: String
 }
 
 type SitePageEdge {
@@ -1066,18 +1214,23 @@ type SitePluginPluginOptions {
     cache_busting_mode: String
     credentials: SitePluginPluginOptionsCredentials
     crossOrigin: String
+    defaultLanguage: String
     defaultQuality: Int
     display: String
     failOnError: Boolean
+    i18nextOptions: SitePluginPluginOptionsI18nextOptions
     icon: String
     include_favicon: Boolean
     isTSX: Boolean
     jsxPragma: String
+    languages: [String]
     legacy: Boolean
+    localeJsonSourceName: String
     name: String
     path: String
     pathCheck: Boolean
     short_name: String
+    siteUrl: String
     spreadsheetId: String
     start_url: String
     stripMetadata: Boolean
@@ -1099,9 +1252,19 @@ type SitePluginPluginOptionsCredentials {
     type: String
 }
 
+type SitePluginPluginOptionsI18nextOptions {
+    interpolation: SitePluginPluginOptionsI18nextOptionsInterpolation
+    saveMissing: Boolean
+}
+
+type SitePluginPluginOptionsI18nextOptionsInterpolation {
+    escapeValue: Boolean
+}
+
 type SiteSiteMetadata {
     author: String
     description: String
+    siteUrl: String
     title: String
 }
 
@@ -1309,6 +1472,135 @@ enum FileFieldsEnum {
     childImageSharp___resize___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     childImageSharp___resize___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     childImageSharp___resize___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childImmaginiCsv___autore
+    childImmaginiCsv___children
+    childImmaginiCsv___children___children
+    childImmaginiCsv___children___children___children
+    childImmaginiCsv___children___children___id
+    childImmaginiCsv___children___id
+    childImmaginiCsv___children___internal___content
+    childImmaginiCsv___children___internal___contentDigest
+    childImmaginiCsv___children___internal___description
+    childImmaginiCsv___children___internal___fieldOwners
+    childImmaginiCsv___children___internal___ignoreType
+    childImmaginiCsv___children___internal___mediaType
+    childImmaginiCsv___children___internal___owner
+    childImmaginiCsv___children___internal___type
+    childImmaginiCsv___children___parent___children
+    childImmaginiCsv___children___parent___id
+    childImmaginiCsv___descrizione
+    childImmaginiCsv___descrizione_originale
+    childImmaginiCsv___facolta
+    childImmaginiCsv___id
+    childImmaginiCsv___internal___content
+    childImmaginiCsv___internal___contentDigest
+    childImmaginiCsv___internal___description
+    childImmaginiCsv___internal___fieldOwners
+    childImmaginiCsv___internal___ignoreType
+    childImmaginiCsv___internal___mediaType
+    childImmaginiCsv___internal___owner
+    childImmaginiCsv___internal___type
+    childImmaginiCsv___lettera
+    childImmaginiCsv___parent___children
+    childImmaginiCsv___parent___children___children
+    childImmaginiCsv___parent___children___id
+    childImmaginiCsv___parent___id
+    childImmaginiCsv___parent___internal___content
+    childImmaginiCsv___parent___internal___contentDigest
+    childImmaginiCsv___parent___internal___description
+    childImmaginiCsv___parent___internal___fieldOwners
+    childImmaginiCsv___parent___internal___ignoreType
+    childImmaginiCsv___parent___internal___mediaType
+    childImmaginiCsv___parent___internal___owner
+    childImmaginiCsv___parent___internal___type
+    childImmaginiCsv___parent___parent___children
+    childImmaginiCsv___parent___parent___id
+    childLettereCsv___Testo
+    childLettereCsv___children
+    childLettereCsv___children___children
+    childLettereCsv___children___children___children
+    childLettereCsv___children___children___id
+    childLettereCsv___children___id
+    childLettereCsv___children___internal___content
+    childLettereCsv___children___internal___contentDigest
+    childLettereCsv___children___internal___description
+    childLettereCsv___children___internal___fieldOwners
+    childLettereCsv___children___internal___ignoreType
+    childLettereCsv___children___internal___mediaType
+    childLettereCsv___children___internal___owner
+    childLettereCsv___children___internal___type
+    childLettereCsv___children___parent___children
+    childLettereCsv___children___parent___id
+    childLettereCsv___descrizione
+    childLettereCsv___id
+    childLettereCsv___internal___content
+    childLettereCsv___internal___contentDigest
+    childLettereCsv___internal___description
+    childLettereCsv___internal___fieldOwners
+    childLettereCsv___internal___ignoreType
+    childLettereCsv___internal___mediaType
+    childLettereCsv___internal___owner
+    childLettereCsv___internal___type
+    childLettereCsv___lettera
+    childLettereCsv___parent___children
+    childLettereCsv___parent___children___children
+    childLettereCsv___parent___children___id
+    childLettereCsv___parent___id
+    childLettereCsv___parent___internal___content
+    childLettereCsv___parent___internal___contentDigest
+    childLettereCsv___parent___internal___description
+    childLettereCsv___parent___internal___fieldOwners
+    childLettereCsv___parent___internal___ignoreType
+    childLettereCsv___parent___internal___mediaType
+    childLettereCsv___parent___internal___owner
+    childLettereCsv___parent___internal___type
+    childLettereCsv___parent___parent___children
+    childLettereCsv___parent___parent___id
+    childLettereCsv___sottotitolo
+    childLettereCsv___title
+    childLettereCsv___titolo
+    childLocale___children
+    childLocale___children___children
+    childLocale___children___children___children
+    childLocale___children___children___id
+    childLocale___children___id
+    childLocale___children___internal___content
+    childLocale___children___internal___contentDigest
+    childLocale___children___internal___description
+    childLocale___children___internal___fieldOwners
+    childLocale___children___internal___ignoreType
+    childLocale___children___internal___mediaType
+    childLocale___children___internal___owner
+    childLocale___children___internal___type
+    childLocale___children___parent___children
+    childLocale___children___parent___id
+    childLocale___data
+    childLocale___fileAbsolutePath
+    childLocale___id
+    childLocale___internal___content
+    childLocale___internal___contentDigest
+    childLocale___internal___description
+    childLocale___internal___fieldOwners
+    childLocale___internal___ignoreType
+    childLocale___internal___mediaType
+    childLocale___internal___owner
+    childLocale___internal___type
+    childLocale___language
+    childLocale___ns
+    childLocale___parent___children
+    childLocale___parent___children___children
+    childLocale___parent___children___id
+    childLocale___parent___id
+    childLocale___parent___internal___content
+    childLocale___parent___internal___contentDigest
+    childLocale___parent___internal___description
+    childLocale___parent___internal___fieldOwners
+    childLocale___parent___internal___ignoreType
+    childLocale___parent___internal___mediaType
+    childLocale___parent___internal___owner
+    childLocale___parent___internal___type
+    childLocale___parent___parent___children
+    childLocale___parent___parent___id
     children
     childrenImageSharp
     childrenImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1381,6 +1673,138 @@ enum FileFieldsEnum {
     childrenImageSharp___resize___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     childrenImageSharp___resize___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     childrenImageSharp___resize___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenImmaginiCsv
+    childrenImmaginiCsv___autore
+    childrenImmaginiCsv___children
+    childrenImmaginiCsv___children___children
+    childrenImmaginiCsv___children___children___children
+    childrenImmaginiCsv___children___children___id
+    childrenImmaginiCsv___children___id
+    childrenImmaginiCsv___children___internal___content
+    childrenImmaginiCsv___children___internal___contentDigest
+    childrenImmaginiCsv___children___internal___description
+    childrenImmaginiCsv___children___internal___fieldOwners
+    childrenImmaginiCsv___children___internal___ignoreType
+    childrenImmaginiCsv___children___internal___mediaType
+    childrenImmaginiCsv___children___internal___owner
+    childrenImmaginiCsv___children___internal___type
+    childrenImmaginiCsv___children___parent___children
+    childrenImmaginiCsv___children___parent___id
+    childrenImmaginiCsv___descrizione
+    childrenImmaginiCsv___descrizione_originale
+    childrenImmaginiCsv___facolta
+    childrenImmaginiCsv___id
+    childrenImmaginiCsv___internal___content
+    childrenImmaginiCsv___internal___contentDigest
+    childrenImmaginiCsv___internal___description
+    childrenImmaginiCsv___internal___fieldOwners
+    childrenImmaginiCsv___internal___ignoreType
+    childrenImmaginiCsv___internal___mediaType
+    childrenImmaginiCsv___internal___owner
+    childrenImmaginiCsv___internal___type
+    childrenImmaginiCsv___lettera
+    childrenImmaginiCsv___parent___children
+    childrenImmaginiCsv___parent___children___children
+    childrenImmaginiCsv___parent___children___id
+    childrenImmaginiCsv___parent___id
+    childrenImmaginiCsv___parent___internal___content
+    childrenImmaginiCsv___parent___internal___contentDigest
+    childrenImmaginiCsv___parent___internal___description
+    childrenImmaginiCsv___parent___internal___fieldOwners
+    childrenImmaginiCsv___parent___internal___ignoreType
+    childrenImmaginiCsv___parent___internal___mediaType
+    childrenImmaginiCsv___parent___internal___owner
+    childrenImmaginiCsv___parent___internal___type
+    childrenImmaginiCsv___parent___parent___children
+    childrenImmaginiCsv___parent___parent___id
+    childrenLettereCsv
+    childrenLettereCsv___Testo
+    childrenLettereCsv___children
+    childrenLettereCsv___children___children
+    childrenLettereCsv___children___children___children
+    childrenLettereCsv___children___children___id
+    childrenLettereCsv___children___id
+    childrenLettereCsv___children___internal___content
+    childrenLettereCsv___children___internal___contentDigest
+    childrenLettereCsv___children___internal___description
+    childrenLettereCsv___children___internal___fieldOwners
+    childrenLettereCsv___children___internal___ignoreType
+    childrenLettereCsv___children___internal___mediaType
+    childrenLettereCsv___children___internal___owner
+    childrenLettereCsv___children___internal___type
+    childrenLettereCsv___children___parent___children
+    childrenLettereCsv___children___parent___id
+    childrenLettereCsv___descrizione
+    childrenLettereCsv___id
+    childrenLettereCsv___internal___content
+    childrenLettereCsv___internal___contentDigest
+    childrenLettereCsv___internal___description
+    childrenLettereCsv___internal___fieldOwners
+    childrenLettereCsv___internal___ignoreType
+    childrenLettereCsv___internal___mediaType
+    childrenLettereCsv___internal___owner
+    childrenLettereCsv___internal___type
+    childrenLettereCsv___lettera
+    childrenLettereCsv___parent___children
+    childrenLettereCsv___parent___children___children
+    childrenLettereCsv___parent___children___id
+    childrenLettereCsv___parent___id
+    childrenLettereCsv___parent___internal___content
+    childrenLettereCsv___parent___internal___contentDigest
+    childrenLettereCsv___parent___internal___description
+    childrenLettereCsv___parent___internal___fieldOwners
+    childrenLettereCsv___parent___internal___ignoreType
+    childrenLettereCsv___parent___internal___mediaType
+    childrenLettereCsv___parent___internal___owner
+    childrenLettereCsv___parent___internal___type
+    childrenLettereCsv___parent___parent___children
+    childrenLettereCsv___parent___parent___id
+    childrenLettereCsv___sottotitolo
+    childrenLettereCsv___title
+    childrenLettereCsv___titolo
+    childrenLocale
+    childrenLocale___children
+    childrenLocale___children___children
+    childrenLocale___children___children___children
+    childrenLocale___children___children___id
+    childrenLocale___children___id
+    childrenLocale___children___internal___content
+    childrenLocale___children___internal___contentDigest
+    childrenLocale___children___internal___description
+    childrenLocale___children___internal___fieldOwners
+    childrenLocale___children___internal___ignoreType
+    childrenLocale___children___internal___mediaType
+    childrenLocale___children___internal___owner
+    childrenLocale___children___internal___type
+    childrenLocale___children___parent___children
+    childrenLocale___children___parent___id
+    childrenLocale___data
+    childrenLocale___fileAbsolutePath
+    childrenLocale___id
+    childrenLocale___internal___content
+    childrenLocale___internal___contentDigest
+    childrenLocale___internal___description
+    childrenLocale___internal___fieldOwners
+    childrenLocale___internal___ignoreType
+    childrenLocale___internal___mediaType
+    childrenLocale___internal___owner
+    childrenLocale___internal___type
+    childrenLocale___language
+    childrenLocale___ns
+    childrenLocale___parent___children
+    childrenLocale___parent___children___children
+    childrenLocale___parent___children___id
+    childrenLocale___parent___id
+    childrenLocale___parent___internal___content
+    childrenLocale___parent___internal___contentDigest
+    childrenLocale___parent___internal___description
+    childrenLocale___parent___internal___fieldOwners
+    childrenLocale___parent___internal___ignoreType
+    childrenLocale___parent___internal___mediaType
+    childrenLocale___parent___internal___owner
+    childrenLocale___parent___internal___type
+    childrenLocale___parent___parent___children
+    childrenLocale___parent___parent___id
     children___children
     children___children___children
     children___children___children___children
@@ -1654,6 +2078,288 @@ enum ImageSharpFieldsEnum {
     resize___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     resize___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     resize___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+}
+
+enum ImmaginiCsvFieldsEnum {
+    autore
+    children
+    children___children
+    children___children___children
+    children___children___children___children
+    children___children___children___id
+    children___children___id
+    children___children___internal___content
+    children___children___internal___contentDigest
+    children___children___internal___description
+    children___children___internal___fieldOwners
+    children___children___internal___ignoreType
+    children___children___internal___mediaType
+    children___children___internal___owner
+    children___children___internal___type
+    children___children___parent___children
+    children___children___parent___id
+    children___id
+    children___internal___content
+    children___internal___contentDigest
+    children___internal___description
+    children___internal___fieldOwners
+    children___internal___ignoreType
+    children___internal___mediaType
+    children___internal___owner
+    children___internal___type
+    children___parent___children
+    children___parent___children___children
+    children___parent___children___id
+    children___parent___id
+    children___parent___internal___content
+    children___parent___internal___contentDigest
+    children___parent___internal___description
+    children___parent___internal___fieldOwners
+    children___parent___internal___ignoreType
+    children___parent___internal___mediaType
+    children___parent___internal___owner
+    children___parent___internal___type
+    children___parent___parent___children
+    children___parent___parent___id
+    descrizione
+    descrizione_originale
+    facolta
+    id
+    internal___content
+    internal___contentDigest
+    internal___description
+    internal___fieldOwners
+    internal___ignoreType
+    internal___mediaType
+    internal___owner
+    internal___type
+    lettera
+    parent___children
+    parent___children___children
+    parent___children___children___children
+    parent___children___children___id
+    parent___children___id
+    parent___children___internal___content
+    parent___children___internal___contentDigest
+    parent___children___internal___description
+    parent___children___internal___fieldOwners
+    parent___children___internal___ignoreType
+    parent___children___internal___mediaType
+    parent___children___internal___owner
+    parent___children___internal___type
+    parent___children___parent___children
+    parent___children___parent___id
+    parent___id
+    parent___internal___content
+    parent___internal___contentDigest
+    parent___internal___description
+    parent___internal___fieldOwners
+    parent___internal___ignoreType
+    parent___internal___mediaType
+    parent___internal___owner
+    parent___internal___type
+    parent___parent___children
+    parent___parent___children___children
+    parent___parent___children___id
+    parent___parent___id
+    parent___parent___internal___content
+    parent___parent___internal___contentDigest
+    parent___parent___internal___description
+    parent___parent___internal___fieldOwners
+    parent___parent___internal___ignoreType
+    parent___parent___internal___mediaType
+    parent___parent___internal___owner
+    parent___parent___internal___type
+    parent___parent___parent___children
+    parent___parent___parent___id
+}
+
+enum LettereCsvFieldsEnum {
+    Testo
+    children
+    children___children
+    children___children___children
+    children___children___children___children
+    children___children___children___id
+    children___children___id
+    children___children___internal___content
+    children___children___internal___contentDigest
+    children___children___internal___description
+    children___children___internal___fieldOwners
+    children___children___internal___ignoreType
+    children___children___internal___mediaType
+    children___children___internal___owner
+    children___children___internal___type
+    children___children___parent___children
+    children___children___parent___id
+    children___id
+    children___internal___content
+    children___internal___contentDigest
+    children___internal___description
+    children___internal___fieldOwners
+    children___internal___ignoreType
+    children___internal___mediaType
+    children___internal___owner
+    children___internal___type
+    children___parent___children
+    children___parent___children___children
+    children___parent___children___id
+    children___parent___id
+    children___parent___internal___content
+    children___parent___internal___contentDigest
+    children___parent___internal___description
+    children___parent___internal___fieldOwners
+    children___parent___internal___ignoreType
+    children___parent___internal___mediaType
+    children___parent___internal___owner
+    children___parent___internal___type
+    children___parent___parent___children
+    children___parent___parent___id
+    descrizione
+    id
+    internal___content
+    internal___contentDigest
+    internal___description
+    internal___fieldOwners
+    internal___ignoreType
+    internal___mediaType
+    internal___owner
+    internal___type
+    lettera
+    parent___children
+    parent___children___children
+    parent___children___children___children
+    parent___children___children___id
+    parent___children___id
+    parent___children___internal___content
+    parent___children___internal___contentDigest
+    parent___children___internal___description
+    parent___children___internal___fieldOwners
+    parent___children___internal___ignoreType
+    parent___children___internal___mediaType
+    parent___children___internal___owner
+    parent___children___internal___type
+    parent___children___parent___children
+    parent___children___parent___id
+    parent___id
+    parent___internal___content
+    parent___internal___contentDigest
+    parent___internal___description
+    parent___internal___fieldOwners
+    parent___internal___ignoreType
+    parent___internal___mediaType
+    parent___internal___owner
+    parent___internal___type
+    parent___parent___children
+    parent___parent___children___children
+    parent___parent___children___id
+    parent___parent___id
+    parent___parent___internal___content
+    parent___parent___internal___contentDigest
+    parent___parent___internal___description
+    parent___parent___internal___fieldOwners
+    parent___parent___internal___ignoreType
+    parent___parent___internal___mediaType
+    parent___parent___internal___owner
+    parent___parent___internal___type
+    parent___parent___parent___children
+    parent___parent___parent___id
+    sottotitolo
+    title
+    titolo
+}
+
+enum LocaleFieldsEnum {
+    children
+    children___children
+    children___children___children
+    children___children___children___children
+    children___children___children___id
+    children___children___id
+    children___children___internal___content
+    children___children___internal___contentDigest
+    children___children___internal___description
+    children___children___internal___fieldOwners
+    children___children___internal___ignoreType
+    children___children___internal___mediaType
+    children___children___internal___owner
+    children___children___internal___type
+    children___children___parent___children
+    children___children___parent___id
+    children___id
+    children___internal___content
+    children___internal___contentDigest
+    children___internal___description
+    children___internal___fieldOwners
+    children___internal___ignoreType
+    children___internal___mediaType
+    children___internal___owner
+    children___internal___type
+    children___parent___children
+    children___parent___children___children
+    children___parent___children___id
+    children___parent___id
+    children___parent___internal___content
+    children___parent___internal___contentDigest
+    children___parent___internal___description
+    children___parent___internal___fieldOwners
+    children___parent___internal___ignoreType
+    children___parent___internal___mediaType
+    children___parent___internal___owner
+    children___parent___internal___type
+    children___parent___parent___children
+    children___parent___parent___id
+    data
+    fileAbsolutePath
+    id
+    internal___content
+    internal___contentDigest
+    internal___description
+    internal___fieldOwners
+    internal___ignoreType
+    internal___mediaType
+    internal___owner
+    internal___type
+    language
+    ns
+    parent___children
+    parent___children___children
+    parent___children___children___children
+    parent___children___children___id
+    parent___children___id
+    parent___children___internal___content
+    parent___children___internal___contentDigest
+    parent___children___internal___description
+    parent___children___internal___fieldOwners
+    parent___children___internal___ignoreType
+    parent___children___internal___mediaType
+    parent___children___internal___owner
+    parent___children___internal___type
+    parent___children___parent___children
+    parent___children___parent___id
+    parent___id
+    parent___internal___content
+    parent___internal___contentDigest
+    parent___internal___description
+    parent___internal___fieldOwners
+    parent___internal___ignoreType
+    parent___internal___mediaType
+    parent___internal___owner
+    parent___internal___type
+    parent___parent___children
+    parent___parent___children___children
+    parent___parent___children___id
+    parent___parent___id
+    parent___parent___internal___content
+    parent___parent___internal___contentDigest
+    parent___parent___internal___description
+    parent___parent___internal___fieldOwners
+    parent___parent___internal___ignoreType
+    parent___parent___internal___mediaType
+    parent___parent___internal___owner
+    parent___parent___internal___type
+    parent___parent___parent___children
+    parent___parent___parent___id
 }
 
 enum PotraceTurnPolicy {
@@ -2455,12 +3161,12 @@ enum SiteFieldsEnum {
     port
     siteMetadata___author
     siteMetadata___description
+    siteMetadata___siteUrl
     siteMetadata___title
 }
 
 enum SiteFunctionFieldsEnum {
     absoluteCompiledFilePath
-    apiRoute
     children
     children___children
     children___children___children
@@ -2500,6 +3206,7 @@ enum SiteFunctionFieldsEnum {
     children___parent___internal___type
     children___parent___parent___children
     children___parent___parent___id
+    functionRoute
     id
     internal___content
     internal___contentDigest
@@ -2510,7 +3217,8 @@ enum SiteFunctionFieldsEnum {
     internal___owner
     internal___type
     matchPath
-    originalFilePath
+    originalAbsoluteFilePath
+    originalRelativeFilePath
     parent___children
     parent___children___children
     parent___children___children___children
@@ -2549,6 +3257,7 @@ enum SiteFunctionFieldsEnum {
     parent___parent___internal___type
     parent___parent___parent___children
     parent___parent___parent___id
+    pluginName
     relativeCompiledFilePath
 }
 
@@ -2594,14 +3303,21 @@ enum SitePageFieldsEnum {
     children___parent___parent___id
     component
     componentChunkName
-    componentPath
     context___descrizione
     context___filenames
+    context___i18n___defaultLanguage
+    context___i18n___generateDefaultLanguagePage
+    context___i18n___language
+    context___i18n___languages
+    context___i18n___originalPath
+    context___i18n___path
+    context___i18n___routed
     context___immagini
     context___immagini___autore
     context___immagini___descrizione
     context___immagini___id
     context___immagini___lettera
+    context___language
     context___lettera
     context___titolo
     id
@@ -2730,18 +3446,23 @@ enum SitePageFieldsEnum {
     pluginCreator___pluginOptions___credentials___token_uri
     pluginCreator___pluginOptions___credentials___type
     pluginCreator___pluginOptions___crossOrigin
+    pluginCreator___pluginOptions___defaultLanguage
     pluginCreator___pluginOptions___defaultQuality
     pluginCreator___pluginOptions___display
     pluginCreator___pluginOptions___failOnError
+    pluginCreator___pluginOptions___i18nextOptions___saveMissing
     pluginCreator___pluginOptions___icon
     pluginCreator___pluginOptions___include_favicon
     pluginCreator___pluginOptions___isTSX
     pluginCreator___pluginOptions___jsxPragma
+    pluginCreator___pluginOptions___languages
     pluginCreator___pluginOptions___legacy
+    pluginCreator___pluginOptions___localeJsonSourceName
     pluginCreator___pluginOptions___name
     pluginCreator___pluginOptions___path
     pluginCreator___pluginOptions___pathCheck
     pluginCreator___pluginOptions___short_name
+    pluginCreator___pluginOptions___siteUrl
     pluginCreator___pluginOptions___spreadsheetId
     pluginCreator___pluginOptions___start_url
     pluginCreator___pluginOptions___stripMetadata
@@ -2876,18 +3597,24 @@ enum SitePluginFieldsEnum {
     pluginOptions___credentials___token_uri
     pluginOptions___credentials___type
     pluginOptions___crossOrigin
+    pluginOptions___defaultLanguage
     pluginOptions___defaultQuality
     pluginOptions___display
     pluginOptions___failOnError
+    pluginOptions___i18nextOptions___interpolation___escapeValue
+    pluginOptions___i18nextOptions___saveMissing
     pluginOptions___icon
     pluginOptions___include_favicon
     pluginOptions___isTSX
     pluginOptions___jsxPragma
+    pluginOptions___languages
     pluginOptions___legacy
+    pluginOptions___localeJsonSourceName
     pluginOptions___name
     pluginOptions___path
     pluginOptions___pathCheck
     pluginOptions___short_name
+    pluginOptions___siteUrl
     pluginOptions___spreadsheetId
     pluginOptions___start_url
     pluginOptions___stripMetadata
@@ -2999,8 +3726,14 @@ input FileFilterInput {
     blocks: IntQueryOperatorInput
     changeTime: DateQueryOperatorInput
     childImageSharp: ImageSharpFilterInput
+    childImmaginiCsv: ImmaginiCsvFilterInput
+    childLettereCsv: LettereCsvFilterInput
+    childLocale: LocaleFilterInput
     children: NodeFilterListInput
     childrenImageSharp: ImageSharpFilterListInput
+    childrenImmaginiCsv: ImmaginiCsvFilterListInput
+    childrenLettereCsv: LettereCsvFilterListInput
+    childrenLocale: LocaleFilterListInput
     ctime: DateQueryOperatorInput
     ctimeMs: FloatQueryOperatorInput
     dev: IntQueryOperatorInput
@@ -3109,6 +3842,27 @@ input ImageSharpSortInput {
     order: [SortOrderEnum] = [ASC]
 }
 
+input ImmaginiCsvFilterInput {
+    autore: StringQueryOperatorInput
+    children: NodeFilterListInput
+    descrizione: StringQueryOperatorInput
+    descrizione_originale: StringQueryOperatorInput
+    facolta: StringQueryOperatorInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    lettera: StringQueryOperatorInput
+    parent: NodeFilterInput
+}
+
+input ImmaginiCsvFilterListInput {
+    elemMatch: ImmaginiCsvFilterInput
+}
+
+input ImmaginiCsvSortInput {
+    fields: [ImmaginiCsvFieldsEnum]
+    order: [SortOrderEnum] = [ASC]
+}
+
 input IntQueryOperatorInput {
     eq: Int
     gt: Int
@@ -3143,6 +3897,48 @@ input JSONQueryOperatorInput {
     ne: JSON
     nin: [JSON]
     regex: JSON
+}
+
+input LettereCsvFilterInput {
+    Testo: StringQueryOperatorInput
+    children: NodeFilterListInput
+    descrizione: StringQueryOperatorInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    lettera: StringQueryOperatorInput
+    parent: NodeFilterInput
+    sottotitolo: StringQueryOperatorInput
+    title: StringQueryOperatorInput
+    titolo: StringQueryOperatorInput
+}
+
+input LettereCsvFilterListInput {
+    elemMatch: LettereCsvFilterInput
+}
+
+input LettereCsvSortInput {
+    fields: [LettereCsvFieldsEnum]
+    order: [SortOrderEnum] = [ASC]
+}
+
+input LocaleFilterInput {
+    children: NodeFilterListInput
+    data: StringQueryOperatorInput
+    fileAbsolutePath: StringQueryOperatorInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    language: StringQueryOperatorInput
+    ns: StringQueryOperatorInput
+    parent: NodeFilterInput
+}
+
+input LocaleFilterListInput {
+    elemMatch: LocaleFilterInput
+}
+
+input LocaleSortInput {
+    fields: [LocaleFieldsEnum]
+    order: [SortOrderEnum] = [ASC]
 }
 
 input NodeFilterInput {
@@ -3345,13 +4141,15 @@ input SiteFilterInput {
 
 input SiteFunctionFilterInput {
     absoluteCompiledFilePath: StringQueryOperatorInput
-    apiRoute: StringQueryOperatorInput
     children: NodeFilterListInput
+    functionRoute: StringQueryOperatorInput
     id: StringQueryOperatorInput
     internal: InternalFilterInput
     matchPath: StringQueryOperatorInput
-    originalFilePath: StringQueryOperatorInput
+    originalAbsoluteFilePath: StringQueryOperatorInput
+    originalRelativeFilePath: StringQueryOperatorInput
     parent: NodeFilterInput
+    pluginName: StringQueryOperatorInput
     relativeCompiledFilePath: StringQueryOperatorInput
 }
 
@@ -3363,16 +4161,28 @@ input SiteFunctionSortInput {
 input SitePageContextFilterInput {
     descrizione: StringQueryOperatorInput
     filenames: StringQueryOperatorInput
+    i18n: SitePageContextI18nFilterInput
     immagini: SitePageContextImmaginiFilterListInput
-    lettera: IntQueryOperatorInput
+    language: StringQueryOperatorInput
+    lettera: StringQueryOperatorInput
     titolo: StringQueryOperatorInput
+}
+
+input SitePageContextI18nFilterInput {
+    defaultLanguage: StringQueryOperatorInput
+    generateDefaultLanguagePage: BooleanQueryOperatorInput
+    language: StringQueryOperatorInput
+    languages: StringQueryOperatorInput
+    originalPath: StringQueryOperatorInput
+    path: StringQueryOperatorInput
+    routed: BooleanQueryOperatorInput
 }
 
 input SitePageContextImmaginiFilterInput {
     autore: StringQueryOperatorInput
     descrizione: StringQueryOperatorInput
     id: StringQueryOperatorInput
-    lettera: IntQueryOperatorInput
+    lettera: StringQueryOperatorInput
 }
 
 input SitePageContextImmaginiFilterListInput {
@@ -3383,7 +4193,6 @@ input SitePageFilterInput {
     children: NodeFilterListInput
     component: StringQueryOperatorInput
     componentChunkName: StringQueryOperatorInput
-    componentPath: StringQueryOperatorInput
     context: SitePageContextFilterInput
     id: StringQueryOperatorInput
     internal: InternalFilterInput
@@ -3478,24 +4287,38 @@ input SitePluginPluginOptionsFilterInput {
     cache_busting_mode: StringQueryOperatorInput
     credentials: SitePluginPluginOptionsCredentialsFilterInput
     crossOrigin: StringQueryOperatorInput
+    defaultLanguage: StringQueryOperatorInput
     defaultQuality: IntQueryOperatorInput
     display: StringQueryOperatorInput
     failOnError: BooleanQueryOperatorInput
+    i18nextOptions: SitePluginPluginOptionsI18nextOptionsFilterInput
     icon: StringQueryOperatorInput
     include_favicon: BooleanQueryOperatorInput
     isTSX: BooleanQueryOperatorInput
     jsxPragma: StringQueryOperatorInput
+    languages: StringQueryOperatorInput
     legacy: BooleanQueryOperatorInput
+    localeJsonSourceName: StringQueryOperatorInput
     name: StringQueryOperatorInput
     path: StringQueryOperatorInput
     pathCheck: BooleanQueryOperatorInput
     short_name: StringQueryOperatorInput
+    siteUrl: StringQueryOperatorInput
     spreadsheetId: StringQueryOperatorInput
     start_url: StringQueryOperatorInput
     stripMetadata: BooleanQueryOperatorInput
     theme_color: StringQueryOperatorInput
     theme_color_in_head: BooleanQueryOperatorInput
     typePrefix: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsI18nextOptionsFilterInput {
+    interpolation: SitePluginPluginOptionsI18nextOptionsInterpolationFilterInput
+    saveMissing: BooleanQueryOperatorInput
+}
+
+input SitePluginPluginOptionsI18nextOptionsInterpolationFilterInput {
+    escapeValue: BooleanQueryOperatorInput
 }
 
 input SitePluginSortInput {
@@ -3506,6 +4329,7 @@ input SitePluginSortInput {
 input SiteSiteMetadataFilterInput {
     author: StringQueryOperatorInput
     description: StringQueryOperatorInput
+    siteUrl: StringQueryOperatorInput
     title: StringQueryOperatorInput
 }
 
