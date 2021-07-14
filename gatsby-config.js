@@ -1,18 +1,19 @@
 const dotenv = require('dotenv');
 
+const devMode = process.env.NODE_ENV === 'development';
 dotenv.config({
   path: `.env${process.env.NODE_ENV ? `.${process.env.NODE_ENV}` : ''}`,
 });
 
-const siteUrl = 'https://michelebruno.github.io/immaginicomealfabeto';
+const siteUrl = `https://questionifotografiche${devMode ? '.mbruno' : ''}.it/`;
 const googleCredentials = require('./credentials.json');
 
 module.exports = {
   siteMetadata: {
-    title: 'Immagini come lettere di un alfabeto',
+    title: 'Questioni fotografiche',
     siteUrl,
     description:
-      'Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.',
+      '26 questioni fotografiche come le lettere dell\'alfabeto',
     author: 'Michele Bruno',
   },
   plugins: [
