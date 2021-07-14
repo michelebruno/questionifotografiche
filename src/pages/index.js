@@ -64,7 +64,7 @@ const IndexPage = ({ data }) => {
           <div className="d-block">
             <div className="marquee">
               <div className="marquee__inner h5 py-0 mb-0" aria-hidden="true">
-                {_.times(10, () => <span className="my-1">come lettere dell'alfabeto / </span>)}
+                {_.times(10, () => <span className="my-1">fotografie come lettere dell’alfabeto / </span>)}
               </div>
             </div>
           </div>

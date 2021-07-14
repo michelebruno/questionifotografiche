@@ -130,6 +130,7 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
             </h2>
             <p>
               <ul className="list-unstyled">
+                <li>Guido Dallago</li>
                 <li>Linda Sguario</li>
                 <li>Roberta Tibaldo</li>
               </ul>

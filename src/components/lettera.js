@@ -8,6 +8,7 @@ import SwiperCore, {
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { getSrcSet, getSrc } from 'gatsby-plugin-image';
 import _ from 'lodash';
+import { useTranslation } from 'gatsby-plugin-react-i18next';
 import Layout from './layout';
 import SEO from './seo';
 
@@ -21,6 +22,7 @@ export default function Lettera({
 }) {
   const triggerRef = useRef();
   const scrollerRef = useRef();
+  const { t } = useTranslation();
 
   const [displayInfo, setDisplayInfo] = useState(false);
   const {
@@ -166,7 +168,7 @@ export default function Lettera({
               className="btn btn-text btn-lg"
               onClick={() => setDisplayInfo(false)}
             >
-              CLOSE
+              {t('Chiudi')}
             </button>
           </div>
         </div>
