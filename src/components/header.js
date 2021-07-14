@@ -7,7 +7,7 @@ function Header(props) {
   const { t } = useTranslation();
   const { siteTitle } = props;
   return (
-    <header className="container-fluid position-sticky sticky-top bg-white">
+    <header className="container-fluid position-sticky sticky-top bg-white overflow-hidden">
       <nav className="navbar navbar-expand px-0 " id="site-nav">
         <div className="container-fluid px-0 text-uppercase">
           <div className="collapse navbar-collapse justify-content-between">

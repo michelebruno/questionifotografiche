@@ -12,8 +12,6 @@ import { useTranslation } from 'gatsby-plugin-react-i18next';
 import Layout from './layout';
 import SEO from './seo';
 
-import * as classes from './lettera.module.scss';
-
 SwiperCore.use([Mousewheel, Keyboard, Pagination, Scrollbar, Navigation, Lazy]);
 
 export default function Lettera({
@@ -65,7 +63,6 @@ export default function Lettera({
             id="scroller"
             ref={scrollerRef}
             style={{
-              height: '75vh',
               '--slides': immagini.length,
             }}
           >
@@ -86,7 +83,7 @@ export default function Lettera({
 
                 return (
                   <SwiperSlide
-                    className="container-fluid "
+                    className="swiper-slide-fotografia "
                     key={immagine.id}
                   >
                     <div
@@ -100,10 +97,10 @@ export default function Lettera({
                           src={getSrc(immagine)}
                           srcSet={getSrcSet(immagine)}
                           alt={descrizione}
-                          className={classes.immagine}
+                          className="immagine"
                         />
                       </div>
-                      <div className="col-12 col-lg-4 py-3 position-relative ps-lg-0 ">
+                      <div className="col-12 col-lg-4 py-3 position-relative ps-lg-0 photograph-targhetta-container  ">
                         <div
                           className="row  gx-1 justify-content-between h6 heading-style-regular"
                         >
@@ -112,7 +109,7 @@ export default function Lettera({
                             {`${i + 1} / ${immagini.length}`}
                           </div>
                         </div>
-                        <p className={`${classes.didascalia} text-dark-50`}>
+                        <p className="didascalia text-dark-50">
                           {description !== 'NO DIDASCALIA' && (
                             description
                           )}
@@ -127,7 +124,7 @@ export default function Lettera({
         </div>
         <div
           id="letter-title"
-          className="col-12 col-lg-3 align-self-center text-center"
+          className="d-none d-lg-block col-12 col-lg-3 align-self-center text-center"
         >
           <h1>{titolo}</h1>
           <h2 className="h4">{sottotitolo}</h2>
