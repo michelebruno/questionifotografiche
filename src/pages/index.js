@@ -10,12 +10,7 @@ import * as classes from './index.module.scss';
 
 SwiperCore.use([EffectFade, Autoplay]);
 const IndexPage = ({ data }) => {
-  const images = data.images.nodes.filter(
-    (img) => {
-      const image = getImage(img);
-      return image.height / image.width === (2 / 3);
-    },
-  );
+  const images = data.images.nodes;
 
   return (
     <Layout>
@@ -93,7 +88,7 @@ const IndexPage = ({ data }) => {
             >
               {images.map((img) => (
                 <SwiperSlide effect="fade" autoPlay>
-                  <GatsbyImage image={getImage(img)} />
+                  <GatsbyImage image={getImage(img.childFile)} />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -134,23 +129,19 @@ export const query = graphql`
             }
         }
     
-        images: allFile(
-            filter: {sourceInstanceName: {eq: "fotografie"}}
-            sort: {fields: id}
-            limit: 20
-        ) {
+        images: allSheetsImmagini(filter: {homepage: {eq: "1"}}) {
             nodes {
-                publicURL
-                relativePath
-                childImageSharp {
-                    gatsbyImageData(
-                        layout: CONSTRAINED
-                        width: 900
-                        quality: 90
-                    )
+                descrizione
+                homepage
+                lettera
+                childFile {
+                    childImageSharp {
+                        gatsbyImageData(
+                            width: 500
+                            layout: CONSTRAINED
+                        )
+                    }
                 }
-                sourceInstanceName
-                size
             }
         }
     }`;

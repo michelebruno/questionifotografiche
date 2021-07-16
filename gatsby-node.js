@@ -107,3 +107,23 @@ exports.onCreateWebpackConfig = ({
 
   });
 };
+
+exports.onCreateNode = function onCreateNode({
+  node, getNodesByType, actions: { createParentChildLink },
+}) {
+  if (node.internal.type === 'SheetsImmagini') {
+    const { lettera, autore } = node;
+
+    const filename = `${_.padStart(lettera, 2,
+      '0')} ${_.startCase(
+      _.toLower(autore),
+    )}.jpg`;
+    const files = getNodesByType('File');
+
+    const file = files.find(({ relativePath }) => relativePath === filename);
+
+    if (!file) return;
+
+    createParentChildLink({ parent: node, child: file });
+  }
+};
