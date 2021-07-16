@@ -97,6 +97,7 @@ export default function Lettera({
                           data-src={getSrc(immagine)}
                           data-srcset={getSrcSet(immagine)}
                           alt={descrizione}
+                          {...(i === 0 && { src: getSrc(immagine) })}
                           className="immagine swiper-lazy"
                         />
                       </div>

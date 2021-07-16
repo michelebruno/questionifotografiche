@@ -117,19 +117,17 @@ h6, .h6 {
 }
 
 .photograph-image-container {
-  max-height: 60%;
-  height: 100%;
   //border-bottom: $black solid 2px;
 
-  @include media-breakpoint-up(md) {
-    max-height: 100%;
+  @include media-breakpoint-down(md) {
+    max-height: 60%;
   }
+  height: 100%;
 }
 
 .photograph-targhetta-container {
-  height: 30%;
-  @include media-breakpoint-up(md) {
-     height: 100%;
+   @include media-breakpoint-down(md) {
+    height: 30%;
   }
 }
 
@@ -148,7 +146,7 @@ h6, .h6 {
   .didascalia {
     //position: absolute;
     font-size: .8em;
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 100%;
   }
 

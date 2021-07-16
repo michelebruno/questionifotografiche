@@ -15,7 +15,7 @@ exports.createPages = async function createPages({
 }) {
   const q = await graphql(`
    {
-      lettere: allLettereCsv {
+      lettere: allSheetsLettere {
         nodes {
           titolo
           title
@@ -24,7 +24,7 @@ exports.createPages = async function createPages({
           descrizione
          }
       }
-      immagini: allImmaginiCsv {
+      immagini: allSheetsImmagini {
         nodes {
           id
           descrizione

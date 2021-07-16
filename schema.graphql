@@ -1100,6 +1100,8 @@ type SitePageContext {
     immagini: [SitePageContextImmagini]
     language: String
     lettera: String
+    sottotitolo: String
+    title: String
     titolo: String
 }
 
@@ -3319,6 +3321,8 @@ enum SitePageFieldsEnum {
     context___immagini___lettera
     context___language
     context___lettera
+    context___sottotitolo
+    context___title
     context___titolo
     id
     internalComponentName
@@ -4165,6 +4169,8 @@ input SitePageContextFilterInput {
     immagini: SitePageContextImmaginiFilterListInput
     language: StringQueryOperatorInput
     lettera: StringQueryOperatorInput
+    sottotitolo: StringQueryOperatorInput
+    title: StringQueryOperatorInput
     titolo: StringQueryOperatorInput
 }
 
