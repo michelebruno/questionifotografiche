@@ -69,7 +69,7 @@ export default function Lettera({
             <Swiper
               lazy={{
                 loadPrevNext: true,
-                loadPrevNextAmount: 1,
+                loadPrevNextAmount: 3,
               }}
               keyboard
               ref={triggerRef}
@@ -94,10 +94,10 @@ export default function Lettera({
                         className="col-12 col-lg-8 author-cursor-container photograph-image-container d-flex pe-lg-0"
                       >
                         <img
-                          src={getSrc(immagine)}
-                          srcSet={getSrcSet(immagine)}
+                          data-src={getSrc(immagine)}
+                          data-srcset={getSrcSet(immagine)}
                           alt={descrizione}
-                          className="immagine"
+                          className="immagine swiper-lazy"
                         />
                       </div>
                       <div className="col-12 col-lg-4 py-3 position-relative ps-lg-0 photograph-targhetta-container  ">
@@ -184,7 +184,6 @@ export const query = graphql`query Immagini($filenames: [String], $language: Str
             }
         }
     }
-
     images: allFile(filter: {sourceInstanceName: {eq: "fotografie"}, relativePath: {in: $filenames}}) {
         nodes {
             id
