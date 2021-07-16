@@ -55,7 +55,7 @@ export default function Lettera({
     console.log('Images number is not 26.', `Found: ${filenames.length}`);
   }
   return (
-    <Layout hideFooter containerFluid>
+    <Layout hideFooter containerFluid lettera={lettera}>
       <SEO description={descrizione} title={titolo} />
       <div className="row">
         <div className="col-12 col-lg-9">

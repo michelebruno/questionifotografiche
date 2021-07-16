@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage, getImage, getSrc } from 'gatsby-plugin-image';
 import Header from './header';
 
 function Layout({
-  children, hideFooter, ...props
+  children, hideFooter, lettera, ...props
 }) {
   const [rendered, setRendered] = useState();
 
   useEffect(() => setRendered(true), []);
 
-  const { polidesign, ...data } = useStaticQuery(graphql`
+  const { polidesign, favicons, ...data } = useStaticQuery(graphql`
       query SiteTitleQuery {
           site {
               siteMetadata {
@@ -29,6 +29,17 @@ function Layout({
                   )
               }
           }
+          favicons: allFile(filter: {relativePath: {regex: "/favicon_(.*)/i"}}) {
+              nodes {
+                  relativePath
+                  childImageSharp{
+                      gatsbyImageData(
+                          layout: FIXED
+                          width: 64
+                      )
+                  }
+              }
+          }
       }
   `);
 
@@ -39,11 +50,17 @@ function Layout({
     classList.push('container');
   }
 
+  const faviconPath = getSrc(favicons.nodes.find(
+    ({ relativePath }) => relativePath === `favicon_${lettera}.png`,
+  ) || favicons.nodes[favicons.nodes.length - 1]);
+
   return (
     <>
-      <Helmet>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-      </Helmet>
+      <Helmet link={[
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
+        { rel: 'icon', type: 'image/png', href: faviconPath },
+      ]}
+      />
       <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
       <div className={rendered ? 'rendered' : undefined}>
         <main
@@ -88,13 +105,24 @@ function Layout({
                 <div>
                   <h6 className="heading-style-regular">Social</h6>
                   <ul className="list-unstyled">
-                    <li><a href="instagram.com">@questionifotografiche</a></li>
-                    <li><a href="instagram.com">@DDC</a></li>
+                    <li>
+                      <a
+                        href="https://www.instagram.com/questionifotografiche/"
+                      >
+                        @questionifotografiche
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://www.instagram.com/ddc_designdellacomunicazione/"
+                      >
+                        @DDC
+                      </a>
+                    </li>
                   </ul>
                 </div>
                 <div>
                   <h6 className="heading-style-regular">Copyright</h6>
-
                   <p>
                     Immagini soggette alle tutele di legge in materia di
                     protezione del diritto d’autore e di diritti connessi al suo
@@ -102,16 +130,6 @@ function Layout({
                   </p>
                 </div>
               </div>
-              {process.env.ENABLE_GATSBY_REFRESH_ENDPOINT && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    fetch('/__refresh', { method: 'POST' });
-                  }}
-                >
-                  Refresh
-                </button>
-              )}
             </footer>
           </>
 

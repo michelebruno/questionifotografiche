@@ -36,18 +36,18 @@ module.exports = {
     'gatsby-plugin-image',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: 'gatsby-starter-default',
-        short_name: 'Questioni fotografiche',
-        start_url: '/',
-        background_color: '#fff',
-        theme_color: '#000',
-        display: 'minimal-ui',
-        icon: 'src/images/icon.png', // This path is relative to the root of the site.
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-manifest',
+    //   options: {
+    //     name: 'gatsby-starter-default',
+    //     short_name: 'Questioni fotografiche',
+    //     start_url: '/',
+    //     background_color: '#fff',
+    //     theme_color: '#000',
+    //     display: 'minimal-ui',
+    //     // icon: 'src/images/icon.png', // This path is relative to the root of the site.
+    //   },
+    // },
     {
       resolve: 'gatsby-source-google-spreadsheet',
       options: {

@@ -81,6 +81,7 @@ const IndexPage = ({ data }) => {
           <div className="col-12 col-md-6">
             <Swiper
               effect="fade"
+              loop
               autoplay={{
                 // delay: 2500,
                 disableOnInteraction: false,
