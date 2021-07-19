@@ -642,12 +642,12 @@ type Query {
     immaginiCsv(autore: StringQueryOperatorInput, children: NodeFilterListInput, descrizione: StringQueryOperatorInput, descrizione_originale: StringQueryOperatorInput, facolta: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lettera: StringQueryOperatorInput, parent: NodeFilterInput): ImmaginiCsv
     lettereCsv(Testo: StringQueryOperatorInput, children: NodeFilterListInput, descrizione: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lettera: StringQueryOperatorInput, parent: NodeFilterInput, sottotitolo: StringQueryOperatorInput, title: StringQueryOperatorInput, titolo: StringQueryOperatorInput): LettereCsv
     locale(children: NodeFilterListInput, data: StringQueryOperatorInput, fileAbsolutePath: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, language: StringQueryOperatorInput, ns: StringQueryOperatorInput, parent: NodeFilterInput): Locale
-    sheetsArcImmagini(autore: StringQueryOperatorInput, children: NodeFilterListInput, descrizioneDefinitiva: StringQueryOperatorInput, descrzione: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lettera: StringQueryOperatorInput, parent: NodeFilterInput): SheetsArcImmagini
+    sheetsArcImmagini(autore: StringQueryOperatorInput, children: NodeFilterListInput, descrizioneDefinitiva: StringQueryOperatorInput, descrzione: StringQueryOperatorInput, homepage: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lettera: StringQueryOperatorInput, parent: NodeFilterInput): SheetsArcImmagini
     sheetsArchitettura(aaaNome: StringQueryOperatorInput, children: NodeFilterListInput, f1: StringQueryOperatorInput, f10: StringQueryOperatorInput, f11K: StringQueryOperatorInput, f12L: StringQueryOperatorInput, f13M: StringQueryOperatorInput, f14: StringQueryOperatorInput, f15: StringQueryOperatorInput, f16P: StringQueryOperatorInput, f17Q: StringQueryOperatorInput, f18: StringQueryOperatorInput, f19S: StringQueryOperatorInput, f2: StringQueryOperatorInput, f20T: StringQueryOperatorInput, f21: StringQueryOperatorInput, f22: StringQueryOperatorInput, f23: StringQueryOperatorInput, f24: StringQueryOperatorInput, f25: StringQueryOperatorInput, f26: StringQueryOperatorInput, f3C: StringQueryOperatorInput, f4D: StringQueryOperatorInput, f5: StringQueryOperatorInput, f6: StringQueryOperatorInput, f7G: StringQueryOperatorInput, f8H: StringQueryOperatorInput, f9: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, voto: StringQueryOperatorInput): SheetsArchitettura
-    sheetsDesImmagini(autore: StringQueryOperatorInput, children: NodeFilterListInput, descrizione: StringQueryOperatorInput, descrizioniDef__min211Max940Caratteri_: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lettera: StringQueryOperatorInput, parent: NodeFilterInput): SheetsDesImmagini
+    sheetsDesImmagini(autore: StringQueryOperatorInput, children: NodeFilterListInput, descrizione: StringQueryOperatorInput, descrizioniDef__min211Max940Caratteri_: StringQueryOperatorInput, homepage: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lettera: StringQueryOperatorInput, parent: NodeFilterInput): SheetsDesImmagini
     sheetsDesign(aaaNome: StringQueryOperatorInput, children: NodeFilterListInput, f10J: StringQueryOperatorInput, f11K: StringQueryOperatorInput, f12L: StringQueryOperatorInput, f13M: StringQueryOperatorInput, f14N: StringQueryOperatorInput, f15O: StringQueryOperatorInput, f16P: StringQueryOperatorInput, f17Q: StringQueryOperatorInput, f18R: StringQueryOperatorInput, f19S: StringQueryOperatorInput, f1A: StringQueryOperatorInput, f20T: StringQueryOperatorInput, f21U: StringQueryOperatorInput, f22V: StringQueryOperatorInput, f23W: StringQueryOperatorInput, f24X: StringQueryOperatorInput, f25Y: StringQueryOperatorInput, f26Z: StringQueryOperatorInput, f2B: StringQueryOperatorInput, f3C: StringQueryOperatorInput, f4D: StringQueryOperatorInput, f5E: StringQueryOperatorInput, f6F: StringQueryOperatorInput, f7G: StringQueryOperatorInput, f8H: StringQueryOperatorInput, f9I: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, voto: StringQueryOperatorInput): SheetsDesign
-    sheetsImmagini(autore: StringQueryOperatorInput, children: NodeFilterListInput, descrizione: StringQueryOperatorInput, descrizioneOriginale: StringQueryOperatorInput, facolta: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lettera: IntQueryOperatorInput, parent: NodeFilterInput): SheetsImmagini
-    sheetsLettere(children: NodeFilterListInput, descrizione: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lettera: IntQueryOperatorInput, parent: NodeFilterInput, titolo: StringQueryOperatorInput): SheetsLettere
+    sheetsImmagini(autore: StringQueryOperatorInput, childFile: FileFilterInput, children: NodeFilterListInput, childrenFile: FileFilterListInput, descrizione: StringQueryOperatorInput, descrizioneOriginale: StringQueryOperatorInput, facolta: StringQueryOperatorInput, homepage: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lettera: IntQueryOperatorInput, parent: NodeFilterInput): SheetsImmagini
+    sheetsLettere(children: NodeFilterListInput, description: StringQueryOperatorInput, descrizione: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lettera: IntQueryOperatorInput, parent: NodeFilterInput, sottotitolo: StringQueryOperatorInput, title: StringQueryOperatorInput, titolo: StringQueryOperatorInput): SheetsLettere
     site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
     siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
     siteFunction(absoluteCompiledFilePath: StringQueryOperatorInput, children: NodeFilterListInput, functionRoute: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, matchPath: StringQueryOperatorInput, originalAbsoluteFilePath: StringQueryOperatorInput, originalRelativeFilePath: StringQueryOperatorInput, parent: NodeFilterInput, pluginName: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput): SiteFunction
@@ -660,6 +660,7 @@ type SheetsArcImmagini implements Node {
     children: [Node!]!
     descrizioneDefinitiva: String
     descrzione: String
+    homepage: String
     id: ID!
     internal: Internal!
     lettera: String
@@ -760,6 +761,7 @@ type SheetsDesImmagini implements Node {
     children: [Node!]!
     descrizione: String
     descrizioniDef__min211Max940Caratteri_: String
+    homepage: String
     id: ID!
     internal: Internal!
     lettera: String
@@ -857,10 +859,15 @@ type SheetsDesignGroupConnection {
 
 type SheetsImmagini implements Node {
     autore: String
+    "Returns the first child node of type File or null if there are no children of given type on this node"
+    childFile: File
     children: [Node!]!
+    "Returns all children nodes filtered by type File"
+    childrenFile: [File]
     descrizione: String
     descrizioneOriginale: String
     facolta: String
+    homepage: String
     id: ID!
     internal: Internal!
     lettera: Int
@@ -896,11 +903,14 @@ type SheetsImmaginiGroupConnection {
 
 type SheetsLettere implements Node {
     children: [Node!]!
+    description: String
     descrizione: String
     id: ID!
     internal: Internal!
     lettera: Int
     parent: Node
+    sottotitolo: String
+    title: String
     titolo: String
 }
 
@@ -1099,7 +1109,7 @@ type SitePageContext {
     i18n: SitePageContextI18n
     immagini: [SitePageContextImmagini]
     language: String
-    lettera: String
+    lettera: Int
     sottotitolo: String
     title: String
     titolo: String
@@ -1119,7 +1129,7 @@ type SitePageContextImmagini {
     autore: String
     descrizione: String
     id: String
-    lettera: String
+    lettera: Int
 }
 
 type SitePageEdge {
@@ -2416,6 +2426,7 @@ enum SheetsArcImmaginiFieldsEnum {
     children___parent___parent___id
     descrizioneDefinitiva
     descrzione
+    homepage
     id
     internal___content
     internal___contentDigest
@@ -2626,6 +2637,7 @@ enum SheetsDesImmaginiFieldsEnum {
     children___parent___parent___id
     descrizione
     descrizioniDef__min211Max940Caratteri_
+    homepage
     id
     internal___content
     internal___contentDigest
@@ -2795,7 +2807,572 @@ enum SheetsDesignFieldsEnum {
 
 enum SheetsImmaginiFieldsEnum {
     autore
+    childFile___absolutePath
+    childFile___accessTime
+    childFile___atime
+    childFile___atimeMs
+    childFile___base
+    childFile___birthTime
+    childFile___birthtime
+    childFile___birthtimeMs
+    childFile___blksize
+    childFile___blocks
+    childFile___changeTime
+    childFile___childImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___children___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___children___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fixed___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fixed___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fixed___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fixed___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fixed___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fixed___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fixed___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fixed___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fixed___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fixed___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fluid___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fluid___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fluid___originalImg @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fluid___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fluid___presentationHeight @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fluid___presentationWidth @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fluid___sizes @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fluid___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fluid___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fluid___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fluid___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___fluid___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___gatsbyImageData @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___internal___content @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___internal___contentDigest @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___internal___description @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___internal___fieldOwners @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___internal___ignoreType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___internal___mediaType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___internal___owner @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___internal___type @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___original___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___original___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___original___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___parent___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___resize___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___resize___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___resize___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___resize___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___resize___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImageSharp___resize___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childImmaginiCsv___autore
+    childFile___childImmaginiCsv___children
+    childFile___childImmaginiCsv___children___children
+    childFile___childImmaginiCsv___children___id
+    childFile___childImmaginiCsv___descrizione
+    childFile___childImmaginiCsv___descrizione_originale
+    childFile___childImmaginiCsv___facolta
+    childFile___childImmaginiCsv___id
+    childFile___childImmaginiCsv___internal___content
+    childFile___childImmaginiCsv___internal___contentDigest
+    childFile___childImmaginiCsv___internal___description
+    childFile___childImmaginiCsv___internal___fieldOwners
+    childFile___childImmaginiCsv___internal___ignoreType
+    childFile___childImmaginiCsv___internal___mediaType
+    childFile___childImmaginiCsv___internal___owner
+    childFile___childImmaginiCsv___internal___type
+    childFile___childImmaginiCsv___lettera
+    childFile___childImmaginiCsv___parent___children
+    childFile___childImmaginiCsv___parent___id
+    childFile___childLettereCsv___Testo
+    childFile___childLettereCsv___children
+    childFile___childLettereCsv___children___children
+    childFile___childLettereCsv___children___id
+    childFile___childLettereCsv___descrizione
+    childFile___childLettereCsv___id
+    childFile___childLettereCsv___internal___content
+    childFile___childLettereCsv___internal___contentDigest
+    childFile___childLettereCsv___internal___description
+    childFile___childLettereCsv___internal___fieldOwners
+    childFile___childLettereCsv___internal___ignoreType
+    childFile___childLettereCsv___internal___mediaType
+    childFile___childLettereCsv___internal___owner
+    childFile___childLettereCsv___internal___type
+    childFile___childLettereCsv___lettera
+    childFile___childLettereCsv___parent___children
+    childFile___childLettereCsv___parent___id
+    childFile___childLettereCsv___sottotitolo
+    childFile___childLettereCsv___title
+    childFile___childLettereCsv___titolo
+    childFile___childLocale___children
+    childFile___childLocale___children___children
+    childFile___childLocale___children___id
+    childFile___childLocale___data
+    childFile___childLocale___fileAbsolutePath
+    childFile___childLocale___id
+    childFile___childLocale___internal___content
+    childFile___childLocale___internal___contentDigest
+    childFile___childLocale___internal___description
+    childFile___childLocale___internal___fieldOwners
+    childFile___childLocale___internal___ignoreType
+    childFile___childLocale___internal___mediaType
+    childFile___childLocale___internal___owner
+    childFile___childLocale___internal___type
+    childFile___childLocale___language
+    childFile___childLocale___ns
+    childFile___childLocale___parent___children
+    childFile___childLocale___parent___id
+    childFile___children
+    childFile___childrenImageSharp
+    childFile___childrenImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___children___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___children___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fixed___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fixed___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fixed___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fixed___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fixed___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fixed___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fixed___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fixed___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fixed___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fixed___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fluid___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fluid___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fluid___originalImg @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fluid___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fluid___presentationHeight @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fluid___presentationWidth @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fluid___sizes @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fluid___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fluid___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fluid___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fluid___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___fluid___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___gatsbyImageData @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___internal___content @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___internal___contentDigest @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___internal___description @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___internal___fieldOwners @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___internal___ignoreType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___internal___mediaType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___internal___owner @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___internal___type @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___original___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___original___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___original___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___parent___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___resize___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___resize___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___resize___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___resize___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___resize___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImageSharp___resize___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childFile___childrenImmaginiCsv
+    childFile___childrenImmaginiCsv___autore
+    childFile___childrenImmaginiCsv___children
+    childFile___childrenImmaginiCsv___children___children
+    childFile___childrenImmaginiCsv___children___id
+    childFile___childrenImmaginiCsv___descrizione
+    childFile___childrenImmaginiCsv___descrizione_originale
+    childFile___childrenImmaginiCsv___facolta
+    childFile___childrenImmaginiCsv___id
+    childFile___childrenImmaginiCsv___internal___content
+    childFile___childrenImmaginiCsv___internal___contentDigest
+    childFile___childrenImmaginiCsv___internal___description
+    childFile___childrenImmaginiCsv___internal___fieldOwners
+    childFile___childrenImmaginiCsv___internal___ignoreType
+    childFile___childrenImmaginiCsv___internal___mediaType
+    childFile___childrenImmaginiCsv___internal___owner
+    childFile___childrenImmaginiCsv___internal___type
+    childFile___childrenImmaginiCsv___lettera
+    childFile___childrenImmaginiCsv___parent___children
+    childFile___childrenImmaginiCsv___parent___id
+    childFile___childrenLettereCsv
+    childFile___childrenLettereCsv___Testo
+    childFile___childrenLettereCsv___children
+    childFile___childrenLettereCsv___children___children
+    childFile___childrenLettereCsv___children___id
+    childFile___childrenLettereCsv___descrizione
+    childFile___childrenLettereCsv___id
+    childFile___childrenLettereCsv___internal___content
+    childFile___childrenLettereCsv___internal___contentDigest
+    childFile___childrenLettereCsv___internal___description
+    childFile___childrenLettereCsv___internal___fieldOwners
+    childFile___childrenLettereCsv___internal___ignoreType
+    childFile___childrenLettereCsv___internal___mediaType
+    childFile___childrenLettereCsv___internal___owner
+    childFile___childrenLettereCsv___internal___type
+    childFile___childrenLettereCsv___lettera
+    childFile___childrenLettereCsv___parent___children
+    childFile___childrenLettereCsv___parent___id
+    childFile___childrenLettereCsv___sottotitolo
+    childFile___childrenLettereCsv___title
+    childFile___childrenLettereCsv___titolo
+    childFile___childrenLocale
+    childFile___childrenLocale___children
+    childFile___childrenLocale___children___children
+    childFile___childrenLocale___children___id
+    childFile___childrenLocale___data
+    childFile___childrenLocale___fileAbsolutePath
+    childFile___childrenLocale___id
+    childFile___childrenLocale___internal___content
+    childFile___childrenLocale___internal___contentDigest
+    childFile___childrenLocale___internal___description
+    childFile___childrenLocale___internal___fieldOwners
+    childFile___childrenLocale___internal___ignoreType
+    childFile___childrenLocale___internal___mediaType
+    childFile___childrenLocale___internal___owner
+    childFile___childrenLocale___internal___type
+    childFile___childrenLocale___language
+    childFile___childrenLocale___ns
+    childFile___childrenLocale___parent___children
+    childFile___childrenLocale___parent___id
+    childFile___children___children
+    childFile___children___children___children
+    childFile___children___children___id
+    childFile___children___id
+    childFile___children___internal___content
+    childFile___children___internal___contentDigest
+    childFile___children___internal___description
+    childFile___children___internal___fieldOwners
+    childFile___children___internal___ignoreType
+    childFile___children___internal___mediaType
+    childFile___children___internal___owner
+    childFile___children___internal___type
+    childFile___children___parent___children
+    childFile___children___parent___id
+    childFile___ctime
+    childFile___ctimeMs
+    childFile___dev
+    childFile___dir
+    childFile___ext
+    childFile___extension
+    childFile___gid
+    childFile___id
+    childFile___ino
+    childFile___internal___content
+    childFile___internal___contentDigest
+    childFile___internal___description
+    childFile___internal___fieldOwners
+    childFile___internal___ignoreType
+    childFile___internal___mediaType
+    childFile___internal___owner
+    childFile___internal___type
+    childFile___mode
+    childFile___modifiedTime
+    childFile___mtime
+    childFile___mtimeMs
+    childFile___name
+    childFile___nlink
+    childFile___parent___children
+    childFile___parent___children___children
+    childFile___parent___children___id
+    childFile___parent___id
+    childFile___parent___internal___content
+    childFile___parent___internal___contentDigest
+    childFile___parent___internal___description
+    childFile___parent___internal___fieldOwners
+    childFile___parent___internal___ignoreType
+    childFile___parent___internal___mediaType
+    childFile___parent___internal___owner
+    childFile___parent___internal___type
+    childFile___parent___parent___children
+    childFile___parent___parent___id
+    childFile___prettySize
+    childFile___publicURL
+    childFile___rdev
+    childFile___relativeDirectory
+    childFile___relativePath
+    childFile___root
+    childFile___size
+    childFile___sourceInstanceName
+    childFile___uid
     children
+    childrenFile
+    childrenFile___absolutePath
+    childrenFile___accessTime
+    childrenFile___atime
+    childrenFile___atimeMs
+    childrenFile___base
+    childrenFile___birthTime
+    childrenFile___birthtime
+    childrenFile___birthtimeMs
+    childrenFile___blksize
+    childrenFile___blocks
+    childrenFile___changeTime
+    childrenFile___childImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___children___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___children___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fixed___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fixed___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fixed___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fixed___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fixed___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fixed___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fixed___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fixed___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fixed___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fixed___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fluid___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fluid___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fluid___originalImg @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fluid___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fluid___presentationHeight @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fluid___presentationWidth @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fluid___sizes @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fluid___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fluid___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fluid___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fluid___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___fluid___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___gatsbyImageData @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___internal___content @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___internal___contentDigest @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___internal___description @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___internal___fieldOwners @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___internal___ignoreType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___internal___mediaType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___internal___owner @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___internal___type @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___original___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___original___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___original___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___parent___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___resize___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___resize___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___resize___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___resize___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___resize___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImageSharp___resize___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childImmaginiCsv___autore
+    childrenFile___childImmaginiCsv___children
+    childrenFile___childImmaginiCsv___children___children
+    childrenFile___childImmaginiCsv___children___id
+    childrenFile___childImmaginiCsv___descrizione
+    childrenFile___childImmaginiCsv___descrizione_originale
+    childrenFile___childImmaginiCsv___facolta
+    childrenFile___childImmaginiCsv___id
+    childrenFile___childImmaginiCsv___internal___content
+    childrenFile___childImmaginiCsv___internal___contentDigest
+    childrenFile___childImmaginiCsv___internal___description
+    childrenFile___childImmaginiCsv___internal___fieldOwners
+    childrenFile___childImmaginiCsv___internal___ignoreType
+    childrenFile___childImmaginiCsv___internal___mediaType
+    childrenFile___childImmaginiCsv___internal___owner
+    childrenFile___childImmaginiCsv___internal___type
+    childrenFile___childImmaginiCsv___lettera
+    childrenFile___childImmaginiCsv___parent___children
+    childrenFile___childImmaginiCsv___parent___id
+    childrenFile___childLettereCsv___Testo
+    childrenFile___childLettereCsv___children
+    childrenFile___childLettereCsv___children___children
+    childrenFile___childLettereCsv___children___id
+    childrenFile___childLettereCsv___descrizione
+    childrenFile___childLettereCsv___id
+    childrenFile___childLettereCsv___internal___content
+    childrenFile___childLettereCsv___internal___contentDigest
+    childrenFile___childLettereCsv___internal___description
+    childrenFile___childLettereCsv___internal___fieldOwners
+    childrenFile___childLettereCsv___internal___ignoreType
+    childrenFile___childLettereCsv___internal___mediaType
+    childrenFile___childLettereCsv___internal___owner
+    childrenFile___childLettereCsv___internal___type
+    childrenFile___childLettereCsv___lettera
+    childrenFile___childLettereCsv___parent___children
+    childrenFile___childLettereCsv___parent___id
+    childrenFile___childLettereCsv___sottotitolo
+    childrenFile___childLettereCsv___title
+    childrenFile___childLettereCsv___titolo
+    childrenFile___childLocale___children
+    childrenFile___childLocale___children___children
+    childrenFile___childLocale___children___id
+    childrenFile___childLocale___data
+    childrenFile___childLocale___fileAbsolutePath
+    childrenFile___childLocale___id
+    childrenFile___childLocale___internal___content
+    childrenFile___childLocale___internal___contentDigest
+    childrenFile___childLocale___internal___description
+    childrenFile___childLocale___internal___fieldOwners
+    childrenFile___childLocale___internal___ignoreType
+    childrenFile___childLocale___internal___mediaType
+    childrenFile___childLocale___internal___owner
+    childrenFile___childLocale___internal___type
+    childrenFile___childLocale___language
+    childrenFile___childLocale___ns
+    childrenFile___childLocale___parent___children
+    childrenFile___childLocale___parent___id
+    childrenFile___children
+    childrenFile___childrenImageSharp
+    childrenFile___childrenImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___children___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___children___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fixed___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fixed___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fixed___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fixed___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fixed___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fixed___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fixed___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fixed___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fixed___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fixed___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fluid___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fluid___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fluid___originalImg @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fluid___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fluid___presentationHeight @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fluid___presentationWidth @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fluid___sizes @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fluid___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fluid___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fluid___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fluid___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___fluid___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___gatsbyImageData @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___internal___content @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___internal___contentDigest @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___internal___description @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___internal___fieldOwners @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___internal___ignoreType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___internal___mediaType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___internal___owner @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___internal___type @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___original___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___original___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___original___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___parent___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___resize___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___resize___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___resize___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___resize___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___resize___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImageSharp___resize___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    childrenFile___childrenImmaginiCsv
+    childrenFile___childrenImmaginiCsv___autore
+    childrenFile___childrenImmaginiCsv___children
+    childrenFile___childrenImmaginiCsv___children___children
+    childrenFile___childrenImmaginiCsv___children___id
+    childrenFile___childrenImmaginiCsv___descrizione
+    childrenFile___childrenImmaginiCsv___descrizione_originale
+    childrenFile___childrenImmaginiCsv___facolta
+    childrenFile___childrenImmaginiCsv___id
+    childrenFile___childrenImmaginiCsv___internal___content
+    childrenFile___childrenImmaginiCsv___internal___contentDigest
+    childrenFile___childrenImmaginiCsv___internal___description
+    childrenFile___childrenImmaginiCsv___internal___fieldOwners
+    childrenFile___childrenImmaginiCsv___internal___ignoreType
+    childrenFile___childrenImmaginiCsv___internal___mediaType
+    childrenFile___childrenImmaginiCsv___internal___owner
+    childrenFile___childrenImmaginiCsv___internal___type
+    childrenFile___childrenImmaginiCsv___lettera
+    childrenFile___childrenImmaginiCsv___parent___children
+    childrenFile___childrenImmaginiCsv___parent___id
+    childrenFile___childrenLettereCsv
+    childrenFile___childrenLettereCsv___Testo
+    childrenFile___childrenLettereCsv___children
+    childrenFile___childrenLettereCsv___children___children
+    childrenFile___childrenLettereCsv___children___id
+    childrenFile___childrenLettereCsv___descrizione
+    childrenFile___childrenLettereCsv___id
+    childrenFile___childrenLettereCsv___internal___content
+    childrenFile___childrenLettereCsv___internal___contentDigest
+    childrenFile___childrenLettereCsv___internal___description
+    childrenFile___childrenLettereCsv___internal___fieldOwners
+    childrenFile___childrenLettereCsv___internal___ignoreType
+    childrenFile___childrenLettereCsv___internal___mediaType
+    childrenFile___childrenLettereCsv___internal___owner
+    childrenFile___childrenLettereCsv___internal___type
+    childrenFile___childrenLettereCsv___lettera
+    childrenFile___childrenLettereCsv___parent___children
+    childrenFile___childrenLettereCsv___parent___id
+    childrenFile___childrenLettereCsv___sottotitolo
+    childrenFile___childrenLettereCsv___title
+    childrenFile___childrenLettereCsv___titolo
+    childrenFile___childrenLocale
+    childrenFile___childrenLocale___children
+    childrenFile___childrenLocale___children___children
+    childrenFile___childrenLocale___children___id
+    childrenFile___childrenLocale___data
+    childrenFile___childrenLocale___fileAbsolutePath
+    childrenFile___childrenLocale___id
+    childrenFile___childrenLocale___internal___content
+    childrenFile___childrenLocale___internal___contentDigest
+    childrenFile___childrenLocale___internal___description
+    childrenFile___childrenLocale___internal___fieldOwners
+    childrenFile___childrenLocale___internal___ignoreType
+    childrenFile___childrenLocale___internal___mediaType
+    childrenFile___childrenLocale___internal___owner
+    childrenFile___childrenLocale___internal___type
+    childrenFile___childrenLocale___language
+    childrenFile___childrenLocale___ns
+    childrenFile___childrenLocale___parent___children
+    childrenFile___childrenLocale___parent___id
+    childrenFile___children___children
+    childrenFile___children___children___children
+    childrenFile___children___children___id
+    childrenFile___children___id
+    childrenFile___children___internal___content
+    childrenFile___children___internal___contentDigest
+    childrenFile___children___internal___description
+    childrenFile___children___internal___fieldOwners
+    childrenFile___children___internal___ignoreType
+    childrenFile___children___internal___mediaType
+    childrenFile___children___internal___owner
+    childrenFile___children___internal___type
+    childrenFile___children___parent___children
+    childrenFile___children___parent___id
+    childrenFile___ctime
+    childrenFile___ctimeMs
+    childrenFile___dev
+    childrenFile___dir
+    childrenFile___ext
+    childrenFile___extension
+    childrenFile___gid
+    childrenFile___id
+    childrenFile___ino
+    childrenFile___internal___content
+    childrenFile___internal___contentDigest
+    childrenFile___internal___description
+    childrenFile___internal___fieldOwners
+    childrenFile___internal___ignoreType
+    childrenFile___internal___mediaType
+    childrenFile___internal___owner
+    childrenFile___internal___type
+    childrenFile___mode
+    childrenFile___modifiedTime
+    childrenFile___mtime
+    childrenFile___mtimeMs
+    childrenFile___name
+    childrenFile___nlink
+    childrenFile___parent___children
+    childrenFile___parent___children___children
+    childrenFile___parent___children___id
+    childrenFile___parent___id
+    childrenFile___parent___internal___content
+    childrenFile___parent___internal___contentDigest
+    childrenFile___parent___internal___description
+    childrenFile___parent___internal___fieldOwners
+    childrenFile___parent___internal___ignoreType
+    childrenFile___parent___internal___mediaType
+    childrenFile___parent___internal___owner
+    childrenFile___parent___internal___type
+    childrenFile___parent___parent___children
+    childrenFile___parent___parent___id
+    childrenFile___prettySize
+    childrenFile___publicURL
+    childrenFile___rdev
+    childrenFile___relativeDirectory
+    childrenFile___relativePath
+    childrenFile___root
+    childrenFile___size
+    childrenFile___sourceInstanceName
+    childrenFile___uid
     children___children
     children___children___children
     children___children___children___children
@@ -2837,6 +3414,7 @@ enum SheetsImmaginiFieldsEnum {
     descrizione
     descrizioneOriginale
     facolta
+    homepage
     id
     internal___content
     internal___contentDigest
@@ -2927,6 +3505,7 @@ enum SheetsLettereFieldsEnum {
     children___parent___internal___type
     children___parent___parent___children
     children___parent___parent___id
+    description
     descrizione
     id
     internal___content
@@ -2976,6 +3555,8 @@ enum SheetsLettereFieldsEnum {
     parent___parent___internal___type
     parent___parent___parent___children
     parent___parent___parent___id
+    sottotitolo
+    title
     titolo
 }
 
@@ -3766,6 +4347,10 @@ input FileFilterInput {
     uid: IntQueryOperatorInput
 }
 
+input FileFilterListInput {
+    elemMatch: FileFilterInput
+}
+
 input FileSortInput {
     fields: [FileFieldsEnum]
     order: [SortOrderEnum] = [ASC]
@@ -3978,6 +4563,7 @@ input SheetsArcImmaginiFilterInput {
     children: NodeFilterListInput
     descrizioneDefinitiva: StringQueryOperatorInput
     descrzione: StringQueryOperatorInput
+    homepage: StringQueryOperatorInput
     id: StringQueryOperatorInput
     internal: InternalFilterInput
     lettera: StringQueryOperatorInput
@@ -4034,6 +4620,7 @@ input SheetsDesImmaginiFilterInput {
     children: NodeFilterListInput
     descrizione: StringQueryOperatorInput
     descrizioniDef__min211Max940Caratteri_: StringQueryOperatorInput
+    homepage: StringQueryOperatorInput
     id: StringQueryOperatorInput
     internal: InternalFilterInput
     lettera: StringQueryOperatorInput
@@ -4087,10 +4674,13 @@ input SheetsDesignSortInput {
 
 input SheetsImmaginiFilterInput {
     autore: StringQueryOperatorInput
+    childFile: FileFilterInput
     children: NodeFilterListInput
+    childrenFile: FileFilterListInput
     descrizione: StringQueryOperatorInput
     descrizioneOriginale: StringQueryOperatorInput
     facolta: StringQueryOperatorInput
+    homepage: StringQueryOperatorInput
     id: StringQueryOperatorInput
     internal: InternalFilterInput
     lettera: IntQueryOperatorInput
@@ -4104,11 +4694,14 @@ input SheetsImmaginiSortInput {
 
 input SheetsLettereFilterInput {
     children: NodeFilterListInput
+    description: StringQueryOperatorInput
     descrizione: StringQueryOperatorInput
     id: StringQueryOperatorInput
     internal: InternalFilterInput
     lettera: IntQueryOperatorInput
     parent: NodeFilterInput
+    sottotitolo: StringQueryOperatorInput
+    title: StringQueryOperatorInput
     titolo: StringQueryOperatorInput
 }
 
@@ -4168,7 +4761,7 @@ input SitePageContextFilterInput {
     i18n: SitePageContextI18nFilterInput
     immagini: SitePageContextImmaginiFilterListInput
     language: StringQueryOperatorInput
-    lettera: StringQueryOperatorInput
+    lettera: IntQueryOperatorInput
     sottotitolo: StringQueryOperatorInput
     title: StringQueryOperatorInput
     titolo: StringQueryOperatorInput
@@ -4188,7 +4781,7 @@ input SitePageContextImmaginiFilterInput {
     autore: StringQueryOperatorInput
     descrizione: StringQueryOperatorInput
     id: StringQueryOperatorInput
-    lettera: StringQueryOperatorInput
+    lettera: IntQueryOperatorInput
 }
 
 input SitePageContextImmaginiFilterListInput {

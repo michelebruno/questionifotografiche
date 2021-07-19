@@ -7,53 +7,30 @@ import SwiperCore, {
 } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { getSrcSet, getSrc } from 'gatsby-plugin-image';
-import _ from 'lodash';
-import { useTranslation } from 'gatsby-plugin-react-i18next';
+import { useI18next, useTranslation } from 'gatsby-plugin-react-i18next';
 import Layout from './layout';
 import SEO from './seo';
 
 SwiperCore.use([Mousewheel, Keyboard, Pagination, Scrollbar, Navigation, Lazy]);
 
 export default function Lettera({
-  data: { images: { nodes: images } },
-  pageContext,
+  data: { immagini, pagina },
+  pageContext: { lettera },
 }) {
   const triggerRef = useRef();
   const scrollerRef = useRef();
+
   const { t } = useTranslation();
+  const { language } = useI18next();
+
+  const isEnglish = language === 'en';
 
   const [displayInfo, setDisplayInfo] = useState(false);
-  const {
-    descrizione, titolo, sottotitolo, title, lettera, filenames,
-  } = pageContext;
 
-  const immagini = [];
-  useMemo(() => _.shuffle(images), []).forEach((image) => {
-    const immagine = pageContext.immagini.find(
-      ({ lettera: letter, autore }) => image.relativePath
-        === `${_.padStart(letter, 2, '0')} ${_.startCase(
-          _.toLower(autore),
-        )}.jpg`,
-    );
-    if (!immagine) return;
+  const titolo = isEnglish && pagina.title ? pagina.title : pagina.titolo;
+  const sottotitolo = isEnglish && pagina.subtitle ? pagina.subtitle : pagina.sottotitolo;
+  const descrizione = isEnglish && pagina.description ? pagina.description : pagina.descrizione;
 
-    immagine.childImageSharp = image?.childImageSharp;
-
-    if (immagine) immagini.push(immagine);
-  });
-
-  if (filenames.length > immagini.length) {
-    console.log(
-      `${filenames.length - images.length} missing in letter ${lettera}:`,
-      pageContext.filenames.filter(
-        (i) => images.findIndex(
-          ({ relativePath }) => i === relativePath,
-        ) === -1,
-      ),
-    );
-  } else if (filenames.length !== 26) {
-    console.log('Images number is not 26.', `Found: ${filenames.length}`);
-  }
   return (
     <Layout hideFooter containerFluid lettera={lettera}>
       <SEO description={descrizione} title={titolo} />
@@ -63,7 +40,7 @@ export default function Lettera({
             id="scroller"
             ref={scrollerRef}
             style={{
-              '--slides': immagini.length,
+              '--slides': immagini.nodes.length,
             }}
           >
             <Swiper
@@ -78,8 +55,13 @@ export default function Lettera({
               className="h-100"
               pagination
             >
-              {immagini.map((immagine, i) => {
+              {immagini.nodes.map((immagine, i) => {
                 const description = immagine.descrizione;
+
+                if (!immagine.childFile) {
+                  console.log(`Can't find image for ${immagine.autore} in letter ${lettera}`);
+                  return null;
+                }
 
                 return (
                   <SwiperSlide
@@ -94,10 +76,10 @@ export default function Lettera({
                         className="col-12 col-lg-8 author-cursor-container photograph-image-container d-flex pe-lg-0"
                       >
                         <img
-                          data-src={getSrc(immagine)}
-                          data-srcset={getSrcSet(immagine)}
+                          data-src={getSrc(immagine.childFile)}
+                          data-srcset={getSrcSet(immagine.childFile)}
                           alt={descrizione}
-                          {...(i === 0 && { src: getSrc(immagine) })}
+                          {...(i === 0 && { src: getSrc(immagine.childFile) })}
                           className="immagine swiper-lazy"
                         />
                       </div>
@@ -107,7 +89,7 @@ export default function Lettera({
                         >
                           <div className="col-auto">{immagine.autore}</div>
                           <div className="col-auto">
-                            {`${i + 1} / ${immagini.length}`}
+                            {`${i + 1} / ${immagini.nodes.length}`}
                           </div>
                         </div>
                         <p className="didascalia text-dark-50">
@@ -175,7 +157,7 @@ export default function Lettera({
   );
 }
 
-export const query = graphql`query Immagini($filenames: [String], $language: String!) {
+export const query = graphql`query Immagini( $language: String!, $lettera : Int) {
     locales: allLocale(filter: {language: {eq: $language}}) {
         edges {
             node {
@@ -185,18 +167,30 @@ export const query = graphql`query Immagini($filenames: [String], $language: Str
             }
         }
     }
-    images: allFile(filter: {sourceInstanceName: {eq: "fotografie"}, relativePath: {in: $filenames}}) {
+    pagina: sheetsLettere(lettera:{eq:  $lettera}) {
+        descrizione
+        description
+        title
+        titolo
+#        subtitle
+    }
+    immagini: allSheetsImmagini(filter: {lettera: {eq: $lettera} }){
         nodes {
             id
-            relativePath
-            childImageSharp {
-                gatsbyImageData(
-                    width: 1000
-                    quality: 90
-                    layout: CONSTRAINED
-                    placeholder: BLURRED
-                )
+            autore
+            descrizione
+            childFile {
+                relativePath
+                childImageSharp {
+                    gatsbyImageData(
+                        width: 1000
+                        quality: 90
+                        layout: CONSTRAINED
+                        placeholder: BLURRED
+                    )
+                }
             }
         }
     }
+   
 }`;

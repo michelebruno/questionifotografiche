@@ -17,11 +17,8 @@ exports.createPages = async function createPages({
    {
       lettere: allSheetsLettere {
         nodes {
-          titolo
-          title
-          sottotitolo
-          lettera
-          descrizione
+          titolo 
+          lettera 
          }
       }
       immagini: allSheetsImmagini {
@@ -30,6 +27,9 @@ exports.createPages = async function createPages({
           descrizione
           autore 
           lettera
+          childFile {
+            relativePath
+          }
         }
       }
     }
@@ -44,16 +44,15 @@ exports.createPages = async function createPages({
   } = q;
 
   lettere.nodes.forEach(({
-    lettera, titolo, descrizione,
-    title,
-    sottotitolo,
+    lettera, titolo,
   }) => {
     /**
      * Return if no title is set.
      */
     if (!titolo) return;
 
-    if (process.env.LETTERS_COUNT && Number(lettera) > process.env.LETTERS_COUNT) {
+    if (process.env.LETTERS_COUNT && Number(lettera)
+      > process.env.LETTERS_COUNT) {
       console.log(lettera, ' will not be renderes as of process env');
       return;
     }
@@ -61,30 +60,24 @@ exports.createPages = async function createPages({
     const imgs = immagini.nodes.filter(
       (img) => img.lettera === lettera,
     );
-    const filenames = imgs.map(
-      ({ lettera: letter, autore }) => `${_.padStart(letter, 2,
-        '0')} ${_.startCase(
-        _.toLower(autore),
-      )}.jpg`,
-    );
+    if (imgs.length !== 26) {
+      console.log(`Found in source ${imgs.length} for letter ${lettera}`);
+    }
 
-    filenames.length !== 26
-    && console.log(`Found in source ${filenames.length} for letter ${lettera}`);
+    const missingFiles = imgs.filter((img) => !img.childFile);
+
+    for (const missingFile of missingFiles) {
+      console.log(`Missing file for ${missingFile.autore} in letter ${missingFile.lettera}`);
+    }
 
     const data = {
       path: _.kebabCase(titolo),
       component: template,
       context: {
         lettera,
-        titolo,
-        descrizione,
-        title,
-        sottotitolo,
-        immagini: imgs,
-        filenames,
       },
     };
-    console.log('Creating page ', lettera);
+
     createPage(data);
   });
 };
@@ -109,7 +102,9 @@ exports.onCreateWebpackConfig = ({
 };
 
 exports.onCreateNode = function onCreateNode({
-  node, getNodesByType, actions: { createParentChildLink },
+  node,
+  getNodesByType,
+  actions: { createParentChildLink },
 }) {
   if (node.internal.type === 'SheetsImmagini') {
     const { lettera, autore } = node;

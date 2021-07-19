@@ -52,7 +52,7 @@ function Layout({
 
   const faviconPath = getSrc(favicons.nodes.find(
     ({ relativePath }) => relativePath === `favicon_${lettera}.png`,
-  ) || favicons.nodes[favicons.nodes.length - 1]);
+  ) || favicons.nodes[favicons.nodes.length - 8]);
 
   return (
     <>
