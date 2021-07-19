@@ -59,7 +59,8 @@ const IndexPage = ({ data }) => {
           <div className="d-block">
             <div className="marquee">
               <div className="marquee__inner h5 py-0 mb-0" aria-hidden="true">
-                {_.times(10, () => <span className="my-1">fotografie come lettere dell’alfabeto / </span>)}
+                {_.times(10,
+                  () => <span className="my-1">fotografie come lettere dell’alfabeto / </span>)}
               </div>
             </div>
           </div>
@@ -104,6 +105,7 @@ const IndexPage = ({ data }) => {
             </p>
           </div>
         </div>
+
         <div className="row align-items-center" style={{ minHeight: '90vh' }}>
           <div className="col-12 text-center py-5">
             <h3 className="display-2">
@@ -129,7 +131,7 @@ export const query = graphql`
                 }
             }
         }
-    
+
         images: allSheetsImmagini(filter: {homepage: {eq: "1"}}) {
             nodes {
                 descrizione

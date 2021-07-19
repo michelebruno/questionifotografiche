@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { graphql } from 'gatsby';
 
 import _ from 'lodash';
-import { useTranslation } from 'gatsby-plugin-react-i18next';
+import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
@@ -49,9 +49,56 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
     <Layout>
       <SEO title="Credits" />
       <div className="container py-3 py-lg-5">
-
+        <div className="row ">
+          <div className="col-12 "><h1>{t('About')}</h1></div>
+        </div>
+        <div className="row">
+          <div className="col-12 py-5 ">
+            <p className="">
+              <Trans t={t} i18nKey="progetto.scopodellequestioni">
+                Scopo delle singole
+                {' '}
+                <i>questioni fotografiche</i>
+                {' '}
+                è prendere
+                confidenza con uno strumento come quello della fotocamera o
+                smartphone ma, soprattutto, innescare una riflessione sui
+                diversi luoghi, più o meno grandi, sulla loro funzione,
+                imparando ad
+                {' '}
+                <i>ascoltare</i>
+                {' '}
+                le storie (storie fatte di progetti,
+                emozioni, ricordi ed affezioni) che attendono di essere colte e
+                narrate visivamente come ebbe a dire Luigi Ghirri
+                nell’intervento Una luce sul muro del 1993:
+              </Trans>
+            </p>
+            <p className="ms-5">
+              <Trans t={t} i18nKey="progetto.citazione">
+                “(…) solo gli abitanti riconoscono ai luoghi una loro
+                particolarità e un carattere preciso, al quale non rinunciano (…)
+                li guardano come se leggessero il palmo della loro mano, sapendo
+                che per scoprire qualcosa bisogna farlo con estrema attenzione,
+                perché, oltre alle linee principali che sono nette e chiare, ce ne
+                sono tante altre, piccolissime che le intersecano e che,
+                nell’insieme, ne determinano l’unicità.”
+              </Trans>
+            </p>
+            <p className="">
+              <Trans t={t} i18nKey="progetto.interessanteriprendere">
+                Inoltre, è molto interessante riprendere la storia del testo di
+                {' '}
+                <i>Voyage autour de ma chambre</i>
+                , intrigante racconto della scoperta
+                delle infinite fantasie e dei possibili viaggi che si possono
+                immaginare senza uscire dai confini della propria stanza.
+              </Trans>
+            </p>
+          </div>
+        </div>
         <div className="row gy-3">
-          <div className="col-12 "><h1>{t('Crediti')}</h1></div>
+          <div className="col-12 "><h2>{t('Crediti')}</h2></div>
         </div>
         <div
           className="row row-cols-1 row-cols-md-2 row-cols-lg-3  gy-3 gy-lg-5 py-lg-5"

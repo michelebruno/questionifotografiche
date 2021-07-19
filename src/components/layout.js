@@ -49,18 +49,19 @@ function Layout({
   if (props.container) {
     classList.push('container');
   }
+  const links = [{ rel: 'preconnect', href: 'https://fonts.gstatic.com' }];
 
-  const faviconPath = getSrc(favicons.nodes.find(
-    ({ relativePath }) => relativePath === `favicon_${lettera}.png`,
-  ) || favicons.nodes[favicons.nodes.length - 8]);
+  if (lettera) {
+    const faviconPath = getSrc(favicons.nodes.find(
+      ({ relativePath }) => relativePath === `favicon_${lettera}.png`,
+    ) || favicons.nodes[favicons.nodes.length - 8]);
+
+    links.push({ rel: 'icon', type: 'image/png', href: faviconPath });
+  }
 
   return (
     <>
-      <Helmet link={[
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
-        { rel: 'icon', type: 'image/png', href: faviconPath },
-      ]}
-      />
+      <Helmet link={links} />
       <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
       <div className={rendered ? 'rendered' : undefined}>
         <main
