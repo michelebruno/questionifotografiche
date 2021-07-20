@@ -126,7 +126,7 @@ h6, .h6 {
 }
 
 .photograph-targhetta-container {
-   @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(md) {
     height: 30%;
   }
 }
@@ -176,12 +176,25 @@ h6, .h6 {
   }
 }
 
+.authors-button {
+  opacity: $btn-disabled-opacity;
+  padding-top: .7em;
+  padding-bottom: .7em;
+  padding-right: .7em;
+  font-weight: 600;
+
+  &:hover, &.active {
+    opacity: 1;
+  }
+}
+
 #scroller {
   height: 85vh;
   @include media-breakpoint-up(lg) {
     height: 75vh;
   }
 }
+
 #hero-qf {
   top: 50%;
   transform: translateY(-50%);

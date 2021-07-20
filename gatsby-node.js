@@ -51,6 +51,8 @@ exports.createPages = async function createPages({
      */
     if (!titolo) return;
 
+    console.log(`Creating letter ${lettera}. Titolo: ${titolo} url: ${_.kebabCase(titolo)}`);
+
     if (process.env.LETTERS_COUNT && Number(lettera)
       > process.env.LETTERS_COUNT) {
       console.log(lettera, ' will not be renderes as of process env');

@@ -15,8 +15,24 @@ function startCase(string) {
   return sentence.join(' ');
 }
 
+function TableButton({
+  onClick, isActive, children,
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={`border-0 authors-button ${isActive
+        ? 'active'
+        : ''}`}
+      // style={{ fontFamily: 'var(--bs-font-sans-serif)' }}
+    >
+      {children}
+    </button>
+  );
+}
+
 function Credits({ data: { autori: { nodes: authors } }, location }) {
-  const [random, setRandom] = useState(false);
+  const [sortBy, setSortBy] = useState('alphabetical');
   const [autori, setAutori] = useState(() => authors.map(
     ({ autore, ...rest }) => ({
       ...rest, autore: startCase(_.toLower(autore)),
@@ -36,13 +52,23 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
     setAutori((list) => _.sortBy(list, [(i) => i.autore]));
   }
 
+  function handleDegree() {
+    setAutori((list) => _.sortBy(list, [(i) => i.facolta]));
+  }
+
   useEffect(() => {
-    if (random) {
-      handleShuffle();
-    } else {
-      handleAlphabetical();
+    switch (sortBy) {
+      case 'random':
+        handleShuffle();
+        break;
+      case 'alphabetical':
+        handleAlphabetical();
+        break;
+      case 'degree':
+        handleDegree();
+        break;
     }
-  }, [random]);
+  }, [sortBy]);
 
   const { t } = useTranslation('crediti');
   return (
@@ -77,10 +103,12 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
             <p className="ms-5">
               <Trans t={t} i18nKey="progetto.citazione">
                 “(…) solo gli abitanti riconoscono ai luoghi una loro
-                particolarità e un carattere preciso, al quale non rinunciano (…)
+                particolarità e un carattere preciso, al quale non rinunciano
+                (…)
                 li guardano come se leggessero il palmo della loro mano, sapendo
                 che per scoprire qualcosa bisogna farlo con estrema attenzione,
-                perché, oltre alle linee principali che sono nette e chiare, ce ne
+                perché, oltre alle linee principali che sono nette e chiare, ce
+                ne
                 sono tante altre, piccolissime che le intersecano e che,
                 nell’insieme, ne determinano l’unicità.”
               </Trans>
@@ -193,25 +221,26 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
             <table className="table" id="tabella-autori">
               <thead>
                 <th>
-                  <button
-                    className="btn btn-text pl-0"
-                    onClick={() => setRandom(false)}
+                  <TableButton
+                    isActive={sortBy === 'alphabetical'}
+                    onClick={() => setSortBy('alphabetical')}
                   >
                     A-Z
-                  </button>
-                  <button
-                    className="btn btn-text"
-                    onClick={() => setRandom(
-                      (r) => (r ? handleShuffle() : true),
-                    )}
+                  </TableButton>
+                  <TableButton
+                    isActive={sortBy === 'random'}
+                    onClick={() => setSortBy('random')}
                   >
                     {t('Casuale')}
-                  </button>
+                  </TableButton>
                 </th>
                 <th>
-                  <button className="btn btn-text pl-0">
+                  <TableButton
+                    isActive={sortBy === 'degree'}
+                    onClick={() => setSortBy('degree')}
+                  >
                     Facoltà
-                  </button>
+                  </TableButton>
                 </th>
               </thead>
               <tbody>
