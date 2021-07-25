@@ -89,7 +89,7 @@ function Header(props) {
                 <Link
                   activeClassName="text-decoration-line-through"
                   className="nav-link"
-                  to="/credits"
+                  to="/about"
                 >
                   {t('Crediti')}
                 </Link>

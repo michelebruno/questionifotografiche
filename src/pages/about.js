@@ -31,7 +31,7 @@ function TableButton({
   );
 }
 
-function Credits({ data: { autori: { nodes: authors } }, location }) {
+function About({ data: { autori: { nodes: authors } }, location }) {
   const [sortBy, setSortBy] = useState('alphabetical');
   const [autori, setAutori] = useState(() => authors.map(
     ({ autore, ...rest }) => ({
@@ -73,7 +73,7 @@ function Credits({ data: { autori: { nodes: authors } }, location }) {
   const { t } = useTranslation('crediti');
   return (
     <Layout>
-      <SEO title="Credits" />
+      <SEO title="About" />
       <div className="container py-3 py-lg-5">
         <div className="row ">
           <div className="col-12 "><h1>{t('About')}</h1></div>
@@ -281,4 +281,4 @@ export const query = graphql`
     }
 `;
 
-export default Credits;
+export default About;
