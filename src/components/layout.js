@@ -65,7 +65,7 @@ function Layout({
       <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
       <div className={rendered ? 'rendered' : undefined}>
         <main
-          className={classList.length && classList.join(' ')}
+          className="pt-5"
         >
           {children}
         </main>

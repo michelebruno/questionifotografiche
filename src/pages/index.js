@@ -78,7 +78,7 @@ const IndexPage = ({ data }) => {
             </p>
           </div>
           <div className="col-12">
-            <div className="row flex-lg-row-reverse justify-content-between">
+            <div className="row flex-md-row-reverse justify-content-between">
               <div className="col-10 col-md-4 ms-auto align-self-center">
                 <p className="py-5 mb-0">
                   Reportage articolato in differenti temi e ricerche sul micro e

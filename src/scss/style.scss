@@ -43,7 +43,25 @@ h6, .h6 {
 
     font-weight: 500;
   }
+  @include media-breakpoint-down(md) {
+    position: fixed;
+    z-index: 999;
+    inset: 0;
+    background: $white;
+
+    transition: transform 500ms;
+    #nav-container {
+      font-size: 2em;
+    }
+    transform: translateY(-100vh);
+
+    &.active {
+      transform: unset;
+    }
+  }
+
 }
+
 
 #info-container {
   position: fixed;
@@ -65,8 +83,7 @@ h6, .h6 {
 
 .hero {
   position: relative;
-
-  min-height: 75vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
 
