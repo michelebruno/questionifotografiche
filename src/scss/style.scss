@@ -62,12 +62,40 @@ h6, .h6 {
   }
 }
 
+
+.hero {
+  position: relative;
+
+  min-height: 75vh;
+  display: flex;
+  justify-content: center;
+
+  & > div {
+    height: 100%;
+    bottom: 0;
+  }
+
+  @include media-breakpoint-up(md) {
+    min-height: calc(100vh - 3vw * 1.2 - #{map-get($spacers, 2)} - 64px - .5rem);
+
+  }
+
+}
+
 .marquee {
   position: relative;
   overflow: hidden;
   --offset: 20vw;
   --move-initial: calc(-25% + var(--offset));
   --move-final: calc(-50% + var(--offset));
+}
+
+.home-lead {
+  font-size: $lead-font-size;
+  @include media-breakpoint-up(lg) {
+
+    font-size: map-get($display-font-sizes, 3);
+  }
 }
 
 .marquee__inner {
@@ -77,13 +105,16 @@ h6, .h6 {
   transform: translate3d(var(--move-initial), 0, 0);
   animation: marquee 25s linear infinite;
   animation-play-state: running;
+  //font-size: 1rem;
 }
 
 .marquee span {
-  @extend .h1;
-  font-size: 3vw;
+  @extend .h5;
   padding: 0 2vw;
   white-space: nowrap;
+  @include media-breakpoint-up(lg) {
+    font-size: 3vw;
+  }
 }
 
 .marquee:hover .marquee__inner {
@@ -167,14 +198,58 @@ h6, .h6 {
 }
 
 
-#hero-spacer {
-  width: 0;
-  transition: width 1s ease .5s;
+#hero-qf {
+  top: 50%;
+  transform: translateY(-50%);
+  left: 25%;
+  width: 50vw;
+  font-size: 12vw;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 1s ease .5s;
 
   .rendered & {
-    width: 70vw;
+    opacity: 1;
+  }
+
+  @include media-breakpoint-up(lg ) {
+    font-size: 8vw;
+
   }
 }
+
+#hero-digit-2,
+#hero-digit-6 {
+  will-change: transform;
+  transition: transform 1s ease .5s;
+  font-size: 1.6em;
+  display: inline-block;
+  @include media-breakpoint-up(lg) {
+    font-size: 1em;
+  }
+}
+
+.rendered {
+  #hero-digit-2 {
+    transform: translate(-25vw, -0.7em);
+  }
+
+  #hero-digit-6 {
+    transform: translate(25vw, 0.7em);
+  }
+
+  @include media-breakpoint-up(lg) {
+
+    #hero-digit-2 {
+      transform: translate(-30vw, 0);
+    }
+
+    #hero-digit-6 {
+      transform: translate(30vw, 0);
+    }
+  }
+}
+
 
 .authors-button {
   opacity: $btn-disabled-opacity;
@@ -192,21 +267,6 @@ h6, .h6 {
   height: 85vh;
   @include media-breakpoint-up(lg) {
     height: 75vh;
-  }
-}
-
-#hero-qf {
-  top: 50%;
-  transform: translateY(-50%);
-  left: 25%;
-  width: 50vw;
-  font-size: 8vw;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 1s ease .5s;
-
-  .rendered & {
-    opacity: 1;
   }
 }
 

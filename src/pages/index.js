@@ -6,7 +6,6 @@ import { SwiperSlide, Swiper } from 'swiper/react';
 import SwiperCore, { Autoplay, EffectFade } from 'swiper';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-import * as classes from './index.module.scss';
 
 SwiperCore.use([EffectFade, Autoplay]);
 const IndexPage = ({ data }) => {
@@ -18,19 +17,18 @@ const IndexPage = ({ data }) => {
       <section className="container-fluid">
         <div className="row">
           <div className="col-12 px-0 text-center overflow-hidden">
-            <h1 className={classes.hero}>
+            <h1 className="hero">
               <div
-                className="text-center d-flex m-auto justify-content-center"
+                className="py-3 text-center d-flex m-auto justify-content-center"
                 style={{
                   fontSize: '40vw',
                   lineHeight: 1,
                   letterSpacing: '11px',
                 }}
               >
-                <span style={{ whiteSpace: 'nowrap', fontWeight: 600 }}>
-                  <span className="bg-white">2</span>
-                  <span id="hero-spacer" className="d-inline-block" />
-                  <span className="bg-white">6</span>
+                <span style={{ fontWeight: 600 }}>
+                  <span id="hero-digit-2">2</span>
+                  <span id="hero-digit-6">6</span>
                 </span>
               </div>
               <span
@@ -58,7 +56,7 @@ const IndexPage = ({ data }) => {
         <div className="col-12">
           <div className="d-block">
             <div className="marquee">
-              <div className="marquee__inner h5 py-0 mb-0" aria-hidden="true">
+              <div className="marquee__inner py-0 mb-0" aria-hidden="true">
                 {_.times(10,
                   () => <span className="my-1">fotografie come lettere dell’alfabeto / </span>)}
               </div>
@@ -69,8 +67,8 @@ const IndexPage = ({ data }) => {
 
       <section className="container-fluid">
         <div className="row justify-content-between">
-          <div className="col-12 col-md-9 py-5 my-5">
-            <p className="display-3 my-5 py-5">
+          <div className="col-12 col-md-9 py-lg-5 my-lg-5">
+            <p className="home-lead my-md-5 py-5">
               Il progetto nasce dall'idea di creare un percorso, un'occasione,
               per riscoprire, come Xavier De Maistre nel suo "Voyage autour de
               ma chambre", gli infiniti ricordi che si nascondono nel paesaggio
@@ -79,31 +77,38 @@ const IndexPage = ({ data }) => {
               Ghirri nel suo “Identikit”.
             </p>
           </div>
-          <div className="col-12 col-md-6">
-            <Swiper
-              effect="fade"
-              loop
-              autoplay={{
-                // delay: 2500,
-                disableOnInteraction: false,
-              }}
-            >
-              {images.map((img) => (
-                <SwiperSlide effect="fade" autoPlay>
-                  <GatsbyImage image={getImage(img.childFile)} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
+          <div className="col-12">
+            <div className="row flex-lg-row-reverse justify-content-between">
+              <div className="col-10 col-md-4 ms-auto align-self-center">
+                <p className="py-5 mb-0">
+                  Reportage articolato in differenti temi e ricerche sul micro e
+                  macro paesaggio, con letture etno-antropologiche condotte
+                  mediante
+                  l’uso della fotografia. Spunti per un’altra dimensione e idea
+                  di
+                  memoria, luogo, narrazione, paesaggio, design e architettura
+                  domestica, al tempo del Corona Virus.
+                </p>
+              </div>
+              <div className="col-12 col-md-6 py-5 py-lg-0 my-lg-n3">
+                <Swiper
+                  effect="fade"
+                  loop
+                  autoplay={{
+                    // delay: 2500,
+                    disableOnInteraction: false,
+                  }}
+                >
+                  {images.map((img) => (
+                    <SwiperSlide effect="fade" autoPlay>
+                      <GatsbyImage image={getImage(img.childFile)} />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
+            </div>
           </div>
-          <div className="col-12 col-md-4 align-self-center">
-            <p className="py-5 mb-0">
-              Reportage articolato in differenti temi e ricerche sul micro e
-              macro paesaggio, con letture etno-antropologiche condotte mediante
-              l’uso della fotografia. Spunti per un’altra dimensione e idea di
-              memoria, luogo, narrazione, paesaggio, design e architettura
-              domestica, al tempo del Corona Virus.
-            </p>
-          </div>
+
         </div>
 
         <div className="row align-items-center" style={{ minHeight: '90vh' }}>
