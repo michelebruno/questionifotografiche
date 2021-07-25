@@ -8,21 +8,20 @@ import SwiperCore, {
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { getSrcSet, getSrc } from 'gatsby-plugin-image';
 import { useI18next, useTranslation } from 'gatsby-plugin-react-i18next';
+import _ from 'lodash';
 import Layout from './layout';
 import SEO from './seo';
 
 SwiperCore.use([Mousewheel, Keyboard, Pagination, Scrollbar, Navigation, Lazy]);
 
 export default function Lettera({
-  data: { immagini, pagina },
+  data: { pagina, ...data },
   pageContext: { lettera },
 }) {
-  const triggerRef = useRef();
-  const scrollerRef = useRef();
-
   const { t } = useTranslation();
   const { language } = useI18next();
 
+  const immagini = useMemo(() => _.shuffle(data.immagini.nodes));
   const isEnglish = language === 'en';
 
   const [displayInfo, setDisplayInfo] = useState(false);
@@ -34,98 +33,96 @@ export default function Lettera({
   return (
     <Layout hideFooter containerFluid lettera={lettera}>
       <SEO description={descrizione} title={titolo} />
-      <div className="row">
-        <div className="col-12 col-lg-9">
-          <section
-            id="scroller"
-            ref={scrollerRef}
-            style={{
-              '--slides': immagini.nodes.length,
-            }}
-          >
-            <Swiper
-              lazy={{
-                loadPrevNext: true,
-                loadPrevNextAmount: 3,
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-12 col-lg-9">
+            <section
+              id="scroller"
+              style={{
+                '--slides': immagini.length,
               }}
-              keyboard
-              ref={triggerRef}
-              // direction="vertical"
-              mousewheel
-              className="h-100"
-              pagination
             >
-              {immagini.nodes.map((immagine, i) => {
-                const description = immagine.descrizione;
+              <Swiper
+                lazy={{
+                  loadPrevNext: true,
+                  loadPrevNextAmount: 3,
+                }}
+                keyboard
+                mousewheel
+                className="h-100"
+                pagination
+              >
+                {immagini.map((immagine, i) => {
+                  const description = immagine.descrizione;
 
-                if (!immagine.childFile) {
-                  console.log(`Can't find image for ${immagine.autore} in letter ${lettera}`);
-                  return null;
-                }
+                  if (!immagine.childFile) {
+                    return null;
+                  }
 
-                return (
-                  <SwiperSlide
-                    className="swiper-slide-fotografia "
-                    key={immagine.id}
-                  >
-                    <div
-                      className="row align-content-start align-items-lg-center h-100 bg-white flex-row-reverse pb-5"
+                  return (
+                    <SwiperSlide
+                      className="swiper-slide-fotografia "
+                      key={immagine.id}
                     >
-
                       <div
-                        className="col-12 col-lg-8 author-cursor-container photograph-image-container d-flex pe-lg-0"
+                        className="row align-content-start align-items-lg-center h-100 bg-white flex-row-reverse pb-5"
                       >
-                        <img
-                          data-src={getSrc(immagine.childFile)}
-                          data-srcset={getSrcSet(immagine.childFile)}
-                          alt={descrizione}
-                          {...(i === 0 && { src: getSrc(immagine.childFile) })}
-                          className="immagine swiper-lazy"
-                        />
-                      </div>
-                      <div className="col-12 col-lg-4 py-3 position-relative ps-lg-0 photograph-targhetta-container  ">
+
                         <div
-                          className="row  gx-1 justify-content-between h6 heading-style-regular"
+                          className="col-12 col-lg-8 author-cursor-container photograph-image-container d-flex pe-lg-0"
                         >
-                          <div className="col-auto">{immagine.autore}</div>
-                          <div className="col-auto">
-                            {`${i + 1} / ${immagini.nodes.length}`}
-                          </div>
+                          <img
+                            data-src={getSrc(immagine.childFile)}
+                            data-srcset={getSrcSet(immagine.childFile)}
+                            alt={descrizione}
+                            {...(i === 0 && { src: getSrc(immagine.childFile) })}
+                            className="immagine swiper-lazy"
+                          />
                         </div>
-                        <p className="didascalia text-dark-50">
-                          {description !== 'NO DIDASCALIA' && (
-                            description
-                          )}
-                        </p>
+                        <div className="col-12 col-lg-4 py-3 position-relative ps-lg-0 photograph-targhetta-container  ">
+                          <div
+                            className="row  gx-1 justify-content-between h6 heading-style-regular"
+                          >
+                            <div className="col-auto">{immagine.autore}</div>
+                            <div className="col-auto">
+                              {`${i + 1} / ${immagini.length}`}
+                            </div>
+                          </div>
+                          <p className="didascalia text-dark-50">
+                            {description !== 'NO DIDASCALIA' && (
+                              description
+                            )}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-          </section>
-        </div>
-        <div
-          id="letter-title"
-          className="d-none d-lg-block col-12 col-lg-3 align-self-center text-center"
-        >
-          <h1>{titolo}</h1>
-          <h2 className="h4">{sottotitolo}</h2>
-        </div>
-
-      </div>
-
-      <div className="row">
-        <div
-          className="col text-center position-absolute py-3 py-lg-5"
-          style={{ bottom: 0 }}
-        >
-          <button
-            className="btn btn-text btn-lg text-uppercase"
-            onClick={() => setDisplayInfo(!displayInfo)}
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            </section>
+          </div>
+          <div
+            id="letter-title"
+            className="d-none d-lg-block col-12 col-lg-3 align-self-center text-center"
           >
-            Info
-          </button>
+            <h1>{titolo}</h1>
+            <h2 className="h4">{sottotitolo}</h2>
+          </div>
+
+        </div>
+
+        <div className="row">
+          <div
+            className="col text-center position-absolute py-3 py-lg-5"
+            style={{ bottom: 0 }}
+          >
+            <button
+              className="btn btn-text btn-lg text-uppercase"
+              onClick={() => setDisplayInfo(!displayInfo)}
+            >
+              Info
+            </button>
+          </div>
         </div>
       </div>
       <section

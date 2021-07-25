@@ -14,7 +14,7 @@ function Alfabeto({ data: { lettere: letters } }) {
   return (
     <Layout>
       <SEO title="Home" />
-      <section className="container-fluid container-lg py-3 py-lg-5">
+      <section className="container-fluid container-lg pt-3 py-lg-5" style={{ marginBottom: '-1rem' }}>
         <div className="row ">
 
           {lettere.map(({ id, titolo }, index) => (

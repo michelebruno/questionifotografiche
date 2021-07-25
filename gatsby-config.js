@@ -1,11 +1,11 @@
 const dotenv = require('dotenv');
 
-const devMode = process.env.NODE_ENV === 'development';
+// const devMode = process.env.NODE_ENV === 'development';
 dotenv.config({
   path: `.env${process.env.NODE_ENV ? `.${process.env.NODE_ENV}` : ''}`,
 });
 
-const siteUrl = `https://questionifotografiche${devMode ? '.mbruno' : ''}.it/`;
+const siteUrl = 'https://questionifotografiche.it/';
 const googleCredentials = require('./credentials.json');
 
 module.exports = {

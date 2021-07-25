@@ -83,7 +83,7 @@ h6, .h6 {
 
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: calc(100vh - 3vw * 1.2 - #{map-get($spacers, 2)} - 64px - .5rem);
   display: flex;
   justify-content: center;
 
@@ -92,10 +92,9 @@ h6, .h6 {
     bottom: 0;
   }
 
-  @include media-breakpoint-up(md) {
-    min-height: calc(100vh - 3vw * 1.2 - #{map-get($spacers, 2)} - 64px - .5rem);
-
-  }
+  //@include media-breakpoint-up(md) {
+  //  min-height: calc(100vh - 3vw * 1.2 - #{map-get($spacers, 2)} - 64px - .5rem);
+  //}
 
 }
 
