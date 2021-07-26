@@ -4,12 +4,14 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import _ from 'lodash';
 import { SwiperSlide, Swiper } from 'swiper/react';
 import SwiperCore, { Autoplay, EffectFade } from 'swiper';
+import { useTranslation } from 'gatsby-plugin-react-i18next';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
 SwiperCore.use([EffectFade, Autoplay]);
 const IndexPage = ({ data }) => {
   const images = data.images.nodes;
+  const { t } = useTranslation();
 
   return (
     <Layout>
@@ -69,28 +71,24 @@ const IndexPage = ({ data }) => {
         <div className="row justify-content-between">
           <div className="col-12 col-md-9 py-lg-5 my-lg-5">
             <p className="home-lead my-md-5 py-5">
-              Il progetto nasce dall'idea di creare un percorso, un'occasione,
-              per riscoprire, come Xavier De Maistre nel suo "Voyage autour de
-              ma chambre", gli infiniti ricordi che si nascondono nel paesaggio
-              domestico. Paesaggio ricco di affetti e di storie, come scrive
-              Vittorio Lingiardi nel suo "Mindscapes" o come illustra Luigi
-              Ghirri nel suo “Identikit”.
+              {t('progetto.nasce',
+                "Il progetto nasce dall'idea di creare un percorso, un'occasione, per riscoprire, come Xavier De Maistre nel suo \"Voyage autour de\n"
+                + ' ma chambre", gli infiniti ricordi che si nascondono nel paesaggio'
+                + ' domestico. Paesaggio ricco di affetti e di storie, come scrive'
+                + ' Vittorio Lingiardi nel suo "Mindscapes" o come illustra Luigi'
+                + ' Ghirri nel suo “Identikit”.')}
             </p>
           </div>
           <div className="col-12">
             <div className="row flex-md-row-reverse justify-content-between">
-              <div className="col-10 col-md-4 ms-auto align-self-center">
+              <div className="col-10 col-lg-6 col-xl-4 ms-auto align-self-center">
                 <p className="py-5 mb-0">
-                  Reportage articolato in differenti temi e ricerche sul micro e
-                  macro paesaggio, con letture etno-antropologiche condotte
-                  mediante
-                  l’uso della fotografia. Spunti per un’altra dimensione e idea
-                  di
-                  memoria, luogo, narrazione, paesaggio, design e architettura
-                  domestica, al tempo del Corona Virus.
+                  {t(
+                    'progetto.articolato', 'Reportage articolato in differenti temi e ricerche sul micro e macro paesaggio, con letture etno-antropologiche condotte mediante l’uso della fotografia. Spunti per un’altra dimensione e idea di memoria, luogo, narrazione, paesaggio, design e architettura domestica, al tempo del Corona Virus.',
+                  )}
                 </p>
               </div>
-              <div className="col-12 col-md-6 py-5 py-lg-0 my-lg-n3">
+              <div className="col-12 col-md-6 py-5 py-lg-0 my-lg-n3 align-self-center">
                 <Swiper
                   effect="fade"
                   loop
@@ -136,7 +134,6 @@ export const query = graphql`
                 }
             }
         }
-
         images: allSheetsImmagini(filter: {homepage: {eq: "1"}}) {
             nodes {
                 descrizione

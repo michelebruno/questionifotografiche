@@ -114,7 +114,7 @@ export default function Lettera({
         <div className="row">
           <div
             className="col text-center position-absolute py-3 py-lg-5"
-            style={{ bottom: 0 }}
+            style={{ bottom: 0, zIndex: 999 }}
           >
             <button
               className="btn btn-text btn-lg text-uppercase"
@@ -189,5 +189,4 @@ export const query = graphql`query Immagini( $language: String!, $lettera : Int)
             }
         }
     }
-   
 }`;

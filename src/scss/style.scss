@@ -109,7 +109,6 @@ h6, .h6 {
 .home-lead {
   font-size: $lead-font-size;
   @include media-breakpoint-up(lg) {
-
     font-size: map-get($display-font-sizes, 3);
   }
 }
@@ -147,10 +146,6 @@ h6, .h6 {
   }
 }
 
-.swiper-container-vertical > .swiper-pagination-bullets {
-  right: unset;
-  left: 0;
-}
 
 .swiper-pagination-bullet {
   // height: calc((75vh - (var(--slides) * 12px) )/ var(--slides));
@@ -161,19 +156,22 @@ h6, .h6 {
 
 .swiper-container-horizontal > .swiper-pagination-bullets {
   min-width: calc(100vw - 50px);
+  white-space: nowrap;
+  text-align: center;
+  //overflow: hidden;
 }
 
 .photograph-image-container {
   //border-bottom: $black solid 2px;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(lg) {
     max-height: 60%;
   }
   height: 100%;
 }
 
 .photograph-targhetta-container {
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(lg) {
     height: 30%;
   }
 }
@@ -240,7 +238,7 @@ h6, .h6 {
   transition: transform 1s ease .5s;
   font-size: 1.6em;
   display: inline-block;
-  @include media-breakpoint-up(lg) {
+  @include media-breakpoint-up(xl) {
     font-size: 1em;
   }
 }
@@ -254,7 +252,7 @@ h6, .h6 {
     transform: translate(25vw, 0.7em);
   }
 
-  @include media-breakpoint-up(lg) {
+  @include media-breakpoint-up(xl) {
 
     #hero-digit-2 {
       transform: translate(-30vw, 0);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { Link } from 'gatsby-plugin-react-i18next';
+import { Link, useI18next } from 'gatsby-plugin-react-i18next';
 import _ from 'lodash';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
@@ -11,17 +11,21 @@ function Alfabeto({ data: { lettere: letters } }) {
   ),
   'lettera');
 
+  const { language } = useI18next();
+
+  const isEnglish = language === 'en';
+
   return (
     <Layout>
       <SEO title="Home" />
       <section className="container-fluid container-lg pt-3 py-lg-5" style={{ marginBottom: '-1rem' }}>
         <div className="row ">
 
-          {lettere.map(({ id, titolo }, index) => (
+          {lettere.map(({ id, titolo, title }) => (
             (
               <div key={id} className="col-12 border-dark lettera-link">
                 <h3 className="display-4 py-2 ">
-                  <Link to={`/${_.kebabCase(titolo)}`}>{titolo}</Link>
+                  <Link to={`/${_.kebabCase(titolo)}`}>{isEnglish ? title : titolo}</Link>
                 </h3>
               </div>
             )
@@ -46,10 +50,11 @@ export const query = graphql`
                 }
             }
         }
-        lettere: allLettereCsv(sort: { fields: lettera, order: ASC }) {
+        lettere: allSheetsLettere(sort: { fields: lettera, order: ASC }) {
             nodes {
                 id
                 titolo
+                title 
                 lettera
                 descrizione
             }
