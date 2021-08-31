@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import _ from 'lodash';
+import times from 'lodash/times';
 import { SwiperSlide, Swiper } from 'swiper/react';
 import SwiperCore, { Autoplay, EffectFade } from 'swiper';
 import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
@@ -59,7 +59,7 @@ const IndexPage = ({ data }) => {
           <div className="d-block">
             <div className="marquee">
               <div className="marquee__inner py-0 mb-0" aria-hidden="true">
-                {_.times(10,
+                {times(10,
                   () => <span className="my-1">fotografie come lettere dell’alfabeto / </span>)}
               </div>
             </div>
@@ -71,12 +71,7 @@ const IndexPage = ({ data }) => {
         <div className="row justify-content-between">
           <div className="col-12 col-md-9 py-lg-5 my-lg-5">
             <p className="home-lead my-md-5 py-5">
-              {t('progetto.nasce',
-                "Il progetto nasce dall'idea di creare un percorso, un'occasione, per riscoprire, come Xavier De Maistre nel suo \"Voyage autour de\n"
-                + ' ma chambre", gli infiniti ricordi che si nascondono nel paesaggio'
-                + ' domestico. Paesaggio ricco di affetti e di storie, come scrive'
-                + ' Vittorio Lingiardi nel suo "Mindscapes" o come illustra Luigi'
-                + ' Ghirri nel suo “Identikit”.')}
+              {t('progetto.nasce')}
             </p>
           </div>
           <div className="col-12">

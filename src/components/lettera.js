@@ -6,7 +6,7 @@ import SwiperCore, {
 } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useI18next, useTranslation } from 'gatsby-plugin-react-i18next';
-import _ from 'lodash';
+import shuffle from 'lodash/shuffle';
 import Layout from './layout';
 import SEO from './seo';
 import Image from './image';
@@ -20,7 +20,7 @@ export default function Lettera({
   const { t } = useTranslation();
   const { language } = useI18next();
 
-  const immagini = useMemo(() => _.shuffle(data.immagini.nodes));
+  const immagini = useMemo(() => shuffle(data.immagini.nodes));
   const isEnglish = language === 'en';
 
   const [displayInfo, setDisplayInfo] = useState(false);

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { graphql } from 'gatsby';
 
-import _ from 'lodash';
+import _sortBy from 'lodash/sortBy';
+import shuffle from 'lodash/shuffle';
+import toLower from 'lodash/toLower';
 import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
@@ -35,7 +37,7 @@ function About({ data: { autori: { nodes: authors } }, location }) {
   const [sortBy, setSortBy] = useState('alphabetical');
   const [autori, setAutori] = useState(() => authors.map(
     ({ autore, ...rest }) => ({
-      ...rest, autore: startCase(_.toLower(autore)),
+      ...rest, autore: startCase(toLower(autore)),
     }),
   ).filter(
     (item, index, self) => self.findIndex((i) => i.autore === item.autore)
@@ -43,17 +45,17 @@ function About({ data: { autori: { nodes: authors } }, location }) {
   ));
 
   function handleShuffle() {
-    setAutori((list) => _.shuffle(list));
+    setAutori((list) => shuffle(list));
 
     return true;
   }
 
   function handleAlphabetical() {
-    setAutori((list) => _.sortBy(list, [(i) => i.autore]));
+    setAutori((list) => _sortBy(list, [(i) => i.autore]));
   }
 
   function handleDegree() {
-    setAutori((list) => _.sortBy(list, [(i) => i.facolta]));
+    setAutori((list) => _sortBy(list, [(i) => i.facolta]));
   }
 
   useEffect(() => {

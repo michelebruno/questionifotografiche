@@ -1,12 +1,13 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { Link, useI18next } from 'gatsby-plugin-react-i18next';
-import _ from 'lodash';
+import sortBy from 'lodash/sortBy';
+import kebabCase from 'lodash/kebabCase';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
 function Alfabeto({ data: { lettere: letters } }) {
-  const lettere = _.sortBy(letters.nodes.map(
+  const lettere = sortBy(letters.nodes.map(
     ({ lettera, ...rest }) => ({ lettera: Number(lettera), ...rest }),
   ),
   'lettera');
@@ -25,7 +26,7 @@ function Alfabeto({ data: { lettere: letters } }) {
             (
               <div key={id} className="col-12 border-dark lettera-link">
                 <h3 className="display-4 py-2 ">
-                  <Link to={`/${_.kebabCase(titolo)}`}>{isEnglish ? title : titolo}</Link>
+                  <Link to={`/${kebabCase(titolo)}`}>{isEnglish ? title : titolo}</Link>
                 </h3>
               </div>
             )

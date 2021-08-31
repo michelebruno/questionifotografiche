@@ -20,6 +20,7 @@ function SEO({
             title
             description
             author
+              
           }
         }
       }
