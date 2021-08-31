@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
-
+import { Trans } from 'gatsby-plugin-react-i18next';
 import { GatsbyImage, getImage, getSrc } from 'gatsby-plugin-image';
 import Header from './header';
 
@@ -96,11 +96,11 @@ function Layout({
                 <div>
                   <h6 className="heading-style-regular">© 2021</h6>
                   <p>
-                    Corso di Laurea Magistrale
+                    <Trans ns="crediti">Corso di Laurea Magistrale</Trans>
                     <br />
-                    Design della Comunicazione
+                    <Trans ns="crediti">Design della Comunicazione</Trans>
                     <br />
-                    Cultura dell’Immagine Digitale
+                    <Trans ns="crediti">Cultura dell'immagine digitale</Trans>
                   </p>
                 </div>
                 <div>
@@ -125,9 +125,11 @@ function Layout({
                 <div>
                   <h6 className="heading-style-regular">Copyright</h6>
                   <p>
-                    Immagini soggette alle tutele di legge in materia di
-                    protezione del diritto d’autore e di diritti connessi al suo
-                    esercizio.
+                    <Trans ns="crediti" i18nKey="copyright-disclaimer">
+                      Immagini soggette alle tutele di legge in materia di
+                      protezione del diritto d’autore e di diritti connessi al suo
+                      esercizio.
+                    </Trans>
                   </p>
                 </div>
               </div>

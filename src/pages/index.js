@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import _ from 'lodash';
 import { SwiperSlide, Swiper } from 'swiper/react';
 import SwiperCore, { Autoplay, EffectFade } from 'swiper';
-import { useTranslation } from 'gatsby-plugin-react-i18next';
+import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
@@ -112,7 +112,7 @@ const IndexPage = ({ data }) => {
         <div className="row align-items-center" style={{ minHeight: '90vh' }}>
           <div className="col-12 text-center py-5">
             <h3 className="display-2">
-              <Link to="/alfabeto">Scopri le foto</Link>
+              <Link to="/alfabeto"><Trans>Scopri le foto</Trans></Link>
             </h3>
           </div>
         </div>
