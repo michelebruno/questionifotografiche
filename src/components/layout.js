@@ -24,7 +24,7 @@ function Layout({
               childImageSharp {
                   gatsbyImageData(
                       layout: CONSTRAINED
-                      width: 500
+                      width: 300
                       quality: 80
                   )
               }
@@ -49,7 +49,7 @@ function Layout({
   if (props.container) {
     classList.push('container');
   }
-  const links = [{ rel: 'preconnect', href: 'https://fonts.gstatic.com' }];
+  const links = [{ rel: 'preconnect', href: 'https://p.typekit.net' }];
 
   if (lettera) {
     const faviconPath = getSrc(favicons.nodes.find(

@@ -1,5 +1,5 @@
 import { Link, useI18next, useTranslation } from 'gatsby-plugin-react-i18next';
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import * as PropTypes from 'prop-types';
 
 function Header(props) {
@@ -38,9 +38,8 @@ function Header(props) {
           <div className="col text-end ">
             <span className="nav-link  px-0">
               {languages.map((lng, i) => (
-                <>
+                <Fragment key={lng}>
                   <Link
-                    key={lng}
                     language={lng}
                     className={language !== lng && 'text-black-50'}
                     to={originalPath}
@@ -48,7 +47,7 @@ function Header(props) {
                     {lng}
                   </Link>
                   {!i && '/'}
-                </>
+                </Fragment>
               ))}
             </span>
           </div>
@@ -97,9 +96,8 @@ function Header(props) {
               <span className="nav-item d-none d-md-block">
                 <span className="nav-link">
                   {languages.map((lng, i) => (
-                    <>
+                    <Fragment key={lng}>
                       <Link
-                        key={lng}
                         language={lng}
                         className={language !== lng && 'text-black-50'}
                         to={originalPath}
@@ -107,7 +105,7 @@ function Header(props) {
                         {lng}
                       </Link>
                       {!i && '/'}
-                    </>
+                    </Fragment>
                   ))}
                 </span>
               </span>

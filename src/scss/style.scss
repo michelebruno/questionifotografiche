@@ -1,10 +1,10 @@
 @import url("https://use.typekit.net/qsp3uel.css");
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&display=swap');
 
 @import "bootstrap";
 
 @import "~swiper/swiper";
-@import "~swiper/components/scrollbar/scrollbar";
+//@import "~swiper/components/scrollbar/scrollbar";
 @import "~swiper/components/effect-fade/effect-fade";
 @import "~swiper/components/pagination/pagination";
 @import "~swiper/components/navigation/navigation";
@@ -133,7 +133,7 @@ h6, .h6 {
 }
 
 .marquee:hover .marquee__inner {
-  animation-play-state: hover;
+  animation-play-state: paused;
 }
 
 @keyframes marquee {

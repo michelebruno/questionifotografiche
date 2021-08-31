@@ -1,18 +1,17 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { graphql } from 'gatsby';
 import SwiperCore, {
-  Keyboard, Lazy,
-  Mousewheel, Navigation, Pagination, Scrollbar,
+  Keyboard, Mousewheel, Navigation, Pagination,
 } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { getSrcSet, getSrc } from 'gatsby-plugin-image';
 import { useI18next, useTranslation } from 'gatsby-plugin-react-i18next';
 import _ from 'lodash';
 import Layout from './layout';
 import SEO from './seo';
+import Image from './image';
 
-SwiperCore.use([Mousewheel, Keyboard, Pagination, Scrollbar, Navigation, Lazy]);
+SwiperCore.use([Mousewheel, Keyboard, Pagination, Navigation]);
 
 export default function Lettera({
   data: { pagina, ...data },
@@ -27,8 +26,12 @@ export default function Lettera({
   const [displayInfo, setDisplayInfo] = useState(false);
 
   const titolo = isEnglish && pagina.title ? pagina.title : pagina.titolo;
-  const sottotitolo = isEnglish && pagina.subtitle ? pagina.subtitle : pagina.sottotitolo;
-  const descrizione = isEnglish && pagina.description ? pagina.description : pagina.descrizione;
+  const sottotitolo = isEnglish && pagina.subtitle
+    ? pagina.subtitle
+    : pagina.sottotitolo;
+  const descrizione = isEnglish && pagina.description
+    ? pagina.description
+    : pagina.descrizione;
 
   return (
     <Layout hideFooter containerFluid lettera={lettera}>
@@ -64,37 +67,43 @@ export default function Lettera({
                       className="swiper-slide-fotografia "
                       key={immagine.id}
                     >
-                      <div
-                        className="row align-content-start align-items-lg-center h-100 bg-white flex-row-reverse pb-5"
-                      >
-
+                      {({ isNext, isPrev, isActive }) => (
                         <div
-                          className="col-12 col-lg-8 author-cursor-container photograph-image-container d-flex pe-lg-0"
+                          className="row align-content-start align-items-lg-center h-100 bg-white flex-row-reverse pb-5"
                         >
-                          <img
-                            data-src={getSrc(immagine.childFile)}
-                            data-srcset={getSrcSet(immagine.childFile)}
-                            alt={descrizione}
-                            {...(i === 0 && { src: getSrc(immagine.childFile) })}
-                            className="immagine swiper-lazy"
-                          />
-                        </div>
-                        <div className="col-12 col-lg-4 py-3 position-relative ps-lg-0 photograph-targhetta-container  ">
+
                           <div
-                            className="row  gx-1 justify-content-between h6 heading-style-regular"
+                            className="col-12 col-lg-8 author-cursor-container photograph-image-container pe-lg-0"
                           >
-                            <div className="col-auto">{immagine.autore}</div>
-                            <div className="col-auto">
-                              {`${i + 1} / ${immagini.length}`}
-                            </div>
+                            <Image
+                              image={immagine.childFile}
+                              className="immagine"
+                              loading={(isNext || isPrev || isActive)
+                                ? 'eager'
+                                : 'lazy'}
+                              alt={descrizione}
+                              preload={isNext || isPrev || isActive}
+                            />
                           </div>
-                          <p className="didascalia text-dark-50">
-                            {description !== 'NO DIDASCALIA' && (
-                              description
-                            )}
-                          </p>
+                          <div
+                            className="col-12 col-lg-4 py-3 position-relative ps-lg-0 photograph-targhetta-container  "
+                          >
+                            <div
+                              className="row  gx-1 justify-content-between h6 heading-style-regular"
+                            >
+                              <div className="col-auto">{immagine.autore}</div>
+                              <div className="col-auto">
+                                {`${i + 1} / ${immagini.length}`}
+                              </div>
+                            </div>
+                            <p className="didascalia text-dark-50">
+                              {description !== 'NO DIDASCALIA' && (
+                                description
+                              )}
+                            </p>
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </SwiperSlide>
                   );
                 })}
@@ -169,7 +178,7 @@ export const query = graphql`query Immagini( $language: String!, $lettera : Int)
         description
         title
         titolo
-#        subtitle
+        #        subtitle
     }
     immagini: allSheetsImmagini(filter: {lettera: {eq: $lettera} }){
         nodes {
@@ -180,10 +189,11 @@ export const query = graphql`query Immagini( $language: String!, $lettera : Int)
                 relativePath
                 childImageSharp {
                     gatsbyImageData(
-                        width: 1000
-                        quality: 90
+                        formats: [AUTO, WEBP]
+                        width: 1200
+                        quality: 100
                         layout: CONSTRAINED
-                        placeholder: BLURRED
+                        placeholder: NONE
                     )
                 }
             }
